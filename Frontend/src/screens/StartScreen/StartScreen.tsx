@@ -1,5 +1,6 @@
 import {ImageBackground, Text, View} from 'react-native';
 
+import GradientButtonComponent from '../../components/GradientButton/GradientButtonComponent';
 import NormalButtonComponent from '../../components/NormalButton/NormalButtonComponent';
 import React from 'react';
 import images from '../../res/images';
@@ -14,6 +15,9 @@ const StartScreen = () => {
         style={styles.image}>
         <View style={styles.login}>
           <NormalButtonComponent />
+        </View>
+        <View style={styles.register}>
+          <GradientButtonComponent />
         </View>
       </ImageBackground>
     </View>

@@ -9,9 +9,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   login: {
-    borderColor: 'red',
-    borderWidth: 5,
-    bottom: 120,
+    bottom: 80,
+    alignItems: 'center',
+  },
+  register: {
+    bottom: 60,
     alignItems: 'center',
   },
 });

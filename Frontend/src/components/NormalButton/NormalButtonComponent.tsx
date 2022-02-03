@@ -1,13 +1,13 @@
-import {Text, View} from 'react-native';
+import {Pressable, Text, View} from 'react-native';
 
 import React from 'react';
 import styles from './styles';
 
 const NormalButtonComponent = () => {
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={() => console.log('log in')}>
       <Text style={styles.textStyle}>LOG IN</Text>
-    </View>
+    </Pressable>
   );
 };
 
