@@ -51,5 +51,14 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Comfortaa-Regular.ttf</string>
+		<string>ABeeZee-Italic.ttf</string>
+		<string>ReadexPro-Black.ttf</string>
+		<string>ReadexPro-Medium.ttf</string>
+		<string>AntDesign.ttf</string>
+		<string>Roboto-Medium.ttf</string>
+	</array>
 </dict>
 </plist>

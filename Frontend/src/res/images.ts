@@ -1,6 +1,6 @@
 const images = {
   frontscreenflag: require('./images/flag.jpg'),
-  logo: require('./images/logo1.png'),
+  logo: require('./images/logo.png'),
 };
 
 export default images;

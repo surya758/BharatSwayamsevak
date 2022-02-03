@@ -1,4 +1,11 @@
-import {Image, ImageBackground, Pressable, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  Pressable,
+  Text,
+  View,
+} from 'react-native';
 
 import GradientButtonComponent from '../../components/GradientButton/GradientButtonComponent';
 import NormalButtonComponent from '../../components/NormalButton/NormalButtonComponent';
@@ -6,7 +13,12 @@ import React from 'react';
 import images from '../../res/images';
 import styles from './styles';
 
+const windowWidth = Dimensions.get('window').width;
+
 const StartScreen = () => {
+  const onPress = () => {
+    console.log('hello');
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -19,7 +31,11 @@ const StartScreen = () => {
         <View style={styles.bottomBox}>
           <NormalButtonComponent />
           <View style={styles.gradient}>
-            <GradientButtonComponent />
+            <GradientButtonComponent
+              text="REGISTER"
+              width={windowWidth * 0.8}
+              onPress={onPress}
+            />
           </View>
           <Pressable
             style={styles.adminBox}

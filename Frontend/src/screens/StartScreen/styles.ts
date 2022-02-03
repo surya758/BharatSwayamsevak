@@ -1,8 +1,5 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
+import {StyleSheet} from 'react-native';
 import colors from '../../res/colors';
-
-const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +9,6 @@ const styles = StyleSheet.create({
     width: 220,
     height: 220,
     zIndex: 5,
-    elevation: 5,
     top: 30,
   },
   upperBox: {flex: 1},
