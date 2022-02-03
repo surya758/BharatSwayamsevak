@@ -6,7 +6,13 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+  },
+  login: {
+    borderColor: 'red',
+    borderWidth: 5,
+    bottom: 120,
+    alignItems: 'center',
   },
 });
 
