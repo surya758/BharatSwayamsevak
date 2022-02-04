@@ -1,15 +1,36 @@
 import React, {useState} from 'react';
 import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
+import CountryPicker from 'react-native-country-picker-modal';
 import GradientButtonComponent from '../../components/GradientButton/GradientButtonComponent';
 import Icon from 'react-native-vector-icons/AntDesign';
+import colors from '../../res/colors';
 import styles from './styles';
 
 const RegisterScreen = () => {
   const [number, onChangeNumber] = useState(null);
+  const [countryCode, setCountryCode] = useState('IN');
+  const [country, setCountry] = useState(null);
+  const [withFlag, setWithFlag] = useState<boolean>(true);
+  const [withCallingCode, setWithCallingCode] = useState<boolean>(true);
+  const [withModal, setWithModal] = useState<boolean>(true);
+  const [withCallingCodeButton, setWithCallingCodeButton] =
+    useState<boolean>(true);
+  const [withEmoji, setWithEmoji] = useState<boolean>(true);
+  const [withFilter, setWithFilter] = useState<boolean>(true);
+  const onSelect = country => {
+    console.log(country.callingCode);
+    setCountryCode(country.cca2);
+    setCountry(country);
+  };
   const onPress = () => {
     console.log('hello');
   };
+
+  const formatePhoneNumber = number => {
+    const newText = '';
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Icon name="back" size={30} color="#900" style={styles.backIconStyle} />
@@ -23,7 +44,23 @@ const RegisterScreen = () => {
       <View
         style={{
           flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingTop: 10,
+          paddingBottom: 20,
         }}>
+        <CountryPicker
+          {...{
+            countryCode,
+            withFilter,
+            withModal,
+            withCallingCode,
+            withFlag,
+            withCallingCodeButton,
+            withEmoji,
+            onSelect,
+          }}
+        />
         <TextInput
           style={styles.input}
           onChangeText={onChangeNumber}

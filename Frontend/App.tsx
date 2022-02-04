@@ -7,9 +7,9 @@ import StartScreen from './src/screens/StartScreen/StartScreen';
 const App = () => {
   return (
     // <SafeAreaView>
-    // <RegisterScreen />
+    <RegisterScreen />
     // <StartScreen />
-    <LoginScreen />
+    // <LoginScreen />
     // </SafeAreaView>
   );
 };

@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 2,
     paddingLeft: 20,
+    marginLeft: 10,
     flex: 1,
     borderRadius: 6,
     borderColor: colors.saffron,
-    marginBottom: 20,
   },
 });
 
