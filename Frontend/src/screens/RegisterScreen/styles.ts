@@ -33,6 +33,13 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderColor: colors.saffron,
   },
+  countryPickerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 20,
+  },
 });
 
 export default styles;
