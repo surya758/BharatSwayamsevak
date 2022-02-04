@@ -11,7 +11,7 @@ const GradientButtonComponent = props => {
         start={{x: 0.0, y: 0.4}}
         end={{x: 0.8, y: 1.0}}
         locations={[0.3, 0.7, 1]}
-        colors={['#28a31d', '#4fa74a', '#3ea035']}
+        colors={['#196911', '#4fa74a', '#3ea035']}
         style={{
           ...styles.linearGradient,
           width: props.width,

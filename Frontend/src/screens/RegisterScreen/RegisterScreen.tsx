@@ -73,6 +73,7 @@ const RegisterScreen = () => {
             placeholder="enter your mobile number"
             keyboardType="numeric"
             maxLength={10}
+            autoComplete="off"
           />
         </View>
         <GradientButtonComponent
