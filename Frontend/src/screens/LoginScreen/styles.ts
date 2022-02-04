@@ -18,12 +18,20 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
   },
-  input: {
+  inputWith: {
     height: 50,
     borderWidth: 2,
     paddingLeft: 20,
     borderRadius: 6,
     borderColor: colors.saffron,
+    marginBottom: 20,
+  },
+  inputWithout: {
+    height: 50,
+    borderWidth: 2,
+    paddingLeft: 20,
+    borderRadius: 6,
+    borderColor: colors.lightGrey,
     marginBottom: 20,
   },
 });

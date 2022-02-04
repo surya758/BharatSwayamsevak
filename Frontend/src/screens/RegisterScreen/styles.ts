@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Comfortaa-Regular',
     fontSize: 12,
   },
-  input: {
+  inputStyleWithout: {
     flexDirection: 'row',
     height: 50,
     borderWidth: 2,
@@ -32,6 +32,16 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 6,
     borderColor: colors.saffron,
+  },
+  inputStyleOnChange: {
+    flexDirection: 'row',
+    height: 50,
+    borderWidth: 2,
+    paddingLeft: 20,
+    marginLeft: 10,
+    flex: 1,
+    borderRadius: 6,
+    borderColor: colors.lightGrey,
   },
   countryPickerStyle: {
     flexDirection: 'row',
