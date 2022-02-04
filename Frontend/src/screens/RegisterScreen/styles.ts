@@ -9,18 +9,18 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   registerOne: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: 'ABeeZee-Italic',
     marginVertical: 10,
     fontSize: 36,
   },
   registerTwo: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: 'ABeeZee-Italic',
     marginBottom: 10,
     fontSize: 16,
   },
   registerThree: {
     marginBottom: 20,
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: 'ABeeZee-Italic',
     fontSize: 12,
   },
   inputStyleWithout: {

@@ -53,13 +53,14 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Comfortaa-Regular.ttf</string>
 		<string>Ionicon.ttf</string>
+		<string>ABeeZee-Regular.ttf</string>
 		<string>ABeeZee-Italic.ttf</string>
 		<string>ReadexPro-Black.ttf</string>
 		<string>ReadexPro-Medium.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Roboto-Medium.ttf</string>
+		<string>Comfortaa-Regular.ttf</string>
 	</array>
 </dict>
 </plist>
