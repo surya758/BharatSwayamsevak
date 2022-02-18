@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -16,6 +18,19 @@ const styles = StyleSheet.create({
     fontFamily: 'Comfortaa-Regular',
     marginBottom: 20,
     fontSize: 16,
+  },
+  donationButtonStyle: {
+    flexDirection: 'row',
+    marginVertical: 10,
+    justifyContent: 'space-around',
+  },
+  dashViewStyle: {},
+  dashLineStyle: {
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'red',
+    margin: 10,
+    width: (windowWidth * 0.75) / 2,
   },
 });
 
