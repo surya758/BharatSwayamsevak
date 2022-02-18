@@ -26,10 +26,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   verificationThree: {
-    fontFamily: 'Comfortaa-Regular',
     marginBottom: 10,
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: '900',
   },
   codeFieldRoot: {
     height: CELL_SIZE,

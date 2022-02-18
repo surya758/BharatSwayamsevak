@@ -43,44 +43,51 @@ const RegisterScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={styles.container}>
-        <Icon name="back" size={30} color="#900" style={styles.backIconStyle} />
-        <View>
-          <Text style={styles.registerOne}>Register</Text>
-          <Text style={styles.registerTwo}>Enter your phone number</Text>
-          <Text style={styles.registerThree}>
-            Please confirm your country code and enter your phone number
-          </Text>
-        </View>
-        <View style={styles.countryPickerStyle}>
-          <CountryPicker
-            {...{
-              countryCode,
-              withFilter,
-              withModal,
-              withCallingCode,
-              withFlag,
-              withCallingCodeButton,
-              withEmoji,
-              onSelect,
-            }}
+        <View style={styles.con2}>
+          <Icon
+            name="back"
+            size={30}
+            color="#900"
+            style={styles.backIconStyle}
           />
-          <TextInput
-            style={
-              number ? styles.inputStyleWithout : styles.inputStyleOnChange
-            }
-            onChangeText={setNumber}
-            value={number}
-            placeholder="enter your mobile number"
-            keyboardType="numeric"
-            maxLength={10}
-            autoComplete="off"
+          <View>
+            <Text style={styles.registerOne}>Register</Text>
+            <Text style={styles.registerTwo}>Enter your phone number</Text>
+            <Text style={styles.registerThree}>
+              Please confirm your country code and enter your phone number
+            </Text>
+          </View>
+          <View style={styles.countryPickerStyle}>
+            <CountryPicker
+              {...{
+                countryCode,
+                withFilter,
+                withModal,
+                withCallingCode,
+                withFlag,
+                withCallingCodeButton,
+                withEmoji,
+                onSelect,
+              }}
+            />
+            <TextInput
+              style={
+                number ? styles.inputStyleWithout : styles.inputStyleOnChange
+              }
+              onChangeText={setNumber}
+              value={number}
+              placeholder="enter your mobile number"
+              keyboardType="numeric"
+              maxLength={10}
+              autoComplete="off"
+            />
+          </View>
+          <GradientButtonComponent
+            text="PROCEED"
+            bottomRightRadius={0}
+            onPress={onPress}
           />
         </View>
-        <GradientButtonComponent
-          text="PROCEED"
-          bottomRightRadius={0}
-          onPress={onPress}
-        />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

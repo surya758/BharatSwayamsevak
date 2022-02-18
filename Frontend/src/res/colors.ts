@@ -1,7 +1,7 @@
 const colors = {
   saffron: '#FF9933',
   lightSaffron: '#F4C430',
-  lighestSaffron: '#FFD7B0',
+  lighestSaffron: '#fffbf8 ',
   white: '#FFFFFF',
   green: '#138808',
   background: '#fff',

@@ -3,24 +3,28 @@ import colors from '../../res/colors';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: colors.lighestSaffron,
+  },
+  con2: {
     marginHorizontal: 20,
   },
   backIconStyle: {
     marginTop: 30,
   },
   registerOne: {
-    fontFamily: 'ABeeZee-Italic',
+    fontFamily: 'Comfortaa-Regular',
     marginVertical: 10,
     fontSize: 36,
   },
   registerTwo: {
-    fontFamily: 'ABeeZee-Italic',
+    fontFamily: 'Comfortaa-Regular',
     marginBottom: 10,
     fontSize: 16,
   },
   registerThree: {
     marginBottom: 20,
-    fontFamily: 'ABeeZee-Italic',
+    fontFamily: 'Comfortaa-Regular',
     fontSize: 12,
   },
   inputStyleWithout: {

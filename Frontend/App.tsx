@@ -1,3 +1,4 @@
+import DonationScreen from './src/screens/DonationScreen/DonationScreen';
 import LoginScreen from './src/screens/LoginScreen/LoginScreen';
 import PasswordScreen from './src/screens/PasswordScreen/PasswordScreen';
 import React from 'react';
@@ -9,11 +10,12 @@ import VerificationScreen from './src/screens/VerificationScreen/VerificationScr
 const App = () => {
   return (
     // <SafeAreaView>
-    <RegisterScreen />
+    // <RegisterScreen />
     // <StartScreen />
     // <LoginScreen />
     // <VerificationScreen />
     // <PasswordScreen />
+    <DonationScreen />
     // </SafeAreaView>
   );
 };
