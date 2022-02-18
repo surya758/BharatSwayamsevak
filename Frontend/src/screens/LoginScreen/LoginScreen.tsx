@@ -35,7 +35,7 @@ const LoginScreen = () => {
         <TextInput
           style={number ? styles.inputWith : styles.inputWithout}
           onChangeText={onChangeNumber}
-          value={number}
+          value={number.toString()}
           placeholder="enter your mobile number"
           keyboardType="numeric"
         />
@@ -43,14 +43,14 @@ const LoginScreen = () => {
           <TextInput
             style={password ? styles.inputWith : styles.inputWithout}
             onChangeText={onChangePassword}
-            value={password}
+            value={password.toString()}
             placeholder="enter your password"
             textContentType="password"
             secureTextEntry={hidePass ? true : false}
           />
           <TouchableOpacity
             onPress={() => setHidePass(!hidePass)}
-            style={{position: 'absolute', zIndex: 5, right: 10, top: 10}}>
+            style={styles.eyeStyle}>
             <Ionicons
               name={hidePass ? 'eye-off' : 'eye'}
               size={24}

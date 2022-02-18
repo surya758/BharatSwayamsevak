@@ -1,14 +1,21 @@
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+/* eslint-disable @typescript-eslint/no-shadow */
+import {Dimensions, SafeAreaView, Text, TextInput, View} from 'react-native';
+import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import DashedLine from 'react-native-dashed-line';
 import DonationButtonComponent from '../../components/DonationButton/DonationButtonComponent';
-import React from 'react';
+import GradientButtonComponent from '../../components/GradientButton/GradientButtonComponent';
 import styles from './styles';
 
 const DonationScreen = () => {
-  const onPress = () => {
-    console.log('Donation pressed');
+  const [donationAmount, onDonationAmount] = useState(null);
+  const windowWidth = Dimensions.get('window').width;
+  const onPressDonate = () => {
+    console.log(donationAmount);
+  };
+  const onPress = donation => {
+    console.log(donation);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -24,24 +31,40 @@ const DonationScreen = () => {
       </View>
       <View>
         <View style={styles.donationButtonStyle}>
-          <DonationButtonComponent text="101" onPress={onPress} />
-          <DonationButtonComponent text="501" onPress={onPress} />
+          <DonationButtonComponent value={101} onPress={onPress} />
+          <DonationButtonComponent value={501} onPress={onPress} />
         </View>
         <View style={styles.donationButtonStyle}>
-          <DonationButtonComponent text="1001" onPress={onPress} />
-          <DonationButtonComponent text="5001" onPress={onPress} />
+          <DonationButtonComponent value={1001} onPress={onPress} />
+          <DonationButtonComponent value={5001} onPress={onPress} />
         </View>
       </View>
       <View style={styles.dashViewStyle}>
         <DashedLine
-          dashLength={8}
-          dashThickness={2}
+          dashLength={7.2}
+          dashThickness={1.6}
           style={styles.dashLineStyle}
         />
+        <Text>OR</Text>
         <DashedLine
-          dashLength={8}
-          dashThickness={2}
+          dashLength={7.2}
+          dashThickness={1.6}
           style={styles.dashLineStyle}
+        />
+      </View>
+      <TextInput
+        style={donationAmount ? styles.inputWith : styles.inputWithout}
+        onChangeText={onDonationAmount}
+        value={donationAmount}
+        placeholder="enter a custom donation amount"
+        keyboardType="numeric"
+      />
+      <View style={styles.gradientDonationButtonView}>
+        <GradientButtonComponent
+          text="DONATE"
+          bottomRightRadius={0}
+          onPress={onPressDonate}
+          width={windowWidth - 60}
         />
       </View>
     </SafeAreaView>

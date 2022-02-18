@@ -5,8 +5,8 @@ import styles from './styles';
 
 const DonationButtonComponent = props => {
   return (
-    <Pressable style={styles.container} onPress={props.onPress}>
-      <Text style={styles.textStyle}>{props.text}</Text>
+    <Pressable style={styles.container} onPress={props.onPress(props.value)}>
+      <Text style={styles.textStyle}>{props.value}</Text>
     </Pressable>
   );
 };

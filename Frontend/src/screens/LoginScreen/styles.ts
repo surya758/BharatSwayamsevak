@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
   },
+  eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 10},
   inputWith: {
     height: 50,
     borderWidth: 2,
