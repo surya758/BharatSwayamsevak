@@ -7,9 +7,7 @@ const styles = StyleSheet.create({
   container: {
     height: 150,
     backgroundColor: colors.lightGreen,
-    // borderColor: 'black',
     width: windowWidth * 0.3,
-    // borderWidth: 1,
     borderRadius: 6,
     marginVertical: 8,
     marginRight: 6,
@@ -28,6 +26,8 @@ const styles = StyleSheet.create({
     width: 70,
     borderRadius: 70,
     marginTop: 10,
+    borderColor: colors.black,
+    borderWidth: 0.4,
   },
   name: {
     fontSize: 14,

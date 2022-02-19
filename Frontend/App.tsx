@@ -11,10 +11,10 @@ import VerificationScreen from './src/screens/Auth/VerificationScreen/Verificati
 const App = () => {
   return (
     // <SafeAreaView>
-    // <RegisterScreen />
+    <RegisterScreen />
     // <StartScreen />
     // <LoginScreen />
-    <HomeScreen />
+    // <HomeScreen />
     // <VerificationScreen />
     // <PasswordScreen />
     // <DonationScreen />

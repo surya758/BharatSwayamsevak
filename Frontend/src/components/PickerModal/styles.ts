@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
+
 import colors from '../../res/colors';
 
 const styles = StyleSheet.create({
@@ -9,7 +10,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   pickerContainer: {
-    height: 200,
+    ...Platform.select({
+      android: {
+        height: 100,
+      },
+      ios: {
+        height: 200,
+      },
+    }),
+
     width: '100%',
     backgroundColor: 'white',
   },
