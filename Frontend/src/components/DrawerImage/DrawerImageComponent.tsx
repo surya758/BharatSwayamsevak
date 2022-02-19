@@ -6,7 +6,7 @@ import styles from './styles';
 const DrawerImageComponent = () => {
   return (
     <View style={styles.drawerViewStyle}>
-      <Entypo name="menu" size={30} color="#900" />
+      <Entypo name="menu" size={30} color="black" />
     </View>
   );
 };

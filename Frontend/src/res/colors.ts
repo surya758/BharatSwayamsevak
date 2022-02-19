@@ -4,8 +4,9 @@ const colors = {
   background: 'rgb(255,231,208) ',
   white: '#FFFFFF',
   green: '#138808',
-  lightGreen: '#ebffeb',
+  lightGreen: 'rgb(152, 251, 152)',
   lightGrey: '#D3D3D3',
+  black: '#000',
 };
 
 export default colors;

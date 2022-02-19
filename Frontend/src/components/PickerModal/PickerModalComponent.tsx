@@ -1,8 +1,9 @@
-import {Modal, StyleSheet, Text, View} from 'react-native';
+import {Modal, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Picker} from '@react-native-picker/picker';
+import styles from './styles';
 
 type Props = {
   visible: boolean;
@@ -53,28 +54,3 @@ const PickerModalComponent: React.FC<Props> = ({
 };
 
 export default PickerModalComponent;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  pickerContainer: {
-    height: 200,
-    width: '100%',
-    backgroundColor: 'white',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#eee',
-    alignItems: 'center',
-    padding: 5,
-  },
-  label: {
-    fontSize: 16,
-    fontFamily: 'Roboto-Black',
-  },
-});

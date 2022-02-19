@@ -1,8 +1,5 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
+import {StyleSheet} from 'react-native';
 import colors from '../../res/colors';
-
-const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   linearGradient: {

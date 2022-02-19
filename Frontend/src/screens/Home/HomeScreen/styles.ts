@@ -44,15 +44,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderColor: colors.green,
-    borderWidth: 0.4,
+    elevation: 5,
+    shadowColor: colors.green,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 1.2,
   },
   userIDPhotoStyle: {
     height: 150,
     borderRadius: 10,
     width: windowWidth * 0.3,
-    borderWidth: 0.5,
-    borderColor: 'black',
+    borderWidth: 0.8,
+    borderColor: colors.black,
   },
   greetingViewStyle: {alignItems: 'center', margin: 16},
   greetingTextLeft: {fontFamily: 'ABeeZee-Italic', fontSize: 16},
@@ -61,6 +67,31 @@ const styles = StyleSheet.create({
   idCardHeadingStyle: {fontSize: 24, fontFamily: 'SourceSansPro-Bold'},
   idCardTextHeadingStyle: {fontSize: 14, fontFamily: 'SourceSansPro-SemiBold'},
   idCardTextAnswerStyle: {fontSize: 12, fontFamily: 'Abel-Regular'},
+  modal: {
+    padding: 8,
+    backgroundColor: colors.lightGreen,
+    borderRadius: 6,
+    width: '45%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    elevation: 5,
+    shadowColor: colors.green,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 1.2,
+  },
+  modalText: {
+    fontFamily: 'SourceSansPro-SemiBold',
+  },
+  selectorView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
 });
 
 export default styles;
