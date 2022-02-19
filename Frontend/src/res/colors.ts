@@ -1,10 +1,10 @@
 const colors = {
   saffron: '#FF9933',
   lightSaffron: '#F4C430',
-  lighestSaffron: '#fffbf8 ',
+  background: 'rgb(255,231,208) ',
   white: '#FFFFFF',
   green: '#138808',
-  background: '#fff',
+  lightGreen: '#ebffeb',
   lightGrey: '#D3D3D3',
 };
 

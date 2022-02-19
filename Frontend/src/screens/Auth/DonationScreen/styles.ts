@@ -1,11 +1,18 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
-import colors from '../../res/colors';
+import colors from '../../../res/colors';
 
 const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
+    marginHorizontal: 20,
+  },
+  upperContainer: {
+    backgroundColor: colors.background,
+    flex: 1,
+  },
+  lowerContainer: {
     marginHorizontal: 20,
   },
   backIconStyle: {

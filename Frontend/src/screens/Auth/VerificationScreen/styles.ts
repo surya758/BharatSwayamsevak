@@ -1,6 +1,6 @@
 import {Platform, StyleSheet} from 'react-native';
 
-import colors from '../../res/colors';
+import colors from '../../../res/colors';
 
 export const CELL_SIZE = 70;
 export const CELL_BORDER_RADIUS = 8;
@@ -9,7 +9,11 @@ export const NOT_EMPTY_CELL_BG_COLOR = colors.saffron;
 export const ACTIVE_CELL_BG_COLOR = colors.lightSaffron;
 
 const styles = StyleSheet.create({
-  container: {
+  upperContainer: {
+    backgroundColor: colors.background,
+    flex: 1,
+  },
+  lowerContainer: {
     marginHorizontal: 20,
   },
   backIconStyle: {

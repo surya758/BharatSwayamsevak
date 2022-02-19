@@ -39,6 +39,8 @@
 	<string/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Abel-Regular.ttf</string>
+		<string>Roboto-MediumItalic.ttf</string>
 		<string>Comfortaa-Bold.ttf</string>
 		<string>Comfortaa-SemiBold.ttf</string>
 		<string>Ionicon.ttf</string>
@@ -65,6 +67,8 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>SourceSansPro-Bold.ttf</string>
+		<string>SourceSansPro-SemiBold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

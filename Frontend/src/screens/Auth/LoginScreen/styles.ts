@@ -1,8 +1,12 @@
 import {StyleSheet} from 'react-native';
-import colors from '../../res/colors';
+import colors from '../../../res/colors';
 
 const styles = StyleSheet.create({
-  container: {
+  upperContainer: {
+    backgroundColor: colors.background,
+    flex: 1,
+  },
+  lowerContainer: {
     marginHorizontal: 20,
   },
   backIconStyle: {

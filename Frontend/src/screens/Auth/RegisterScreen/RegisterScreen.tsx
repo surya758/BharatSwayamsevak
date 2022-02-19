@@ -9,7 +9,7 @@ import {
 import React, {useState} from 'react';
 
 import CountryPicker from 'react-native-country-picker-modal';
-import GradientButtonComponent from '../../components/GradientButton/GradientButtonComponent';
+import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
 
@@ -41,9 +41,9 @@ const RegisterScreen = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.con2}>
+    <SafeAreaView style={styles.upperContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.lowerContainer}>
           <Icon
             name="back"
             size={30}
@@ -88,8 +88,8 @@ const RegisterScreen = () => {
             onPress={onPress}
           />
         </View>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
   );
 };
 

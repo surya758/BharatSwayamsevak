@@ -1,28 +1,27 @@
+import React, {useState} from 'react';
 import {
-  Keyboard,
   SafeAreaView,
   Text,
   TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import GradientButtonComponent from '../../components/GradientButton/GradientButtonComponent';
+import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
-const PasswordScreen = () => {
+const LoginScreen = () => {
+  const [number, onChangeNumber] = useState(null);
   const [hidePass, setHidePass] = useState(true);
   const [password, onChangePassword] = useState(null);
   const onPress = () => {
     console.log('hello');
   };
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.upperContainer}>
+      <View style={styles.lowerContainer}>
         <AntDesign
           name="back"
           size={30}
@@ -30,12 +29,17 @@ const PasswordScreen = () => {
           style={styles.backIconStyle}
         />
         <View>
-          <Text style={styles.passwordOne}>Enter password</Text>
-          <Text style={styles.passwordTwo}>
-            Enter a password for your account
-          </Text>
+          <Text style={styles.loginOne}>Log in</Text>
+          <Text style={styles.loginTwo}>Sign in to your account</Text>
         </View>
         <View>
+          <TextInput
+            style={number ? styles.inputWith : styles.inputWithout}
+            onChangeText={onChangeNumber}
+            value={number}
+            placeholder="enter your mobile number"
+            keyboardType="numeric"
+          />
           <View>
             <TextInput
               style={password ? styles.inputWith : styles.inputWithout}
@@ -47,7 +51,7 @@ const PasswordScreen = () => {
             />
             <TouchableOpacity
               onPress={() => setHidePass(!hidePass)}
-              style={{position: 'absolute', zIndex: 5, right: 10, top: 10}}>
+              style={styles.eyeStyle}>
               <Ionicons
                 name={hidePass ? 'eye-off' : 'eye'}
                 size={24}
@@ -57,13 +61,13 @@ const PasswordScreen = () => {
           </View>
         </View>
         <GradientButtonComponent
-          text="REGISTER"
+          text="LOG IN"
           bottomRightRadius={0}
           onPress={onPress}
         />
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+      </View>
+    </SafeAreaView>
   );
 };
 
-export default PasswordScreen;
+export default LoginScreen;

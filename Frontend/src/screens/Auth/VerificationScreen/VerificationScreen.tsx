@@ -14,7 +14,7 @@ import styles, {
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
 
-import GradientButtonComponent from '../../components/GradientButton/GradientButtonComponent';
+import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const {Value, Text: AnimatedText} = Animated;
@@ -91,30 +91,32 @@ const VerificationScreen = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <Icon name="back" size={30} color="#900" style={styles.backIconStyle} />
-      <Text style={styles.verificationOne}>Verification</Text>
-      <Text style={styles.verificationTwo}>
-        A verification code has been send to{'\n'}
-        <Text style={styles.verificationThree}>(+91) 9431 632 832</Text>
-      </Text>
-      <CodeField
-        ref={ref}
-        {...props}
-        value={value}
-        onChangeText={setValue}
-        cellCount={CELL_COUNT}
-        rootStyle={styles.codeFieldRoot}
-        keyboardType="number-pad"
-        textContentType="oneTimeCode"
-        renderCell={renderCell}
-      />
-      <View style={styles.verifyButton}>
-        <GradientButtonComponent
-          text="VERIFY"
-          bottomRightRadius={0}
-          onPress={onPress}
+    <SafeAreaView style={styles.upperContainer}>
+      <View style={styles.lowerContainer}>
+        <Icon name="back" size={30} color="#900" style={styles.backIconStyle} />
+        <Text style={styles.verificationOne}>Verification</Text>
+        <Text style={styles.verificationTwo}>
+          A verification code has been send to{'\n'}
+          <Text style={styles.verificationThree}>(+91) 9431 632 832</Text>
+        </Text>
+        <CodeField
+          ref={ref}
+          {...props}
+          value={value}
+          onChangeText={setValue}
+          cellCount={CELL_COUNT}
+          rootStyle={styles.codeFieldRoot}
+          keyboardType="number-pad"
+          textContentType="oneTimeCode"
+          renderCell={renderCell}
         />
+        <View style={styles.verifyButton}>
+          <GradientButtonComponent
+            text="VERIFY"
+            bottomRightRadius={0}
+            onPress={onPress}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

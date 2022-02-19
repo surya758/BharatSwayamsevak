@@ -7,10 +7,10 @@ import {
   View,
 } from 'react-native';
 
-import GradientButtonComponent from '../../components/GradientButton/GradientButtonComponent';
-import NormalButtonComponent from '../../components/NormalButton/NormalButtonComponent';
+import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
+import NormalButtonComponent from '../../../components/NormalButton/NormalButtonComponent';
 import React from 'react';
-import images from '../../res/images';
+import images from '../../../res/images';
 import styles from './styles';
 
 const windowWidth = Dimensions.get('window').width;
