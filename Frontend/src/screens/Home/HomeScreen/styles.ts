@@ -44,14 +44,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderColor: 'red',
-    borderWidth: 1,
   },
   userIDPhotoStyle: {
     height: 150,
     borderRadius: 10,
     width: windowWidth * 0.3,
   },
+  greetingViewStyle: {alignItems: 'center', margin: 16},
+  greetingTextLeft: {fontFamily: 'ABeeZee-Italic', fontSize: 16},
+  greetingTextRight: {fontFamily: 'Comfortaa-Regular', fontSize: 20},
+  idCardTextViewStyle: {paddingVertical: 10},
+  idCardHeadingStyle: {fontSize: 24, fontFamily: 'SourceSansPro-Bold'},
+  idCardTextHeadingStyle: {fontSize: 14, fontFamily: 'SourceSansPro-SemiBold'},
+  idCardTextAnswerStyle: {fontSize: 12, fontFamily: 'Abel-Regular'},
 });
 
 export default styles;

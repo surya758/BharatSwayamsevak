@@ -18,25 +18,22 @@ const HomeScreen = () => {
           </ImageBackground>
           <DrawerImageComponent />
         </View>
-        <View style={{alignItems: 'center', margin: 16}}>
-          <Text style={{fontFamily: 'ABeeZee-Italic', fontSize: 16}}>
-            Hola,{' '}
-            <Text style={{fontFamily: 'Comfortaa-Regular', fontSize: 20}}>
-              User
-            </Text>
+        <View style={styles.greetingViewStyle}>
+          <Text style={styles.greetingTextLeft}>
+            Hola, <Text style={styles.greetingTextRight}>User</Text>
           </Text>
         </View>
         <View style={styles.userIDCardStyle}>
-          <View
-            style={{
-              borderColor: 'red',
-              borderWidth: 1,
-            }}>
-            <Text style={{fontSize: 24, fontFamily: 'Abel-Regular'}}>
-              Maddy Gibson
-            </Text>
-            <Text>Hello</Text>
-            <Text>Hello</Text>
+          <View>
+            <Text style={styles.idCardHeadingStyle}>Maddy Gibson</Text>
+            <View style={styles.idCardTextViewStyle}>
+              <Text style={styles.idCardTextAnswerStyle}>STATE</Text>
+              <Text style={styles.idCardTextHeadingStyle}>Uttar Pradesh</Text>
+            </View>
+            <View>
+              <Text style={styles.idCardTextAnswerStyle}>POSITION</Text>
+              <Text style={styles.idCardTextHeadingStyle}>Volunteer</Text>
+            </View>
           </View>
           <Image style={styles.userIDPhotoStyle} source={images.guy} />
         </View>
