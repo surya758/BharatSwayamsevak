@@ -13,12 +13,22 @@ import React, {useState} from 'react';
 import DashedLine from 'react-native-dashed-line';
 import DrawerImageComponent from '../../../components/DrawerImage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {HomeStackParamList} from '../../../navigation/HomeNav';
 import MemberComponent from '../../../components/Member';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PickerModalComponent from '../../../components/PickerModal';
 import images from '../../../res/images';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
+
+type homeScreenNavigationType = NativeStackNavigationProp<
+  HomeStackParamList,
+  'home'
+>;
 
 const HomeScreen = () => {
+  const navigation = useNavigation<homeScreenNavigationType>();
+
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [state, setState] = useState<string | undefined>('Select a state');
   const onClose = () => {
@@ -52,8 +62,10 @@ const HomeScreen = () => {
           <DrawerImageComponent />
           {/*remember to replace true with isAdmin*/}
           {true ? (
-            <Pressable style={styles.addButton}>
-              <FontAwesome5 name="plus" size={24} color="#000" />
+            <Pressable
+              style={styles.addButton}
+              onPress={() => navigation.navigate('add user')}>
+              <FontAwesome5 name="plus" size={24} color="#fff" />
             </Pressable>
           ) : null}
         </View>
