@@ -4,21 +4,20 @@ import LoginScreen from './src/screens/Auth/LoginScreen/LoginScreen';
 import PasswordScreen from './src/screens/Auth/PasswordScreen/PasswordScreen';
 import React from 'react';
 import RegisterScreen from './src/screens/Auth/RegisterScreen/RegisterScreen';
-import {SafeAreaView} from 'react-native';
 import StartScreen from './src/screens/Auth/StartScreen/StartScreen';
+import UserDetailScreen from './src/screens/Auth/UserDetailScreen/UserDetailScreen';
 import VerificationScreen from './src/screens/Auth/VerificationScreen/VerificationScreen';
 
 const App = () => {
   return (
-    // <SafeAreaView>
-    <RegisterScreen />
+    // <RegisterScreen />
+    <UserDetailScreen />
     // <StartScreen />
     // <LoginScreen />
     // <HomeScreen />
     // <VerificationScreen />
     // <PasswordScreen />
     // <DonationScreen />
-    // </SafeAreaView>
   );
 };
 

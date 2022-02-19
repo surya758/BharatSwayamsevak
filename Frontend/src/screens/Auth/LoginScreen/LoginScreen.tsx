@@ -13,9 +13,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
 const LoginScreen = () => {
-  const [number, onChangeNumber] = useState<string | undefined>('');
+  const [number, setNumber] = useState<string | undefined>('');
   const [hidePass, setHidePass] = useState(true);
-  const [password, onChangePassword] = useState<string | undefined>('');
+  const [password, setPassword] = useState<string | undefined>('');
   const onPress = () => {
     console.log('hello');
   };
@@ -35,7 +35,7 @@ const LoginScreen = () => {
         <View>
           <TextInput
             style={number ? styles.inputWith : styles.inputWithout}
-            onChangeText={onChangeNumber}
+            onChangeText={setNumber}
             value={number}
             placeholder="enter your mobile number"
             keyboardType="numeric"
@@ -43,7 +43,7 @@ const LoginScreen = () => {
           <View>
             <TextInput
               style={password ? styles.inputWith : styles.inputWithout}
-              onChangeText={onChangePassword}
+              onChangeText={setPassword}
               value={password}
               placeholder="enter your password"
               textContentType="password"

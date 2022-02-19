@@ -60,7 +60,7 @@ const PasswordScreen = () => {
             </View>
           </View>
           <GradientButtonComponent
-            text="REGISTER"
+            text="CONTINUE"
             bottomRightRadius={0}
             onPress={onPress}
           />
