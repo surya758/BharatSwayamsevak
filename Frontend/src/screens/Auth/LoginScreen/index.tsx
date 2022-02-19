@@ -8,11 +8,20 @@ import {
 } from 'react-native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {AuthStackParamList} from '../../../navigation/AuthNav';
 import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
+
+type authScreenNavigationType = NativeStackNavigationProp<
+  AuthStackParamList,
+  'login'
+>;
 
 const LoginScreen = () => {
+  const navigation = useNavigation<authScreenNavigationType>();
   const [number, setNumber] = useState<string | undefined>('');
   const [hidePass, setHidePass] = useState(true);
   const [password, setPassword] = useState<string | undefined>('');
@@ -27,6 +36,7 @@ const LoginScreen = () => {
           size={30}
           color="#900"
           style={styles.backIconStyle}
+          onPress={() => navigation.goBack()}
         />
         <View>
           <Text style={styles.loginOne}>Log in</Text>

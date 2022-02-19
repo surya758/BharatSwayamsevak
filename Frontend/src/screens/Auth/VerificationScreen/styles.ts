@@ -6,7 +6,7 @@ export const CELL_SIZE = 70;
 export const CELL_BORDER_RADIUS = 8;
 export const DEFAULT_CELL_BG_COLOR = colors.white;
 export const NOT_EMPTY_CELL_BG_COLOR = colors.saffron;
-export const ACTIVE_CELL_BG_COLOR = colors.lightSaffron;
+export const ACTIVE_CELL_BG_COLOR = colors.saffron;
 
 const styles = StyleSheet.create({
   upperContainer: {

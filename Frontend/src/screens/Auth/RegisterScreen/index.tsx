@@ -9,10 +9,18 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
+import {AuthStackParamList} from '../../../navigation/AuthNav';
 import CountryPicker from 'react-native-country-picker-modal';
 import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
 import Icon from 'react-native-vector-icons/AntDesign';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
+
+type authScreenNavigationType = NativeStackNavigationProp<
+  AuthStackParamList,
+  'register'
+>;
 
 type Country = {
   callingCode: [string];
@@ -25,6 +33,7 @@ type Country = {
 };
 
 const RegisterScreen = () => {
+  const navigation = useNavigation<authScreenNavigationType>();
   const [number, setNumber] = useState<string | undefined>('');
   const [countryCode, setCountryCode] = useState('IN');
   const [country, setCountry] = useState<Country>({
@@ -49,6 +58,7 @@ const RegisterScreen = () => {
   };
   const onPress = () => {
     console.log('+' + country.callingCode + number);
+    navigation.navigate('verification');
   };
 
   return (
@@ -60,6 +70,7 @@ const RegisterScreen = () => {
             size={30}
             color="#900"
             style={styles.backIconStyle}
+            onPress={() => navigation.goBack()}
           />
           <View>
             <Text style={styles.registerOne}>Register</Text>
@@ -94,9 +105,9 @@ const RegisterScreen = () => {
             />
           </View>
           <GradientButtonComponent
-            text="PROCEED"
+            text="CONTINUE"
             bottomRightRadius={0}
-            onPress={onPress}
+            onPress={() => onPress()}
           />
         </View>
       </TouchableWithoutFeedback>

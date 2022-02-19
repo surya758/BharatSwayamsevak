@@ -14,8 +14,11 @@ import styles, {
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
 
+import {AuthStackParamList} from '../../../navigation/AuthNav';
 import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
 import Icon from 'react-native-vector-icons/AntDesign';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
 
 type Animate = {
   hasValue: boolean;
@@ -24,13 +27,18 @@ type Animate = {
   symbol?: any;
 };
 
+type authScreenNavigationType = NativeStackNavigationProp<
+  AuthStackParamList,
+  'verification'
+>;
+
 const {Value, Text: AnimatedText} = Animated;
 
 const CELL_COUNT = 4;
 
 const animationsColor = [...new Array(CELL_COUNT)].map(() => new Value(0));
 const animationsScale = [...new Array(CELL_COUNT)].map(() => new Value(1));
-const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}): void => {
+const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}) => {
   Animated.parallel([
     Animated.timing(animationsColor[index], {
       useNativeDriver: false,
@@ -46,9 +54,11 @@ const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}): void => {
 };
 
 const VerificationScreen = () => {
+  const navigation = useNavigation<authScreenNavigationType>();
   const [value, setValue] = useState('');
   const onPress = () => {
     console.log(value);
+    navigation.navigate('password');
   };
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -76,7 +86,7 @@ const VerificationScreen = () => {
         {
           scale: animationsScale[index].interpolate({
             inputRange: [0, 1],
-            outputRange: [0.2, 1],
+            outputRange: [0.65, 1],
           }),
         },
       ],
@@ -100,7 +110,13 @@ const VerificationScreen = () => {
   return (
     <SafeAreaView style={styles.upperContainer}>
       <View style={styles.lowerContainer}>
-        <Icon name="back" size={30} color="#900" style={styles.backIconStyle} />
+        <Icon
+          name="back"
+          size={30}
+          color="#900"
+          style={styles.backIconStyle}
+          onPress={() => navigation.goBack()}
+        />
         <Text style={styles.verificationOne}>Verification</Text>
         <Text style={styles.verificationTwo}>
           A verification code has been send to{'\n'}

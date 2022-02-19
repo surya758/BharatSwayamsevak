@@ -7,17 +7,29 @@ import {
   View,
 } from 'react-native';
 
+import {AuthStackParamList} from '../../../navigation/AuthNav';
 import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NormalButtonComponent from '../../../components/NormalButton/NormalButtonComponent';
 import React from 'react';
 import images from '../../../res/images';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 
+type authScreenNavigationType = NativeStackNavigationProp<
+  AuthStackParamList,
+  'start'
+>;
+
 const StartScreen = () => {
-  const onPress = () => {
-    console.log('hello');
+  const navigation = useNavigation<authScreenNavigationType>();
+  const onPressLogin = () => {
+    navigation.navigate('login');
+  };
+  const onPressRegister = () => {
+    navigation.navigate('register');
   };
   return (
     <View style={styles.container}>
@@ -29,12 +41,12 @@ const StartScreen = () => {
           <Image style={styles.tinyLogo} source={images.logo} />
         </View>
         <View style={styles.bottomBox}>
-          <NormalButtonComponent />
+          <NormalButtonComponent onPress={onPressLogin} />
           <View style={styles.gradient}>
             <GradientButtonComponent
               text="REGISTER"
               width={windowWidth * 0.8}
-              onPress={onPress}
+              onPress={onPressRegister}
             />
           </View>
           <Pressable

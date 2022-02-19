@@ -10,15 +10,22 @@ import {
 import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {AuthStackParamList} from '../../../navigation/AuthNav';
 import DashedLine from 'react-native-dashed-line';
 import DonationButtonComponent from '../../../components/DonationButton/DonationButtonComponent';
 import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
+
+type authScreenNavigationType = NativeStackNavigationProp<
+  AuthStackParamList,
+  'donation'
+>;
 
 const DonationScreen = () => {
-  const [donationAmount, onDonationAmount] = useState<string | undefined>(
-    undefined,
-  );
+  const navigation = useNavigation<authScreenNavigationType>();
+  const [donationAmount, onDonationAmount] = useState<string>('');
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0;
   const windowWidth = Dimensions.get('window').width;
   const onPressDonate = () => {
@@ -38,6 +45,7 @@ const DonationScreen = () => {
             size={30}
             color="#900"
             style={styles.backIconStyle}
+            onPress={() => navigation.goBack()}
           />
           <View>
             <Text style={styles.donationOne}>Donation</Text>

@@ -10,15 +10,25 @@ import {
 import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {AuthStackParamList} from '../../../navigation/AuthNav';
 import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
+
+type authScreenNavigationType = NativeStackNavigationProp<
+  AuthStackParamList,
+  'password'
+>;
 
 const PasswordScreen = () => {
+  const navigation = useNavigation<authScreenNavigationType>();
   const [hidePass, setHidePass] = useState<boolean>(true);
   const [password, onChangePassword] = useState<string | undefined>('');
   const onPress = () => {
     console.log('hello');
+    navigation.navigate('user detail');
   };
   return (
     <SafeAreaView style={styles.upperContainer}>
@@ -29,6 +39,7 @@ const PasswordScreen = () => {
             size={30}
             color="#900"
             style={styles.backIconStyle}
+            onPress={() => navigation.goBack()}
           />
           <View>
             <Text style={styles.passwordOne}>Enter password</Text>
