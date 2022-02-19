@@ -17,13 +17,20 @@ import styles, {
 import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
 import Icon from 'react-native-vector-icons/AntDesign';
 
+type Animate = {
+  hasValue: boolean;
+  index: any;
+  isFocused: any;
+  symbol?: any;
+};
+
 const {Value, Text: AnimatedText} = Animated;
 
 const CELL_COUNT = 4;
 
 const animationsColor = [...new Array(CELL_COUNT)].map(() => new Value(0));
 const animationsScale = [...new Array(CELL_COUNT)].map(() => new Value(1));
-const animateCell = ({hasValue, index, isFocused}) => {
+const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}): void => {
   Animated.parallel([
     Animated.timing(animationsColor[index], {
       useNativeDriver: false,
@@ -49,7 +56,7 @@ const VerificationScreen = () => {
     setValue,
   });
 
-  const renderCell = ({index, symbol, isFocused}) => {
+  const renderCell: React.FC<Animate> = ({index, symbol, isFocused}) => {
     const hasValue = Boolean(symbol);
     const animatedCellStyle = {
       backgroundColor: hasValue

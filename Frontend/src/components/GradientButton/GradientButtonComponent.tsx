@@ -1,10 +1,17 @@
-import {Pressable, Text, View} from 'react-native';
+import {Pressable, Text} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import React from 'react';
 import styles from './styles';
 
-const GradientButtonComponent = props => {
+type Props = {
+  onPress: () => void;
+  width?: number;
+  bottomRightRadius?: number;
+  text: string;
+};
+
+const GradientButtonComponent: React.FC<Props> = props => {
   return (
     <Pressable onPress={props.onPress}>
       <LinearGradient

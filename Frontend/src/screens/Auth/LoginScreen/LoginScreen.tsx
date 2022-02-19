@@ -13,9 +13,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
 const LoginScreen = () => {
-  const [number, onChangeNumber] = useState(null);
+  const [number, onChangeNumber] = useState<string | undefined>('');
   const [hidePass, setHidePass] = useState(true);
-  const [password, onChangePassword] = useState(null);
+  const [password, onChangePassword] = useState<string | undefined>('');
   const onPress = () => {
     console.log('hello');
   };

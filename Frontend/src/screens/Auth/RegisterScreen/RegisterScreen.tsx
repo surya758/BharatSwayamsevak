@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Keyboard,
   SafeAreaView,
@@ -13,10 +14,20 @@ import GradientButtonComponent from '../../../components/GradientButton/Gradient
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
 
+type Country = {
+  callingCode: [string];
+  cca2: string;
+  currency: [string];
+  flag: string;
+  name: string;
+  region: string;
+  subregion: string;
+};
+
 const RegisterScreen = () => {
-  const [number, setNumber] = useState(null);
+  const [number, setNumber] = useState<string | undefined>('');
   const [countryCode, setCountryCode] = useState('IN');
-  const [country, setCountry] = useState({
+  const [country, setCountry] = useState<Country>({
     callingCode: ['91'],
     cca2: 'IN',
     currency: ['INR'],
@@ -32,9 +43,9 @@ const RegisterScreen = () => {
     useState<boolean>(true);
   const [withEmoji, setWithEmoji] = useState<boolean>(true);
   const [withFilter, setWithFilter] = useState<boolean>(true);
-  const onSelect = country => {
-    setCountryCode(country.cca2);
-    setCountry(country);
+  const onSelect = (selectedCountry: Country) => {
+    setCountryCode(selectedCountry.cca2);
+    setCountry(selectedCountry);
   };
   const onPress = () => {
     console.log('+' + country.callingCode + number);

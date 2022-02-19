@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import {
   Dimensions,
   KeyboardAvoidingView,
@@ -17,7 +16,9 @@ import GradientButtonComponent from '../../../components/GradientButton/Gradient
 import styles from './styles';
 
 const DonationScreen = () => {
-  const [donationAmount, onDonationAmount] = useState(null);
+  const [donationAmount, onDonationAmount] = useState<string | undefined>(
+    undefined,
+  );
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0;
   const windowWidth = Dimensions.get('window').width;
   const onPressDonate = () => {

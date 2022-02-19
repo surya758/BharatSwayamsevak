@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
+  eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 10},
   passwordOne: {
     fontFamily: 'Comfortaa-Regular',
     marginVertical: 10,

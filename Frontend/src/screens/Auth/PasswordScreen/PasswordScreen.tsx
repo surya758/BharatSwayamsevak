@@ -15,8 +15,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
 const PasswordScreen = () => {
-  const [hidePass, setHidePass] = useState(true);
-  const [password, onChangePassword] = useState(null);
+  const [hidePass, setHidePass] = useState<boolean>(true);
+  const [password, onChangePassword] = useState<string | undefined>('');
   const onPress = () => {
     console.log('hello');
   };
@@ -50,7 +50,7 @@ const PasswordScreen = () => {
               />
               <TouchableOpacity
                 onPress={() => setHidePass(!hidePass)}
-                style={{position: 'absolute', zIndex: 5, right: 10, top: 10}}>
+                style={styles.eyeStyle}>
                 <Ionicons
                   name={hidePass ? 'eye-off' : 'eye'}
                   size={24}
