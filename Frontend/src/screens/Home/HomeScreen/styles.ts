@@ -25,6 +25,17 @@ const styles = StyleSheet.create({
   photoRingImageView: {
     alignItems: 'center',
   },
+  addButton: {
+    width: 70,
+    height: 70,
+    borderRadius: 70,
+    position: 'absolute',
+    backgroundColor: colors.saffron,
+    right: 10,
+    top: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   dashLineStyle: {
     overflow: 'hidden',
     marginVertical: 16,

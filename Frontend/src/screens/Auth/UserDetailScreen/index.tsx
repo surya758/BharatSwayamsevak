@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
 import {AuthStackParamList} from '../../../navigation/AuthNav';
-import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
+import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';

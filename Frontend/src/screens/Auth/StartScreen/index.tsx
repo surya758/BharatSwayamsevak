@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 
 import {AuthStackParamList} from '../../../navigation/AuthNav';
-import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
+import GradientButtonComponent from '../../../components/GradientButton';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import NormalButtonComponent from '../../../components/NormalButton/NormalButtonComponent';
+import NormalButtonComponent from '../../../components/NormalButton';
 import React from 'react';
 import images from '../../../res/images';
 import styles from './styles';
@@ -51,7 +51,7 @@ const StartScreen = () => {
           </View>
           <Pressable
             style={styles.adminBox}
-            onPress={() => console.log('admin!!!')}>
+            onPress={() => navigation.navigate('admin login')}>
             <Text style={styles.adminText}>Admin?</Text>
           </Pressable>
         </View>

@@ -11,7 +11,7 @@ import React, {useState} from 'react';
 
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import CountryPicker from 'react-native-country-picker-modal';
-import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
+import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';

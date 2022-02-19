@@ -9,7 +9,7 @@ import {
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
-import GradientButtonComponent from '../../../components/GradientButton/GradientButtonComponent';
+import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';

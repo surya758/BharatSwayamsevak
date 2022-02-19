@@ -1,3 +1,4 @@
+import AdminLoginScreen from '../screens/Auth/AdminLoginScreen';
 import DonationScreen from '../screens/Auth/DonationScreen';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import PasswordScreen from '../screens/Auth/PasswordScreen';
@@ -16,6 +17,7 @@ export type AuthStackParamList = {
   donation: undefined;
   password: undefined;
   'user detail': undefined;
+  'admin login': undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -34,6 +36,7 @@ const AuthNav = () => {
       <Stack.Screen name="donation" component={DonationScreen} />
       <Stack.Screen name="password" component={PasswordScreen} />
       <Stack.Screen name="user detail" component={UserDetailScreen} />
+      <Stack.Screen name="admin login" component={AdminLoginScreen} />
     </Stack.Navigator>
   );
 };

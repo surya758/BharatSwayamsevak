@@ -3,13 +3,12 @@ import HomeNav from './HomeNav';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 
-const isUserLoggedin = false;
+const isUserLoggedin = true;
 
 const MainNav = () => {
-  // return isUserLoggedin ? <HomeNav /> : <AuthNav />;
   return (
     <NavigationContainer>
-      <AuthNav />
+      {isUserLoggedin ? <HomeNav /> : <AuthNav />}
     </NavigationContainer>
   );
 };

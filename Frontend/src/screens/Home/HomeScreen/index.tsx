@@ -11,10 +11,10 @@ import {
 import React, {useState} from 'react';
 
 import DashedLine from 'react-native-dashed-line';
-import DrawerImageComponent from '../../../components/DrawerImage/DrawerImageComponent';
+import DrawerImageComponent from '../../../components/DrawerImage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import MemberComponent from '../../../components/Member/MemberComponent';
-import PickerModalComponent from '../../../components/PickerModal/PickerModalComponent';
+import MemberComponent from '../../../components/Member';
+import PickerModalComponent from '../../../components/PickerModal';
 import images from '../../../res/images';
 import styles from './styles';
 
@@ -50,6 +50,12 @@ const HomeScreen = () => {
             <Image style={styles.userImageStyle} source={images.guy} />
           </ImageBackground>
           <DrawerImageComponent />
+          {/*remember to replace true with isAdmin*/}
+          {true ? (
+            <Pressable style={styles.addButton}>
+              <FontAwesome5 name="plus" size={24} color="#000" />
+            </Pressable>
+          ) : null}
         </View>
         <View style={styles.greetingViewStyle}>
           <Text style={styles.greetingTextLeft}>
