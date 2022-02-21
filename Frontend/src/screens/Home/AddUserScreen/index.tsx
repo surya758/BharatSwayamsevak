@@ -1,5 +1,5 @@
+import {Alert, SafeAreaView, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
-import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
 import GradientButtonComponent from '../../../components/GradientButton';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
@@ -18,9 +18,21 @@ const AddUserScreen = () => {
   const [designation, setDesignation] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [state, setState] = useState<string>('');
+  const State = ['Bihar', 'Uttar Pradesh', 'Rajasthan'];
+
   const onPress = () => {
-    console.log(designation);
-    navigation.navigate('home');
+    if (name && State.includes(state) && designation) {
+      navigation.navigate('home');
+    } else {
+      Alert.alert('Error', 'Please fill all the fields', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
+    }
   };
   return (
     <SafeAreaView style={styles.upperContainer}>

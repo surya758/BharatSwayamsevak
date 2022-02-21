@@ -29,7 +29,12 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 6,
     borderColor: colors.saffron,
-    marginBottom: 30,
+    marginBottom: 20,
+  },
+  errMsg: {
+    color: 'red',
+    fontSize: 14,
+    marginBottom: 20,
   },
   inputWithout: {
     height: 50,
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 6,
     borderColor: colors.lightGrey,
-    marginBottom: 30,
+    marginBottom: 20,
   },
 });
 

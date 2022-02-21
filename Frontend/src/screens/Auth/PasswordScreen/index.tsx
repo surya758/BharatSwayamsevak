@@ -25,10 +25,21 @@ type authScreenNavigationType = NativeStackNavigationProp<
 const PasswordScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [hidePass, setHidePass] = useState<boolean>(true);
-  const [password, onChangePassword] = useState<string | undefined>('');
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [password, setPassword] = useState<string>('');
   const onPress = () => {
     console.log('hello');
-    navigation.navigate('user detail');
+    if (isPasswordValid) {
+      navigation.navigate('user detail');
+    }
+  };
+  const passwordIsValid = (enteredPassword: string) => {
+    setIsPasswordValid(
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/.test(
+        enteredPassword.trim(),
+      ),
+    );
+    setPassword(enteredPassword);
   };
   return (
     <SafeAreaView style={styles.upperContainer}>
@@ -51,12 +62,13 @@ const PasswordScreen = () => {
             <View>
               <TextInput
                 style={password ? styles.inputWith : styles.inputWithout}
-                onChangeText={onChangePassword}
-                value={password}
+                onChangeText={passwordIsValid}
+                value={password.trim()}
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder="enter your password"
                 textContentType="password"
+                autoComplete="off"
                 secureTextEntry={hidePass ? true : false}
               />
               <TouchableOpacity
@@ -68,6 +80,12 @@ const PasswordScreen = () => {
                   color="#000"
                 />
               </TouchableOpacity>
+              {isPasswordValid ? null : (
+                <Text style={styles.errMsg}>
+                  Password must contain at least one numeric digit and a special
+                  character.
+                </Text>
+              )}
             </View>
           </View>
           <GradientButtonComponent

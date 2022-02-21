@@ -34,7 +34,8 @@ type Country = {
 
 const RegisterScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [number, setNumber] = useState<string | undefined>('');
+  const [number, setNumber] = useState<string>('');
+  const [message, setMessage] = useState<string | null>('');
   const [countryCode, setCountryCode] = useState('IN');
   const [country, setCountry] = useState<Country>({
     callingCode: ['91'],
@@ -57,13 +58,21 @@ const RegisterScreen = () => {
     setCountry(selectedCountry);
   };
   const onPress = () => {
-    console.log('+' + country.callingCode + number);
-    navigation.navigate('verification');
+    number === ''
+      ? showErrMsg('Please enter the mobile number')
+      : number.length < 10 || !/^[0-9]*$/.test(number)
+      ? showErrMsg('Enter a valid mobile number')
+      : navigation.navigate('verification');
   };
-
+  const showErrMsg = (mes: string) => {
+    setMessage(mes);
+    setTimeout(() => {
+      setMessage(null);
+    }, 4000);
+  };
   return (
-    <SafeAreaView style={styles.upperContainer}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <SafeAreaView style={styles.upperContainer}>
         <View style={styles.lowerContainer}>
           <Icon
             name="back"
@@ -79,6 +88,11 @@ const RegisterScreen = () => {
               Please confirm your country code and enter your phone number
             </Text>
           </View>
+          {message ? (
+            <Text style={styles.errMsg}>{message}</Text>
+          ) : (
+            <View style={styles.notErrMsg} />
+          )}
           <View style={styles.countryPickerStyle}>
             <CountryPicker
               {...{
@@ -97,21 +111,23 @@ const RegisterScreen = () => {
                 number ? styles.inputStyleWithout : styles.inputStyleOnChange
               }
               onChangeText={setNumber}
-              value={number}
+              value={number?.trim()}
               placeholder="enter your mobile number"
               keyboardType="numeric"
               maxLength={10}
               autoComplete="off"
+              autoFocus={true}
             />
           </View>
+
           <GradientButtonComponent
             text="CONTINUE"
             bottomRightRadius={0}
-            onPress={() => onPress()}
+            onPress={onPress}
           />
         </View>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

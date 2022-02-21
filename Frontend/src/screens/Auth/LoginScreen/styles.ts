@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
+  lowerMargin: {marginTop: 10},
+  errMsg: {marginBottom: 20, textAlign: 'center', color: 'red'},
+  notErrMsg: {marginBottom: 20},
   loginOne: {
     fontFamily: 'Comfortaa-Regular',
     marginVertical: 10,

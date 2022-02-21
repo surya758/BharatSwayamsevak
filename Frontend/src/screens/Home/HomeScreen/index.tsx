@@ -63,7 +63,11 @@ const HomeScreen = () => {
           {/*remember to replace true with isAdmin*/}
           {true ? (
             <Pressable
-              style={styles.addButton}
+              style={
+                false
+                  ? {...styles.addButton, backgroundColor: 'red'}
+                  : styles.addButton
+              }
               onPress={() => navigation.navigate('add user')}>
               <FontAwesome5 name="plus" size={24} color="#fff" />
             </Pressable>
@@ -103,7 +107,9 @@ const HomeScreen = () => {
             value="Bihar"
           />
           <Pressable onPress={() => setIsVisible(true)} style={styles.modal}>
-            <Text style={styles.modalText}>{state}</Text>
+            <Text style={styles.modalText} numberOfLines={1}>
+              {state}
+            </Text>
             <FontAwesome5 name="arrow-circle-down" size={24} color="#000" />
           </Pressable>
           <View style={styles.modal}>

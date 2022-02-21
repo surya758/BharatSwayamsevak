@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   upperContainer: {
     backgroundColor: colors.background,
     flex: 1,
+    zIndex: 5,
   },
   lowerContainer: {
     flex: 1,
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     width: '45%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     elevation: 5,
     shadowColor: colors.green,
