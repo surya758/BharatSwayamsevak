@@ -38,7 +38,13 @@ const DonationScreen = () => {
     }, 4000);
   };
   const onPressDonate = () => {
-    console.log(donationAmount);
+    donationAmount === ''
+      ? showErrMsg('Please enter a donation amount!')
+      : parseInt(donationAmount, 10) < 10
+      ? showErrMsg('Please enter a amount greater than 10')
+      : !/^[0-9]*$/.test(donationAmount)
+      ? showErrMsg('No special characters or alphabets!')
+      : console.log(donationAmount);
   };
   const onPress = (donation: number) => {
     console.log(donation);

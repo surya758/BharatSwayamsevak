@@ -5,7 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export type HomeStackParamList = {
   home: undefined;
-  'add user': undefined;
+  addUser: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -18,7 +18,7 @@ const HomeNav = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="home" component={HomeScreen} />
-      <Stack.Screen name="add user" component={AddUserScreen} />
+      <Stack.Screen name="addUser" component={AddUserScreen} />
     </Stack.Navigator>
   );
 };

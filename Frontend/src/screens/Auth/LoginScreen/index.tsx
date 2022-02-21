@@ -90,7 +90,7 @@ const LoginScreen = () => {
               <TouchableOpacity
                 onPress={() => setHidePass(!hidePass)}
                 style={styles.eyeStyle}
-                hitSlop={{top: 20, bottom: 20, left: 50, right: 50}}>
+                hitSlop={{top: 20, bottom: 20, left: 30, right: 30}}>
                 <Ionicons
                   name={hidePass ? 'eye-off' : 'eye'}
                   size={24}

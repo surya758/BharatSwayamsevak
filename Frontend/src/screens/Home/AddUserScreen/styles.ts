@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
+  errMsgView: {height: 20},
+  errMsg: {textAlign: 'center', color: 'red'},
+  notErrMsg: {height: 20},
   addUserOne: {
     fontFamily: 'Comfortaa-Regular',
     marginVertical: 10,

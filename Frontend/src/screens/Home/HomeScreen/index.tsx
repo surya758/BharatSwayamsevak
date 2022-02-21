@@ -68,7 +68,7 @@ const HomeScreen = () => {
                   ? {...styles.addButton, backgroundColor: 'red'}
                   : styles.addButton
               }
-              onPress={() => navigation.navigate('add user')}>
+              onPress={() => navigation.navigate('addUser')}>
               <FontAwesome5 name="plus" size={24} color="#fff" />
             </Pressable>
           ) : null}
