@@ -71,7 +71,7 @@ const RegisterScreen = () => {
     }, 4000);
   };
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>
         <View style={styles.lowerContainer}>
           <Icon
@@ -89,7 +89,9 @@ const RegisterScreen = () => {
             </Text>
           </View>
           {message ? (
-            <Text style={styles.errMsg}>{message}</Text>
+            <View style={styles.errMsgView}>
+              <Text style={styles.errMsg}>{message}</Text>
+            </View>
           ) : (
             <View style={styles.notErrMsg} />
           )}
@@ -115,7 +117,9 @@ const RegisterScreen = () => {
               placeholder="enter your mobile number"
               keyboardType="numeric"
               maxLength={10}
+              placeholderTextColor="grey"
               autoComplete="off"
+              autoCapitalize="none"
               autoFocus={true}
             />
           </View>

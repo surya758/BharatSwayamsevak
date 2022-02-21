@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
+  errMsgView: {height: 50},
+  errMsg: {textAlign: 'center', color: 'red'},
+  notErrMsg: {height: 50},
   eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 10},
   passwordOne: {
     fontFamily: 'Comfortaa-Regular',
@@ -29,11 +32,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 6,
     borderColor: colors.saffron,
-    marginBottom: 20,
-  },
-  errMsg: {
-    color: 'red',
-    fontSize: 14,
     marginBottom: 20,
   },
   inputWithout: {

@@ -16,9 +16,17 @@ type authScreenNavigationType = NativeStackNavigationProp<
 const UserDetailScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [designation, setDesignation] = useState<string | undefined>('');
+  const [message, setMessage] = useState<string | null>('');
+  const showErrMsg = (mes: string) => {
+    setMessage(mes);
+    setTimeout(() => {
+      setMessage(null);
+    }, 4000);
+  };
   const onPress = () => {
-    console.log(designation);
-    navigation.navigate('donation');
+    designation === ''
+      ? showErrMsg('All fields are mandatory!')
+      : navigation.navigate('donation');
   };
   return (
     <SafeAreaView style={styles.upperContainer}>
@@ -32,6 +40,13 @@ const UserDetailScreen = () => {
         />
         <Text style={styles.detailsOne}>Details</Text>
         <Text style={styles.detailsTwo}>Just a few more details...</Text>
+        {message ? (
+          <View style={styles.errMsgView}>
+            <Text style={styles.errMsg}>{message}</Text>
+          </View>
+        ) : (
+          <View style={styles.notErrMsg} />
+        )}
         <Text style={styles.designation}>Designation</Text>
         <TextInput
           style={designation ? styles.inputWith : styles.inputWithout}
@@ -40,6 +55,7 @@ const UserDetailScreen = () => {
           placeholder="enter your designation"
           autoComplete="off"
           autoCapitalize="none"
+          placeholderTextColor="grey"
         />
         <GradientButtonComponent
           text="CONTINUE"

@@ -56,7 +56,9 @@ const LoginScreen = () => {
             <Text style={styles.loginTwo}>Sign in to your account</Text>
           </View>
           {message ? (
-            <Text style={styles.errMsg}>{message}</Text>
+            <View style={styles.errMsgView}>
+              <Text style={styles.errMsg}>{message}</Text>
+            </View>
           ) : (
             <View style={styles.notErrMsg} />
           )}
@@ -65,10 +67,10 @@ const LoginScreen = () => {
               style={number ? styles.inputWith : styles.inputWithout}
               onChangeText={setNumber}
               value={number}
+              placeholderTextColor="grey"
               placeholder="enter your mobile number"
               keyboardType="numeric"
               autoFocus={true}
-              returnKeyType="next"
               onSubmitEditing={() => passwordRef?.current?.focus()}
             />
             <View>
@@ -80,13 +82,15 @@ const LoginScreen = () => {
                 textContentType="password"
                 secureTextEntry={hidePass ? true : false}
                 returnKeyType="go"
+                placeholderTextColor="grey"
                 autoCapitalize="none"
                 ref={passwordRef}
                 autoCorrect={false}
               />
               <TouchableOpacity
                 onPress={() => setHidePass(!hidePass)}
-                style={styles.eyeStyle}>
+                style={styles.eyeStyle}
+                hitSlop={{top: 20, bottom: 20, left: 50, right: 50}}>
                 <Ionicons
                   name={hidePass ? 'eye-off' : 'eye'}
                   size={24}

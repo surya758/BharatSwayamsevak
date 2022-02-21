@@ -1,4 +1,11 @@
-import {Animated, SafeAreaView, Text, View} from 'react-native';
+import {
+  Animated,
+  Keyboard,
+  SafeAreaView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {
   CodeField,
   Cursor,
@@ -56,9 +63,20 @@ const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}) => {
 const VerificationScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [value, setValue] = useState('');
+  const [message, setMessage] = useState<string | null>('');
+
+  const showErrMsg = (mes: string) => {
+    setMessage(mes);
+    setTimeout(() => {
+      setMessage(null);
+    }, 4000);
+  };
   const onPress = () => {
-    console.log(value);
-    navigation.navigate('password');
+    value.length < 4
+      ? showErrMsg('Fields are currently empty!')
+      : !/^[0-9]*$/.test(value)
+      ? showErrMsg('No special characters or alphabets allowed!')
+      : navigation.navigate('password');
   };
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -108,40 +126,49 @@ const VerificationScreen = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.upperContainer}>
-      <View style={styles.lowerContainer}>
-        <Icon
-          name="back"
-          size={30}
-          color="#900"
-          style={styles.backIconStyle}
-          onPress={() => navigation.goBack()}
-        />
-        <Text style={styles.verificationOne}>Verification</Text>
-        <Text style={styles.verificationTwo}>
-          A verification code has been send to{'\n'}
-          <Text style={styles.verificationThree}>(+91) 9431 632 832</Text>
-        </Text>
-        <CodeField
-          ref={ref}
-          {...props}
-          value={value}
-          onChangeText={setValue}
-          cellCount={CELL_COUNT}
-          rootStyle={styles.codeFieldRoot}
-          keyboardType="number-pad"
-          textContentType="oneTimeCode"
-          renderCell={renderCell}
-        />
-        <View style={styles.verifyButton}>
-          <GradientButtonComponent
-            text="VERIFY"
-            bottomRightRadius={0}
-            onPress={onPress}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <SafeAreaView style={styles.upperContainer}>
+        <View style={styles.lowerContainer}>
+          <Icon
+            name="back"
+            size={30}
+            color="#900"
+            style={styles.backIconStyle}
+            onPress={() => navigation.goBack()}
           />
+          <Text style={styles.verificationOne}>Verification</Text>
+          <Text style={styles.verificationTwo}>
+            A verification code has been send to{'\n'}
+            <Text style={styles.verificationThree}>(+91) 9431 632 832</Text>
+          </Text>
+          {message ? (
+            <View style={styles.errMsgView}>
+              <Text style={styles.errMsg}>{message}</Text>
+            </View>
+          ) : (
+            <View style={styles.notErrMsg} />
+          )}
+          <CodeField
+            ref={ref}
+            {...props}
+            value={value}
+            onChangeText={setValue}
+            cellCount={CELL_COUNT}
+            rootStyle={styles.codeFieldRoot}
+            keyboardType="number-pad"
+            textContentType="oneTimeCode"
+            renderCell={renderCell}
+          />
+          <View style={styles.verifyButton}>
+            <GradientButtonComponent
+              text="VERIFY"
+              bottomRightRadius={0}
+              onPress={onPress}
+            />
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

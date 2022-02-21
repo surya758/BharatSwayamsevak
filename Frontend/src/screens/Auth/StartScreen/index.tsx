@@ -51,7 +51,7 @@ const StartScreen = () => {
           </View>
           <Pressable
             style={styles.adminBox}
-            onPress={() => navigation.navigate('admin login')}>
+            onPress={() => navigation.navigate('adminLogin')}>
             <Text style={styles.adminText}>Admin?</Text>
           </Pressable>
         </View>

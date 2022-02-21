@@ -34,6 +34,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '900',
   },
+  errMsgView: {height: 20},
+  errMsg: {textAlign: 'center', color: 'red'},
+  notErrMsg: {height: 20},
   codeFieldRoot: {
     height: CELL_SIZE,
     marginTop: 30,

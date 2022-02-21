@@ -16,8 +16,8 @@ export type AuthStackParamList = {
   verification: undefined;
   donation: undefined;
   password: undefined;
-  'user detail': undefined;
-  'admin login': undefined;
+  userDetail: undefined;
+  adminLogin: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -33,10 +33,10 @@ const AuthNav = () => {
       <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="register" component={RegisterScreen} />
       <Stack.Screen name="verification" component={VerificationScreen} />
-      <Stack.Screen name="donation" component={DonationScreen} />
       <Stack.Screen name="password" component={PasswordScreen} />
-      <Stack.Screen name="user detail" component={UserDetailScreen} />
-      <Stack.Screen name="admin login" component={AdminLoginScreen} />
+      <Stack.Screen name="donation" component={DonationScreen} />
+      <Stack.Screen name="userDetail" component={UserDetailScreen} />
+      <Stack.Screen name="adminLogin" component={AdminLoginScreen} />
     </Stack.Navigator>
   );
 };

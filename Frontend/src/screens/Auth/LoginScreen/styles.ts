@@ -13,8 +13,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   lowerMargin: {marginTop: 10},
-  errMsg: {marginBottom: 20, textAlign: 'center', color: 'red'},
-  notErrMsg: {marginBottom: 20},
+  errMsgView: {height: 20},
+  errMsg: {textAlign: 'center', color: 'red'},
+  notErrMsg: {height: 20},
   loginOne: {
     fontFamily: 'Comfortaa-Regular',
     marginVertical: 10,

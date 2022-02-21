@@ -27,11 +27,21 @@ const PasswordScreen = () => {
   const [hidePass, setHidePass] = useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [password, setPassword] = useState<string>('');
+  const [message, setMessage] = useState<string | null>('');
+  const showErrMsg = (mes: string) => {
+    setMessage(mes);
+    setTimeout(() => {
+      setMessage(null);
+    }, 4000);
+  };
   const onPress = () => {
-    console.log('hello');
-    if (isPasswordValid) {
-      navigation.navigate('user detail');
-    }
+    password === ''
+      ? showErrMsg("Password can't be empty!")
+      : !isPasswordValid
+      ? showErrMsg(
+          'Password must contain at least one numeric digit and a special character',
+        )
+      : navigation.navigate('userDetail');
   };
   const passwordIsValid = (enteredPassword: string) => {
     setIsPasswordValid(
@@ -42,8 +52,8 @@ const PasswordScreen = () => {
     setPassword(enteredPassword);
   };
   return (
-    <SafeAreaView style={styles.upperContainer}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <SafeAreaView style={styles.upperContainer}>
         <View style={styles.lowerContainer}>
           <AntDesign
             name="back"
@@ -58,6 +68,13 @@ const PasswordScreen = () => {
               Enter a password for your account
             </Text>
           </View>
+          {message ? (
+            <View style={styles.errMsgView}>
+              <Text style={styles.errMsg}>{message}</Text>
+            </View>
+          ) : (
+            <View style={styles.notErrMsg} />
+          )}
           <View>
             <View>
               <TextInput
@@ -68,6 +85,7 @@ const PasswordScreen = () => {
                 autoCorrect={false}
                 placeholder="enter your password"
                 textContentType="password"
+                placeholderTextColor="grey"
                 autoComplete="off"
                 secureTextEntry={hidePass ? true : false}
               />
@@ -80,12 +98,6 @@ const PasswordScreen = () => {
                   color="#000"
                 />
               </TouchableOpacity>
-              {isPasswordValid ? null : (
-                <Text style={styles.errMsg}>
-                  Password must contain at least one numeric digit and a special
-                  character.
-                </Text>
-              )}
             </View>
           </View>
           <GradientButtonComponent
@@ -94,8 +106,8 @@ const PasswordScreen = () => {
             onPress={onPress}
           />
         </View>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

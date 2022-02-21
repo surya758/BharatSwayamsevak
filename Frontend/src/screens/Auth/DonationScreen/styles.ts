@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     flex: 1,
   },
+  errMsgView: {height: 20},
+  errMsg: {textAlign: 'center', color: 'red'},
+  notErrMsg: {height: 20},
   lowerContainer: {
     marginHorizontal: 20,
   },

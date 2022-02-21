@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
   },
+  errMsgView: {height: 20},
+  errMsg: {textAlign: 'center', color: 'red'},
+  notErrMsg: {height: 20},
   eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 10},
   inputWith: {
     height: 50,
