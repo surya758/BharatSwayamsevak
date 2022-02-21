@@ -12,9 +12,8 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
-  errMsgView: {height: 50},
-  errMsg: {textAlign: 'center', color: 'red'},
-  notErrMsg: {height: 50},
+  errMsg: {textAlign: 'center', color: 'red', marginBottom: 20},
+  notErrMsg: {marginBottom: 20},
   eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 10},
   passwordOne: {
     fontFamily: 'Comfortaa-Regular',

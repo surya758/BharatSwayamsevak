@@ -55,6 +55,7 @@ const UserDetailScreen = () => {
           placeholder="enter your designation"
           autoComplete="off"
           autoCapitalize="none"
+          autoFocus={true}
           placeholderTextColor="grey"
         />
         <GradientButtonComponent

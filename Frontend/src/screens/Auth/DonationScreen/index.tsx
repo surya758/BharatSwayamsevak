@@ -28,13 +28,13 @@ type authScreenNavigationType = NativeStackNavigationProp<
 const DonationScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [donationAmount, onDonationAmount] = useState<string>('');
-  const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0;
+  const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
   const windowWidth = Dimensions.get('window').width;
-  const [message, setMessage] = useState<string | null>('');
+  const [message, setMessage] = useState<string>('');
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
-      setMessage(null);
+      setMessage('');
     }, 4000);
   };
   const onPressDonate = () => {

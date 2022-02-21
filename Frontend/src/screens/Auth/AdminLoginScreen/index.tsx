@@ -71,7 +71,7 @@ const AdminLoginScreen = () => {
               placeholder="enter your mobile number"
               keyboardType="numeric"
               autoFocus={true}
-              onSubmitEditing={() => passwordRef?.current?.focus()}
+              onSubmitEditing={() => passwordRef.current?.focus()}
             />
             <View>
               <TextInput

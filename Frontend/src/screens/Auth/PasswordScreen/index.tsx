@@ -69,9 +69,7 @@ const PasswordScreen = () => {
             </Text>
           </View>
           {message ? (
-            <View style={styles.errMsgView}>
-              <Text style={styles.errMsg}>{message}</Text>
-            </View>
+            <Text style={styles.errMsg}>{message}</Text>
           ) : (
             <View style={styles.notErrMsg} />
           )}
@@ -91,7 +89,8 @@ const PasswordScreen = () => {
               />
               <TouchableOpacity
                 onPress={() => setHidePass(!hidePass)}
-                style={styles.eyeStyle}>
+                style={styles.eyeStyle}
+                hitSlop={{top: 20, bottom: 20, left: 30, right: 30}}>
                 <Ionicons
                   name={hidePass ? 'eye-off' : 'eye'}
                   size={24}
