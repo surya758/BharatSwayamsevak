@@ -25,14 +25,14 @@ type authScreenNavigationType = NativeStackNavigationProp<
 const AdminLoginScreen = () => {
   const passwordRef = useRef<null | TextInput>(null);
   const navigation = useNavigation<authScreenNavigationType>();
-  const [number, setNumber] = useState<string | undefined>('');
+  const [number, setNumber] = useState<string>('');
   const [hidePass, setHidePass] = useState(true);
-  const [password, setPassword] = useState<string | undefined>('');
-  const [message, setMessage] = useState<string | null>('');
+  const [password, setPassword] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
-      setMessage(null);
+      setMessage('');
     }, 4000);
   };
   const onPress = () => {

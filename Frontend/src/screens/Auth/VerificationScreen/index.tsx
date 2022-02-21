@@ -63,12 +63,12 @@ const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}) => {
 const VerificationScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [value, setValue] = useState('');
-  const [message, setMessage] = useState<string | null>('');
+  const [message, setMessage] = useState<string>('');
 
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
-      setMessage(null);
+      setMessage('');
     }, 4000);
   };
   const onPress = () => {

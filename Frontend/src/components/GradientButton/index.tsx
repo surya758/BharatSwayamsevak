@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity} from 'react-native';
+import {Pressable, Text} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import React from 'react';
@@ -13,7 +13,7 @@ type Props = {
 
 const GradientButtonComponent: React.FC<Props> = props => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <Pressable onPress={props.onPress}>
       <LinearGradient
         start={{x: 0.0, y: 0.4}}
         end={{x: 0.8, y: 1.0}}
@@ -26,7 +26,7 @@ const GradientButtonComponent: React.FC<Props> = props => {
         }}>
         <Text style={styles.buttonText}>{props.text}</Text>
       </LinearGradient>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
