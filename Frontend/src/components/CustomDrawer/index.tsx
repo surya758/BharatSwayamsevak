@@ -30,7 +30,7 @@ const CustomDrawer = () => {
               <Icon
                 color="#000"
                 size={22}
-                name={focused ? 'home' : 'home-outline'}
+                name={focused ? 'home-outline' : 'home'}
               />
             )}
             labelStyle={styles.drawerItemLabelStyle}
@@ -45,7 +45,7 @@ const CustomDrawer = () => {
                 <Icon
                   color="#000"
                   size={22}
-                  name={focused ? 'person-add' : 'person-add-outline'}
+                  name={focused ? 'person-add-outline' : 'person-add'}
                 />
               )}
               labelStyle={styles.drawerItemLabelStyle}

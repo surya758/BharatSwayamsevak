@@ -31,7 +31,10 @@ const styles = StyleSheet.create({
     borderTopColor: '#000',
     borderTopWidth: 1,
   },
-  drawerItemViewStyle: {borderWidth: 1, borderColor: 'black'},
+  drawerItemViewStyle: {
+    borderWidth: 2,
+    borderColor: colors.saffron,
+  },
   drawerItemLabelStyle: {marginLeft: -25, color: 'black'},
   drawerItem: {padding: 10, flexDirection: 'row', alignItems: 'center'},
   drawerText: {fontFamily: 'Roboto-Medium', fontSize: 16, padding: 5},
