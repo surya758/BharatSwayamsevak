@@ -52,8 +52,8 @@ const LoginScreen = () => {
             onPress={() => navigation.goBack()}
           />
           <View>
-            <Text style={styles.loginOne}>Log in</Text>
-            <Text style={styles.loginTwo}>Sign in to your account</Text>
+            <Text style={styles.loginOne}>log in</Text>
+            <Text style={styles.loginTwo}>sign in to your account</Text>
           </View>
           {message ? (
             <View style={styles.errMsgView}>
@@ -100,11 +100,7 @@ const LoginScreen = () => {
             </View>
           </View>
           <View style={styles.lowerMargin} />
-          <GradientButtonComponent
-            text="LOG IN"
-            bottomRightRadius={0}
-            onPress={onPress}
-          />
+          <GradientButtonComponent text="Login" onPress={onPress} />
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
-  errMsgView: {height: 20},
+  errMsgView: {height: 16, marginVertical: 10},
   errMsg: {textAlign: 'center', color: 'red'},
-  notErrMsg: {height: 20},
+  notErrMsg: {height: 16, marginVertical: 10},
   detailsOne: {
     fontFamily: 'Comfortaa-Regular',
     marginVertical: 10,
@@ -24,12 +24,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Comfortaa-Regular',
     marginBottom: 10,
     fontSize: 16,
-  },
-  designation: {
-    fontFamily: 'Roboto-Medium',
-    marginTop: 15,
-    marginBottom: 3,
-    fontSize: 14,
   },
   inputWith: {
     height: 50,

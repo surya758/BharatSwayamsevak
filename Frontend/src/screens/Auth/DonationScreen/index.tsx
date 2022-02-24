@@ -109,8 +109,7 @@ const DonationScreen = () => {
             />
             <View style={styles.gradientDonationButtonView}>
               <GradientButtonComponent
-                text="DONATE"
-                bottomRightRadius={0}
+                text="Donate"
                 onPress={onPressDonate}
                 width={windowWidth - 60}
               />

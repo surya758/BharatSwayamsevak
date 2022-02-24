@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   verificationThree: {
     marginBottom: 10,
     fontSize: 16,
-    fontWeight: '900',
+    fontFamily: 'Comfortaa-SemiBold',
   },
   errMsgView: {height: 20},
   errMsg: {textAlign: 'center', color: 'red'},

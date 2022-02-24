@@ -99,11 +99,7 @@ const AdminLoginScreen = () => {
               </TouchableOpacity>
             </View>
           </View>
-          <GradientButtonComponent
-            text="LOG IN"
-            bottomRightRadius={0}
-            onPress={onPress}
-          />
+          <GradientButtonComponent text="Login" onPress={onPress} />
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

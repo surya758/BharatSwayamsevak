@@ -44,16 +44,19 @@ const StartScreen = () => {
           <NormalButtonComponent onPress={onPressLogin} />
           <View style={styles.gradient}>
             <GradientButtonComponent
-              text="REGISTER"
+              text="Register"
               width={windowWidth * 0.8}
               onPress={onPressRegister}
             />
           </View>
-          <Pressable
-            style={styles.adminBox}
-            onPress={() => navigation.navigate('adminLogin')}>
-            <Text style={styles.adminText}>Admin?</Text>
-          </Pressable>
+          <View style={styles.adminContainer}>
+            <Text style={styles.beforeAdminText}>Login as </Text>
+            <Pressable
+              style={styles.adminBox}
+              onPress={() => navigation.navigate('adminLogin')}>
+              <Text style={styles.adminText}>Admin</Text>
+            </Pressable>
+          </View>
         </View>
       </ImageBackground>
     </View>

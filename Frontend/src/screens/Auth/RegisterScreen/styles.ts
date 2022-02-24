@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     fontSize: 36,
   },
-  errMsgView: {height: 20},
+  errMsgView: {height: 16, marginBottom: 10},
   errMsg: {textAlign: 'center', color: 'red'},
-  notErrMsg: {height: 20},
+  notErrMsg: {height: 16, marginBottom: 10},
   registerTwo: {
     fontFamily: 'Comfortaa-Regular',
     marginBottom: 10,

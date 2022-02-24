@@ -5,6 +5,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  adminContainer: {flexDirection: 'row'},
+  beforeAdminText: {color: colors.white},
   tinyLogo: {
     width: 220,
     height: 220,
@@ -25,7 +27,6 @@ const styles = StyleSheet.create({
   adminText: {
     fontSize: 14,
     color: colors.saffron,
-    fontWeight: '600',
   },
   gradient: {marginVertical: 16},
   adminBox: {marginBottom: 30},

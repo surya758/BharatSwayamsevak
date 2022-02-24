@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 6,
     borderColor: colors.saffron,
+    marginBottom: 16,
   },
   inputWithout: {
     height: 50,
@@ -44,9 +45,24 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 6,
     borderColor: colors.lightGrey,
+    marginBottom: 16,
   },
   button: {
     marginTop: 30,
+  },
+  modal: {
+    height: 50,
+    borderWidth: 2,
+    borderColor: colors.lightGrey,
+    borderRadius: 6,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  modalText: {
+    fontFamily: 'SourceSansPro-SemiBold',
   },
 });
 

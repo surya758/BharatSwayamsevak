@@ -16,7 +16,6 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
   'register'
@@ -35,7 +34,7 @@ type Country = {
 const RegisterScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [number, setNumber] = useState<string>('');
-  const [message, setMessage] = useState<string | null>('');
+  const [message, setMessage] = useState<string>('');
   const [countryCode, setCountryCode] = useState('IN');
   const [country, setCountry] = useState<Country>({
     callingCode: ['91'],
@@ -67,9 +66,10 @@ const RegisterScreen = () => {
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
-      setMessage(null);
+      setMessage('');
     }, 4000);
   };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>
@@ -82,10 +82,10 @@ const RegisterScreen = () => {
             onPress={() => navigation.goBack()}
           />
           <View>
-            <Text style={styles.registerOne}>Register</Text>
-            <Text style={styles.registerTwo}>Enter your phone number</Text>
+            <Text style={styles.registerOne}>register</Text>
+            <Text style={styles.registerTwo}>give us your phone number</Text>
             <Text style={styles.registerThree}>
-              Please confirm your country code and enter your phone number
+              please confirm your country code and enter your phone number
             </Text>
           </View>
           {message ? (
@@ -123,12 +123,7 @@ const RegisterScreen = () => {
               autoFocus={true}
             />
           </View>
-
-          <GradientButtonComponent
-            text="CONTINUE"
-            bottomRightRadius={0}
-            onPress={onPress}
-          />
+          <GradientButtonComponent text="Continue" onPress={onPress} />
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

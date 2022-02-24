@@ -2,6 +2,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   SafeAreaView,
   Text,
   TextInput,
@@ -9,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
+import PickerModalComponent from '../../../components/PickerModal';
 
 import GradientButtonComponent from '../../../components/GradientButton';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
@@ -16,6 +18,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {STATES} from '../../../utils/constants';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,
@@ -27,22 +31,32 @@ const AddUserScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
   const [designation, setDesignation] = useState<string>('');
   const [name, setName] = useState<string>('');
-  const [state, setState] = useState<string>('');
+  const [state, setState] = useState<string>('Select a state');
   const [message, setMessage] = useState<string>('');
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
-
   const onPress = () => {
     name === '' || designation === '' || state === ''
       ? showErrMsg('All fields are mandatory!')
       : navigation.navigate('home');
   };
+  const onClose = () => {
+    setIsVisible(false);
+  };
+  const onSelect = (selectedState: string) => {
+    console.log(selectedState);
+    setState(selectedState);
+    setIsVisible(false);
+  };
 
+  const title = 'state';
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
       setMessage('');
     }, 4000);
   };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>
@@ -68,7 +82,6 @@ const AddUserScreen = () => {
             ) : (
               <View style={styles.notErrMsg} />
             )}
-            <Text style={styles.header}>Name</Text>
             <TextInput
               style={name ? styles.inputWith : styles.inputWithout}
               onChangeText={setName}
@@ -82,18 +95,19 @@ const AddUserScreen = () => {
               autoCapitalize="none"
               onSubmitEditing={() => designationRef.current?.focus()}
             />
-            <Text style={styles.header}>State</Text>
-            <TextInput
-              style={state ? styles.inputWith : styles.inputWithout}
-              onChangeText={setState}
-              value={state}
-              autoCorrect={false}
-              placeholderTextColor="grey"
-              placeholder="enter the state"
-              autoComplete="off"
-              autoCapitalize="none"
+            <PickerModalComponent
+              visible={isVisible}
+              items={STATES}
+              title={title}
+              onClose={onClose}
+              onSelect={onSelect}
             />
-            <Text style={styles.header}>Designation</Text>
+            <Pressable onPress={() => setIsVisible(true)} style={styles.modal}>
+              <Text style={styles.modalText} numberOfLines={1}>
+                {state}
+              </Text>
+              <FontAwesome5 name="arrow-circle-down" size={24} color="#000" />
+            </Pressable>
             <TextInput
               style={designation ? styles.inputWith : styles.inputWithout}
               onChangeText={setDesignation}
@@ -106,13 +120,10 @@ const AddUserScreen = () => {
               autoCapitalize="none"
               ref={designationRef}
             />
-            <View style={styles.button}>
-              <GradientButtonComponent
-                text="ADD USER"
-                bottomRightRadius={0}
-                onPress={onPress}
-              />
-            </View>
+
+            {/* <View style={styles.button}> */}
+            <GradientButtonComponent text="Add user" onPress={onPress} />
+            {/* </View> */}
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>

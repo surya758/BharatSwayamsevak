@@ -47,7 +47,6 @@ const UserDetailScreen = () => {
         ) : (
           <View style={styles.notErrMsg} />
         )}
-        <Text style={styles.designation}>Designation</Text>
         <TextInput
           style={designation ? styles.inputWith : styles.inputWithout}
           onChangeText={setDesignation}
@@ -58,11 +57,7 @@ const UserDetailScreen = () => {
           autoFocus={true}
           placeholderTextColor="grey"
         />
-        <GradientButtonComponent
-          text="CONTINUE"
-          bottomRightRadius={0}
-          onPress={onPress}
-        />
+        <GradientButtonComponent text="Continue" onPress={onPress} />
       </View>
     </SafeAreaView>
   );

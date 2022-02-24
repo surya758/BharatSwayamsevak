@@ -63,9 +63,9 @@ const PasswordScreen = () => {
             onPress={() => navigation.goBack()}
           />
           <View>
-            <Text style={styles.passwordOne}>Enter password</Text>
+            <Text style={styles.passwordOne}>enter password</Text>
             <Text style={styles.passwordTwo}>
-              Enter a password for your account
+              please write a password for your account
             </Text>
           </View>
           {message ? (
@@ -99,11 +99,7 @@ const PasswordScreen = () => {
               </TouchableOpacity>
             </View>
           </View>
-          <GradientButtonComponent
-            text="CONTINUE"
-            bottomRightRadius={0}
-            onPress={onPress}
-          />
+          <GradientButtonComponent text="Continue" onPress={onPress} />
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

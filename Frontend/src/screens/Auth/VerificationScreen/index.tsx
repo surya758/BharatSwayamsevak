@@ -136,10 +136,12 @@ const VerificationScreen = () => {
             style={styles.backIconStyle}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.verificationOne}>Verification</Text>
+          <Text style={styles.verificationOne}>verification</Text>
           <Text style={styles.verificationTwo}>
-            A verification code has been send to{'\n'}
-            <Text style={styles.verificationThree}>(+91) 9431 632 832</Text>
+            enter the 4 digit OTP sent on{'\n'}
+            <Text style={styles.verificationThree}>
+              9431 632 832 to proceed
+            </Text>
           </Text>
           {message ? (
             <View style={styles.errMsgView}>
@@ -160,11 +162,7 @@ const VerificationScreen = () => {
             renderCell={renderCell}
           />
           <View style={styles.verifyButton}>
-            <GradientButtonComponent
-              text="VERIFY"
-              bottomRightRadius={0}
-              onPress={onPress}
-            />
+            <GradientButtonComponent text="Verify" onPress={onPress} />
           </View>
         </View>
       </SafeAreaView>

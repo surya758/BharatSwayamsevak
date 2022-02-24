@@ -10,7 +10,7 @@ type Props = {
 const NormalButtonComponent: React.FC<Props> = ({onPress}) => {
   return (
     <Pressable style={styles.container} onPress={() => onPress()}>
-      <Text style={styles.textStyle}>LOG IN</Text>
+      <Text style={styles.textStyle}>Login</Text>
     </Pressable>
   );
 };

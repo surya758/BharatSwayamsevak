@@ -20,6 +20,7 @@ import PickerModalComponent from '../../../components/PickerModal';
 import images from '../../../res/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {STATES, DATA} from '../../../utils/constants';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,
@@ -30,7 +31,7 @@ const HomeScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
 
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [state, setState] = useState<string | undefined>('Select a state');
+  const [state, setState] = useState<string>('Select a state');
   const onClose = () => {
     setIsVisible(false);
   };
@@ -39,17 +40,8 @@ const HomeScreen = () => {
     setState(selectedState);
     setIsVisible(false);
   };
-  const items = ['Bihar', 'Uttar Pradesh', 'Rajasthan'];
   const title = 'state';
-  const DATA = [
-    {name: 'Surya', id: '1', designation: 'Accredited Estate Planner'},
-    {
-      name: 'Krishna',
-      id: '2',
-      designation: 'Certified Wealth Smart Strategist',
-    },
-    {name: 'Rajveer', id: '3', designation: 'Registered Fiduciary'},
-  ];
+
   return (
     <SafeAreaView style={styles.upperContainer}>
       <View style={styles.lowerContainer}>
@@ -100,11 +92,10 @@ const HomeScreen = () => {
         <View style={styles.selectorView}>
           <PickerModalComponent
             visible={isVisible}
-            items={items}
+            items={STATES}
             title={title}
             onClose={onClose}
             onSelect={onSelect}
-            value="Bihar"
           />
           <Pressable onPress={() => setIsVisible(true)} style={styles.modal}>
             <Text style={styles.modalText} numberOfLines={1}>
@@ -114,7 +105,7 @@ const HomeScreen = () => {
           </Pressable>
           <View style={styles.modal}>
             <Text style={{...styles.modalText, fontSize: 16, left: 10}}>
-              {items.length} More
+              {STATES.length} More
             </Text>
             <FontAwesome5 name="arrow-circle-right" size={24} color="#000" />
           </View>
