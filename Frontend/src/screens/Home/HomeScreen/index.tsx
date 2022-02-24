@@ -51,7 +51,11 @@ const HomeScreen = () => {
             source={images.photoRing}>
             <Image style={styles.userImageStyle} source={images.guy} />
           </ImageBackground>
-          <DrawerImageComponent />
+          <Pressable
+            style={{position: 'absolute', left: 0}}
+            onPress={() => navigation.openDrawer()}>
+            <DrawerImageComponent />
+          </Pressable>
           {/*remember to replace true with isAdmin*/}
           {true ? (
             <Pressable

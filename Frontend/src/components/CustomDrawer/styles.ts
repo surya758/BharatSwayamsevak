@@ -26,6 +26,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
   },
   drawerView: {flex: 1, backgroundColor: colors.white, padding: 10},
+  drawerItems: {
+    padding: 20,
+    borderTopColor: '#000',
+    borderTopWidth: 1,
+  },
+  drawerItemViewStyle: {borderWidth: 1, borderColor: 'black'},
+  drawerItemLabelStyle: {marginLeft: -25, color: 'black'},
+  drawerItem: {padding: 10, flexDirection: 'row', alignItems: 'center'},
+  drawerText: {fontFamily: 'Roboto-Medium', fontSize: 16, padding: 5},
 });
 
 export default styles;

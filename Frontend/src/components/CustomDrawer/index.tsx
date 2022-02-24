@@ -1,16 +1,18 @@
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {
-  DrawerContentComponentProps,
-  DrawerContentScrollView,
-  DrawerItemList,
-} from '@react-navigation/drawer';
+import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 
 import styles from './styles';
 import images from '../../res/images';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {HomeStackParamList} from '../../navigation/HomeNav';
+type homeScreenNavigationType = NativeStackNavigationProp<HomeStackParamList>;
 
-const CustomDrawer = (props: DrawerContentComponentProps) => {
+const CustomDrawer = () => {
+  const navigation = useNavigation<homeScreenNavigationType>();
+
   return (
     <View style={styles.topContainer}>
       <DrawerContentScrollView contentContainerStyle={styles.container}>
@@ -19,28 +21,45 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           <Text style={styles.nameText}>A sample name</Text>
         </View>
         <View style={styles.drawerView}>
-          <DrawerItemList {...props} />
+          <DrawerItem
+            label="Home"
+            onPress={() => navigation.navigate('home')}
+            icon={({focused}) => (
+              <Icon
+                color="#000"
+                size={22}
+                name={focused ? 'home' : 'home-outline'}
+              />
+            )}
+            labelStyle={styles.drawerItemLabelStyle}
+            style={styles.drawerItemViewStyle}
+          />
+          {/* Remember to replace true with isadmin!!!*/}
+          {true ? (
+            <DrawerItem
+              label="Add User"
+              onPress={() => navigation.navigate('addUser')}
+              icon={({focused}) => (
+                <Icon
+                  color="#000"
+                  size={22}
+                  name={focused ? 'person-add' : 'person-add-outline'}
+                />
+              )}
+              labelStyle={styles.drawerItemLabelStyle}
+              style={styles.drawerItemViewStyle}
+            />
+          ) : null}
         </View>
       </DrawerContentScrollView>
-      <View
-        style={{
-          padding: 20,
-          borderTopColor: '#000',
-          borderTopWidth: 1,
-        }}>
-        <TouchableOpacity
-          style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
+      <View style={styles.drawerItems}>
+        <TouchableOpacity style={styles.drawerItem}>
           <Icon name="share-social-outline" size={22} />
-          <Text style={{fontFamily: 'Roboto-Medium', fontSize: 16, padding: 5}}>
-            Tell a friend
-          </Text>
+          <Text style={styles.drawerText}>Tell a friend</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity style={styles.drawerItem}>
           <Icon name="log-out-outline" size={22} />
-          <Text style={{fontFamily: 'Roboto-Medium', fontSize: 16, padding: 5}}>
-            Sign out
-          </Text>
+          <Text style={styles.drawerText}>Sign out</Text>
         </TouchableOpacity>
       </View>
     </View>

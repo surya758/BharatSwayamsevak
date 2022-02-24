@@ -34,6 +34,7 @@ const AddUserScreen = () => {
   const [state, setState] = useState<string>('Select a state');
   const [message, setMessage] = useState<string>('');
   const [isVisible, setIsVisible] = useState<boolean>(false);
+
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
   const onPress = () => {
     name === '' || designation === '' || state === ''
@@ -64,13 +65,6 @@ const AddUserScreen = () => {
           behavior="position"
           keyboardVerticalOffset={keyboardVerticalOffset}>
           <View style={styles.lowerContainer}>
-            <Icon
-              name="back"
-              size={30}
-              color="#900"
-              style={styles.backIconStyle}
-              onPress={() => navigation.goBack()}
-            />
             <Text style={styles.addUserOne}>Add User</Text>
             <Text style={styles.addUserTwo}>
               Fill in the details of new user...
@@ -120,10 +114,7 @@ const AddUserScreen = () => {
               autoCapitalize="none"
               ref={designationRef}
             />
-
-            {/* <View style={styles.button}> */}
             <GradientButtonComponent text="Add user" onPress={onPress} />
-            {/* </View> */}
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
