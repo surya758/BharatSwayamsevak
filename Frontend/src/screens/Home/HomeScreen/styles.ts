@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 1.2,
+    marginBottom: 20,
   },
   userIDPhotoStyle: {
     height: 150,
@@ -100,6 +101,9 @@ const styles = StyleSheet.create({
     fontFamily: 'SourceSansPro-SemiBold',
   },
   selectorView: {
+    borderTopWidth: 1,
+    borderTopColor: 'black',
+    paddingTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 16,

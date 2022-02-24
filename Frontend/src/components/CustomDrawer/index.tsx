@@ -15,7 +15,9 @@ const CustomDrawer = () => {
 
   return (
     <View style={styles.topContainer}>
-      <DrawerContentScrollView contentContainerStyle={styles.container}>
+      <DrawerContentScrollView
+        contentContainerStyle={styles.container}
+        bounces={false}>
         <View style={styles.topDrawerView}>
           <Image source={images.guy} style={styles.profileImage} />
           <Text style={styles.nameText}>A sample name</Text>

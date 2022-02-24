@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
-import DashedLine from 'react-native-dashed-line';
 import DrawerImageComponent from '../../../components/DrawerImage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
@@ -88,11 +87,6 @@ const HomeScreen = () => {
           </View>
           <Image style={styles.userIDPhotoStyle} source={images.guy} />
         </View>
-        <DashedLine
-          dashLength={7.2}
-          dashThickness={1.6}
-          style={styles.dashLineStyle}
-        />
         <View style={styles.selectorView}>
           <PickerModalComponent
             visible={isVisible}
