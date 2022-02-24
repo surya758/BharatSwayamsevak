@@ -5,6 +5,7 @@ const images = {
   photoRing: require('./images/photoRing.png'),
   guy: require('./images/guy.jpg'),
   indiaDrawer: require('./images/indiaDrawer.png'),
+  menu_bg: require('./images/menu_bg.jpg'),
 };
 
 export default images;
