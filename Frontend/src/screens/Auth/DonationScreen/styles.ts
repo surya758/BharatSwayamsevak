@@ -6,7 +6,7 @@ const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   upperContainer: {
     backgroundColor: colors.background,
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   errMsg: {textAlign: 'center', color: 'red'},
   notErrMsg: {height: 20},
   lowerContainer: {
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   backIconStyle: {
     marginTop: 30,
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 12,
   },
   dashLineStyle: {
     overflow: 'hidden',

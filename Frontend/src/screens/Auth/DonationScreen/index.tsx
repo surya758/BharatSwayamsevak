@@ -111,7 +111,7 @@ const DonationScreen = () => {
               <GradientButtonComponent
                 text="Donate"
                 onPress={onPressDonate}
-                width={windowWidth - 60}
+                width={windowWidth - 40}
               />
             </View>
           </View>

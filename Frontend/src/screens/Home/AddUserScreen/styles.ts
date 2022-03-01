@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   lowerContainer: {
     paddingTop: 20,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   backIconStyle: {
     marginTop: 30,

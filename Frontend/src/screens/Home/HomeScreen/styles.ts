@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   lowerContainer: {
     flex: 1,
-    margin: 20,
+    margin: 10,
   },
   userCardStyle: {
     width: windowWidth * 0.9,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   userIDCardStyle: {
     backgroundColor: colors.lightGreen,
     height: 200,
-    width: windowWidth - 40,
+    width: windowWidth - 20,
     borderRadius: 20,
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: colors.lightGreen,
     borderRadius: 6,
-    width: '45%',
+    width: '48%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',

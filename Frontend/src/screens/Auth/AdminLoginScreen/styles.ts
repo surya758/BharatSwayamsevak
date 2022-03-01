@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   lowerContainer: {
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   backIconStyle: {
     marginTop: 30,

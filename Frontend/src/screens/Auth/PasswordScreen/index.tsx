@@ -27,13 +27,15 @@ const PasswordScreen = () => {
   const [hidePass, setHidePass] = useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [password, setPassword] = useState<string>('');
-  const [message, setMessage] = useState<string | null>('');
+  const [message, setMessage] = useState<string>('');
+
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
-      setMessage(null);
+      setMessage('');
     }, 4000);
   };
+
   const onPress = () => {
     password === ''
       ? showErrMsg("Password can't be empty!")
