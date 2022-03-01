@@ -1,14 +1,14 @@
 import AuthNav from './AuthNav';
 import HomeNav from './HomeNav';
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
-
-const isUserLoggedin = false;
+import React, {useContext} from 'react';
+import {GlobalContext} from '../context/GlobalContext';
 
 const MainNav = () => {
+  const {isUserLoggedIn} = useContext(GlobalContext);
   return (
     <NavigationContainer>
-      {isUserLoggedin ? <HomeNav /> : <AuthNav />}
+      {isUserLoggedIn ? <HomeNav /> : <AuthNav />}
     </NavigationContainer>
   );
 };
