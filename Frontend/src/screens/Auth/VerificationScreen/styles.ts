@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
 
-  // =======================
   verifyButton: {
     marginTop: 30,
   },

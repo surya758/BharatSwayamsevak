@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
   'register'
@@ -82,10 +83,9 @@ const RegisterScreen = () => {
             onPress={() => navigation.goBack()}
           />
           <View>
-            <Text style={styles.registerOne}>register</Text>
-            <Text style={styles.registerTwo}>give us your phone number</Text>
-            <Text style={styles.registerThree}>
-              please confirm your country code and enter your phone number
+            <Text style={styles.registerOne}>Register</Text>
+            <Text style={styles.registerTwo}>
+              Please confirm your country code and enter your phone number
             </Text>
           </View>
           {message ? (
@@ -123,7 +123,9 @@ const RegisterScreen = () => {
               autoFocus={true}
             />
           </View>
-          <GradientButtonComponent text="Continue" onPress={onPress} />
+          <View style={styles.gradientButton}>
+            <GradientButtonComponent text="Continue" onPress={onPress} />
+          </View>
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

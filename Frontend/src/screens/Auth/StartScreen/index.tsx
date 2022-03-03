@@ -16,8 +16,6 @@ import images from '../../../res/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
-const windowWidth = Dimensions.get('window').width;
-
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
   'start'
@@ -45,7 +43,6 @@ const StartScreen = () => {
           <View style={styles.gradient}>
             <GradientButtonComponent
               text="Register"
-              width={windowWidth * 0.8}
               onPress={onPressRegister}
             />
           </View>
@@ -54,7 +51,7 @@ const StartScreen = () => {
             <Pressable
               style={styles.adminBox}
               onPress={() => navigation.navigate('adminLogin')}>
-              <Text style={styles.adminText}>Admin</Text>
+              <Text style={styles.adminText}>admin</Text>
             </Pressable>
           </View>
         </View>

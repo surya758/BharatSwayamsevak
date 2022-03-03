@@ -7,33 +7,38 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   lowerContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: 16,
   },
   backIconStyle: {
     marginTop: 30,
   },
   lowerMargin: {marginTop: 10},
   errMsgView: {height: 20},
-  errMsg: {textAlign: 'center', color: 'red'},
+  errMsg: {
+    fontFamily: 'SourceSansPro-SemiBold',
+    textAlign: 'center',
+    color: colors.saffron,
+  },
   notErrMsg: {height: 20},
   loginOne: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: 'SourceSansPro-SemiBold',
     marginVertical: 10,
     fontSize: 36,
   },
   loginTwo: {
-    fontFamily: 'Comfortaa-Regular',
-    marginBottom: 20,
+    fontFamily: 'SourceSansPro-SemiBold',
+    marginBottom: 10,
     fontSize: 16,
   },
-  eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 10},
+  eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 20},
+
   inputWith: {
     height: 50,
     borderWidth: 2,
     paddingLeft: 20,
     borderRadius: 6,
     borderColor: colors.saffron,
-    marginBottom: 20,
+    marginVertical: 10,
   },
   inputWithout: {
     height: 50,
@@ -41,8 +46,9 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 6,
     borderColor: colors.lightGrey,
-    marginBottom: 20,
+    marginVertical: 10,
   },
+  gradientButton: {alignItems: 'center'},
 });
 
 export default styles;

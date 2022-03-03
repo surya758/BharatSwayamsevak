@@ -7,28 +7,27 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   lowerContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: 16,
   },
   backIconStyle: {
     marginTop: 30,
   },
   registerOne: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: 'SourceSansPro-SemiBold',
     marginVertical: 10,
     fontSize: 36,
   },
   errMsgView: {height: 16, marginBottom: 10},
-  errMsg: {textAlign: 'center', color: 'red'},
+  errMsg: {
+    fontFamily: 'SourceSansPro-SemiBold',
+    textAlign: 'center',
+    color: colors.saffron,
+  },
   notErrMsg: {height: 16, marginBottom: 10},
   registerTwo: {
-    fontFamily: 'Comfortaa-Regular',
     marginBottom: 10,
+    fontFamily: 'SourceSansPro-SemiBold',
     fontSize: 16,
-  },
-  registerThree: {
-    marginBottom: 20,
-    fontFamily: 'Comfortaa-Regular',
-    fontSize: 12,
   },
   inputStyleWithout: {
     flexDirection: 'row',
@@ -57,6 +56,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 20,
   },
+  gradientButton: {alignItems: 'center'},
 });
 
 export default styles;

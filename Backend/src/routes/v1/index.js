@@ -17,7 +17,7 @@ const defaultRoutes = [
     route: userRoute,
   },
   {
-    path: '/referral',
+    path: '/referrals',
     route: referralRoute,
   },
 ];

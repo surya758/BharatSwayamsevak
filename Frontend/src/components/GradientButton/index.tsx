@@ -1,4 +1,4 @@
-import {Pressable, Text} from 'react-native';
+import {Animated, Pressable, Text} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import React from 'react';
@@ -6,24 +6,47 @@ import styles from './styles';
 
 type Props = {
   onPress: () => void;
-  width?: number;
   text: string;
 };
 
 const GradientButtonComponent: React.FC<Props> = props => {
+  const animatedButtonScale = new Animated.Value(1);
+
+  // When button is pressed in, animate the scale to 1.5
+  const onPressIn = () => {
+    Animated.spring(animatedButtonScale, {
+      toValue: 0.85,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  // When button is pressed out, animate the scale back to 1
+  const onPressOut = () => {
+    Animated.spring(animatedButtonScale, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  // The animated style for scaling the button within the Animated.View
+  const animatedScaleStyle = {
+    transform: [{scale: animatedButtonScale}],
+  };
   return (
-    <Pressable onPress={props.onPress}>
-      <LinearGradient
-        start={{x: 0.1, y: 0.1}}
-        end={{x: 0.7, y: 0.3}}
-        locations={[0.4, 0.7, 1]}
-        colors={['#2bb11f', '#55a851', '#3b9c32']}
-        style={{
-          ...styles.linearGradient,
-          width: props.width,
-        }}>
-        <Text style={styles.buttonText}>{props.text}</Text>
-      </LinearGradient>
+    <Pressable
+      onPress={props.onPress}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}>
+      <Animated.View style={[styles.animated, animatedScaleStyle]}>
+        <LinearGradient
+          start={{x: 0.1, y: 0.1}}
+          end={{x: 0.7, y: 0.3}}
+          locations={[0.4, 0.7, 1]}
+          colors={['#2bb11f', '#55a851', '#3b9c32']}
+          style={styles.container}>
+          <Text style={styles.buttonText}>{props.text}</Text>
+        </LinearGradient>
+      </Animated.View>
     </Pressable>
   );
 };
