@@ -79,6 +79,10 @@ const deleteUserById = async (userId) => {
   return user;
 };
 
+const getUsersByParticularReferrer = async (referralCode) => {
+  const users = await User.find({ referrer: referralCode }, { name: 1, email: 1, referrer: 1 });
+  return users;
+};
 module.exports = {
   createUser,
   queryUsers,
@@ -86,4 +90,5 @@ module.exports = {
   getUserByEmail,
   updateUserById,
   deleteUserById,
+  getUsersByParticularReferrer,
 };
