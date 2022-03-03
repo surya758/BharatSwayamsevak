@@ -34,16 +34,10 @@ const deleteUser = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
-const usersReferred = catchAsync(async (req, res) => {
-  const users = await userService.getUsersByParticularReferrer(req.body.referralCode);
-  res.send(users);
-});
-
 module.exports = {
   createUser,
   getUsers,
   getUser,
   updateUser,
   deleteUser,
-  usersReferred,
 };
