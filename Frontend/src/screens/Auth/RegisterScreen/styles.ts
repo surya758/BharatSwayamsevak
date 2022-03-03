@@ -1,5 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+
 import colors from '../../../res/colors';
+
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   upperContainer: {
@@ -13,15 +16,16 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   registerOne: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: 'OpenSans-SemiBold',
     marginVertical: 10,
     fontSize: 36,
   },
   errMsgView: {height: 16, marginBottom: 10},
   errMsg: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: 'OpenSans-SemiBold',
     textAlign: 'center',
     color: colors.saffron,
+    fontSize: 14,
   },
   notErrMsg: {height: 16, marginBottom: 10},
   registerTwo: {
@@ -57,6 +61,13 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   gradientButton: {alignItems: 'center'},
+  endText: {
+    marginTop: 20,
+    fontSize: 12,
+    fontFamily: 'OpenSans-Regular',
+    width: windowWidth * 0.85,
+    alignSelf: 'center',
+  },
 });
 
 export default styles;

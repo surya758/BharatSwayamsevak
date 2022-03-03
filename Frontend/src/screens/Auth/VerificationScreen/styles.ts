@@ -2,11 +2,11 @@ import {Platform, StyleSheet} from 'react-native';
 
 import colors from '../../../res/colors';
 
-export const CELL_SIZE = 70;
+export const CELL_SIZE = 60;
 export const CELL_BORDER_RADIUS = 8;
-export const DEFAULT_CELL_BG_COLOR = colors.white;
+export const DEFAULT_CELL_BG_COLOR = colors.background;
 export const NOT_EMPTY_CELL_BG_COLOR = colors.saffron;
-export const ACTIVE_CELL_BG_COLOR = colors.saffron;
+export const ACTIVE_CELL_BG_COLOR = colors.background;
 
 const styles = StyleSheet.create({
   upperContainer: {
@@ -14,32 +14,37 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   lowerContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: 16,
   },
   backIconStyle: {
     marginTop: 30,
   },
   verificationOne: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: 'OpenSans-SemiBold',
     marginVertical: 10,
     fontSize: 36,
   },
   verificationTwo: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: 'SourceSansPro-SemiBold',
     marginBottom: 10,
     fontSize: 16,
   },
   verificationThree: {
     marginBottom: 10,
     fontSize: 16,
-    fontFamily: 'Comfortaa-SemiBold',
+    fontFamily: 'Roboto-Medium',
+    color: colors.grey,
   },
   errMsgView: {height: 20},
-  errMsg: {textAlign: 'center', color: 'red'},
+  errMsg: {
+    textAlign: 'center',
+    color: colors.margenta,
+    fontFamily: 'OpenSans-SemiBold',
+  },
   notErrMsg: {height: 20},
   codeFieldRoot: {
     height: CELL_SIZE,
-    marginTop: 30,
+    marginTop: 10,
     paddingHorizontal: 20,
     justifyContent: 'center',
   },
@@ -52,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     borderRadius: CELL_BORDER_RADIUS,
-    color: '#3759b8',
+    color: colors.margenta,
     backgroundColor: '#fff',
 
     // IOS
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.22,
+    shadowOpacity: 0.4,
     shadowRadius: 2.22,
 
     // Android
@@ -69,7 +74,8 @@ const styles = StyleSheet.create({
   },
 
   verifyButton: {
-    marginTop: 30,
+    marginTop: 20,
+    alignItems: 'center',
   },
 });
 

@@ -25,6 +25,7 @@ import {AuthStackParamList} from '../../../navigation/AuthNav';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import colors from '../../../res/colors';
 import {useNavigation} from '@react-navigation/native';
 
 type Animate = {
@@ -104,7 +105,7 @@ const VerificationScreen = () => {
         {
           scale: animationsScale[index].interpolate({
             inputRange: [0, 1],
-            outputRange: [0.65, 1],
+            outputRange: [0.8, 1],
           }),
         },
       ],
@@ -132,17 +133,15 @@ const VerificationScreen = () => {
           <Icon
             name="back"
             size={30}
-            color="#900"
+            color={colors.margenta}
             style={styles.backIconStyle}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.verificationOne}>verification</Text>
+          <Text style={styles.verificationOne}>Verification</Text>
           <Text style={styles.verificationTwo}>
-            enter the 4 digit OTP sent on{'\n'}
-            <Text style={styles.verificationThree}>
-              9431 632 832 to proceed
-            </Text>
+            Enter the 4 digit code sent on
           </Text>
+          <Text style={styles.verificationThree}>91943632832</Text>
           {message ? (
             <View style={styles.errMsgView}>
               <Text style={styles.errMsg}>{message}</Text>

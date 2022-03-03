@@ -15,13 +15,13 @@ const styles = StyleSheet.create({
   lowerMargin: {marginTop: 10},
   errMsgView: {height: 20},
   errMsg: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: 'OpenSans-SemiBold',
     textAlign: 'center',
-    color: colors.saffron,
+    color: colors.margenta,
   },
   notErrMsg: {height: 20},
   loginOne: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: 'OpenSans-SemiBold',
     marginVertical: 10,
     fontSize: 36,
   },

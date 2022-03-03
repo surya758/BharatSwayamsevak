@@ -1,11 +1,4 @@
-import {
-  Dimensions,
-  Image,
-  ImageBackground,
-  Pressable,
-  Text,
-  View,
-} from 'react-native';
+import {Image, ImageBackground, Pressable, Text, View} from 'react-native';
 
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import GradientButtonComponent from '../../../components/GradientButton';

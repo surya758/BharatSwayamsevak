@@ -59,9 +59,9 @@ const RegisterScreen = () => {
   };
   const onPress = () => {
     number === ''
-      ? showErrMsg('Please enter the mobile number')
+      ? showErrMsg('Please enter the mobile number.')
       : number.length < 10 || !/^[0-9]*$/.test(number)
-      ? showErrMsg('Enter a valid mobile number')
+      ? showErrMsg('Enter a valid mobile number.')
       : navigation.navigate('verification');
   };
   const showErrMsg = (mes: string) => {
@@ -126,6 +126,10 @@ const RegisterScreen = () => {
           <View style={styles.gradientButton}>
             <GradientButtonComponent text="Continue" onPress={onPress} />
           </View>
+          <Text style={styles.endText}>
+            We will send a text with a verification code. Message and data rates
+            may apply.
+          </Text>
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

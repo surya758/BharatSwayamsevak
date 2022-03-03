@@ -14,6 +14,7 @@ import {AuthStackParamList} from '../../../navigation/AuthNav';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import colors from '../../../res/colors';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -37,7 +38,7 @@ const LoginScreen = () => {
   };
   const onPress = () => {
     number === '' || password === ''
-      ? showErrMsg('All fields are mandatory!')
+      ? showErrMsg('All fields are mandatory.')
       : console.log('signed in');
   };
   return (
@@ -47,7 +48,7 @@ const LoginScreen = () => {
           <AntDesign
             name="back"
             size={30}
-            color="#900"
+            color={colors.margenta}
             style={styles.backIconStyle}
             onPress={() => navigation.goBack()}
           />
