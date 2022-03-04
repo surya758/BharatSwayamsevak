@@ -1,12 +1,17 @@
+import {Colors, Typography} from '../../../styles';
+
 import {StyleSheet} from 'react-native';
-import colors from '../../../res/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   adminContainer: {flexDirection: 'row'},
-  beforeAdminText: {color: colors.white},
+  beforeAdminText: {
+    color: Colors.WHITE,
+    fontSize: Typography.FONT_SIZE_14,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+  },
   tinyLogo: {
     width: 220,
     height: 220,
@@ -25,8 +30,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   adminText: {
-    fontSize: 14,
-    color: colors.saffron,
+    color: Colors.PRIMARY,
+    fontSize: Typography.FONT_SIZE_14,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
   },
   gradient: {marginVertical: 16},
   adminBox: {marginBottom: 30},

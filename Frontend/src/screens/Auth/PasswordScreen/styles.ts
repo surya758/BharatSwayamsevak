@@ -1,5 +1,6 @@
+import {Colors, Typography} from '../../../styles';
+
 import {StyleSheet} from 'react-native';
-import colors from '../../../res/colors';
 
 const styles = StyleSheet.create({
   upperContainer: {
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     paddingLeft: 20,
     borderRadius: 6,
-    borderColor: colors.saffron,
+    borderColor: Colors.PRIMARY,
     marginBottom: 20,
   },
   inputWithout: {
@@ -38,9 +39,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     paddingLeft: 20,
     borderRadius: 6,
-    borderColor: colors.lightGrey,
+    borderColor: Colors.GRAY_MEDIUM,
     marginBottom: 20,
   },
+  gradientButton: {alignItems: 'center'},
 });
 
 export default styles;

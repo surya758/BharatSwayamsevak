@@ -1,13 +1,14 @@
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+
+import {HomeStackParamList} from '../../navigation/HomeNav';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import React from 'react';
+import images from '../../assets/images';
+import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
-import styles from './styles';
-import images from '../../res/images';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {HomeStackParamList} from '../../navigation/HomeNav';
 type homeScreenNavigationType = NativeStackNavigationProp<HomeStackParamList>;
 
 const CustomDrawer = () => {

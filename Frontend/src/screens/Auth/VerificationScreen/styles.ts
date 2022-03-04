@@ -1,16 +1,15 @@
+import {Colors, Typography} from '../../../styles';
 import {Platform, StyleSheet} from 'react-native';
-
-import colors from '../../../res/colors';
 
 export const CELL_SIZE = 60;
 export const CELL_BORDER_RADIUS = 8;
-export const DEFAULT_CELL_BG_COLOR = colors.background;
-export const NOT_EMPTY_CELL_BG_COLOR = colors.saffron;
-export const ACTIVE_CELL_BG_COLOR = colors.background;
+export const DEFAULT_CELL_BG_COLOR = Colors.BACKGROUND;
+export const NOT_EMPTY_CELL_BG_COLOR = Colors.WHITE;
+export const ACTIVE_CELL_BG_COLOR = Colors.BACKGROUND;
 
 const styles = StyleSheet.create({
   upperContainer: {
-    backgroundColor: colors.background,
+    backgroundColor: Colors.BACKGROUND,
     flex: 1,
   },
   lowerContainer: {
@@ -19,32 +18,42 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
+  headingView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
   verificationOne: {
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     marginVertical: 10,
-    fontSize: 36,
+    fontSize: Typography.FONT_SIZE_36,
   },
   verificationTwo: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
     marginBottom: 10,
-    fontSize: 16,
+    fontSize: Typography.FONT_SIZE_16,
   },
   verificationThree: {
-    marginBottom: 10,
-    fontSize: 16,
-    fontFamily: 'Roboto-Medium',
-    color: colors.grey,
+    fontSize: Typography.FONT_SIZE_16,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    color: Colors.GRAY_DARK,
+    marginRight: 8,
+  },
+  resendText: {
+    fontSize: Typography.FONT_SIZE_16,
+    color: Colors.ALERT,
+    fontFamily: Typography.FONT_FAMILY_BOLD,
   },
   errMsgView: {height: 20},
   errMsg: {
     textAlign: 'center',
-    color: colors.margenta,
-    fontFamily: 'OpenSans-SemiBold',
+    color: Colors.ALERT,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
   notErrMsg: {height: 20},
   codeFieldRoot: {
     height: CELL_SIZE,
-    marginTop: 10,
+    marginTop: 20,
     paddingHorizontal: 20,
     justifyContent: 'center',
   },
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     borderRadius: CELL_BORDER_RADIUS,
-    color: colors.margenta,
+    color: Colors.ALERT,
     backgroundColor: '#fff',
 
     // IOS

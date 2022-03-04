@@ -11,6 +11,7 @@ import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
+import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -60,7 +61,7 @@ const PasswordScreen = () => {
           <AntDesign
             name="back"
             size={30}
-            color="#900"
+            color={Colors.ALERT}
             style={styles.backIconStyle}
             onPress={() => navigation.goBack()}
           />
@@ -96,12 +97,14 @@ const PasswordScreen = () => {
                 <Ionicons
                   name={hidePass ? 'eye-off' : 'eye'}
                   size={24}
-                  color="#000"
+                  color={Colors.BLACK}
                 />
               </TouchableOpacity>
             </View>
           </View>
-          <GradientButtonComponent text="Continue" onPress={onPress} />
+          <View style={styles.gradientButton}>
+            <GradientButtonComponent text="Continue" onPress={onPress} />
+          </View>
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

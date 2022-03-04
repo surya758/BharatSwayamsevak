@@ -11,10 +11,10 @@ import React, {useRef, useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
+import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import colors from '../../../res/colors';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -48,7 +48,7 @@ const LoginScreen = () => {
           <AntDesign
             name="back"
             size={30}
-            color={colors.margenta}
+            color={Colors.ALERT}
             style={styles.backIconStyle}
             onPress={() => navigation.goBack()}
           />
@@ -95,7 +95,7 @@ const LoginScreen = () => {
                 <Ionicons
                   name={hidePass ? 'eye-off' : 'eye'}
                   size={24}
-                  color="#000"
+                  color={Colors.BLACK}
                 />
               </TouchableOpacity>
             </View>

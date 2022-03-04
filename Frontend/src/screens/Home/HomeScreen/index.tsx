@@ -1,3 +1,4 @@
+import {DATA, STATES} from '../../../utils/constants';
 /* eslint-disable react-native/no-inline-styles */
 import {
   FlatList,
@@ -16,10 +17,9 @@ import {HomeStackParamList} from '../../../navigation/HomeNav';
 import MemberComponent from '../../../components/Member';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PickerModalComponent from '../../../components/PickerModal';
-import images from '../../../res/images';
+import images from '../../../assets/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-import {STATES, DATA} from '../../../utils/constants';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,

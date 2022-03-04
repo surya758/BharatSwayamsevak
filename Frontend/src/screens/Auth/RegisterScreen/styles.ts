@@ -1,12 +1,11 @@
+import {Colors, Typography} from '../../../styles';
 import {Dimensions, StyleSheet} from 'react-native';
-
-import colors from '../../../res/colors';
 
 const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   upperContainer: {
-    backgroundColor: colors.background,
+    backgroundColor: Colors.BACKGROUND,
     flex: 1,
   },
   lowerContainer: {
@@ -16,42 +15,41 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   registerOne: {
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     marginVertical: 10,
-    fontSize: 36,
+    fontSize: Typography.FONT_SIZE_36,
   },
   errMsgView: {height: 16, marginBottom: 10},
   errMsg: {
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     textAlign: 'center',
-    color: colors.saffron,
-    fontSize: 14,
+    color: Colors.ALERT,
   },
   notErrMsg: {height: 16, marginBottom: 10},
   registerTwo: {
     marginBottom: 10,
-    fontFamily: 'SourceSansPro-SemiBold',
-    fontSize: 16,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    fontSize: Typography.FONT_SIZE_16,
   },
   inputStyleWithout: {
     flexDirection: 'row',
     height: 50,
     borderWidth: 2,
-    paddingLeft: 20,
+    paddingLeft: 10,
     marginLeft: 10,
     flex: 1,
     borderRadius: 6,
-    borderColor: colors.saffron,
+    borderColor: Colors.PRIMARY,
   },
   inputStyleOnChange: {
     flexDirection: 'row',
     height: 50,
     borderWidth: 2,
-    paddingLeft: 20,
+    paddingLeft: 10,
     marginLeft: 10,
     flex: 1,
     borderRadius: 6,
-    borderColor: colors.lightGrey,
+    borderColor: Colors.GRAY_MEDIUM,
   },
   countryPickerStyle: {
     flexDirection: 'row',
@@ -64,7 +62,7 @@ const styles = StyleSheet.create({
   endText: {
     marginTop: 20,
     fontSize: 12,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
     width: windowWidth * 0.85,
     alignSelf: 'center',
   },

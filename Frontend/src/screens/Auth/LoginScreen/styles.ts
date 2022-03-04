@@ -1,9 +1,10 @@
+import {Colors, Typography} from '../../../styles';
+
 import {StyleSheet} from 'react-native';
-import colors from '../../../res/colors';
 
 const styles = StyleSheet.create({
   upperContainer: {
-    backgroundColor: colors.background,
+    backgroundColor: Colors.BACKGROUND,
     flex: 1,
   },
   lowerContainer: {
@@ -17,35 +18,35 @@ const styles = StyleSheet.create({
   errMsg: {
     fontFamily: 'OpenSans-SemiBold',
     textAlign: 'center',
-    color: colors.margenta,
+    color: Colors.ALERT,
   },
   notErrMsg: {height: 20},
   loginOne: {
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     marginVertical: 10,
-    fontSize: 36,
+    fontSize: Typography.FONT_SIZE_36,
   },
   loginTwo: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
     marginBottom: 10,
-    fontSize: 16,
+    fontSize: Typography.FONT_SIZE_16,
   },
   eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 20},
 
   inputWith: {
     height: 50,
     borderWidth: 2,
-    paddingLeft: 20,
+    paddingLeft: 10,
     borderRadius: 6,
-    borderColor: colors.saffron,
+    borderColor: Colors.PRIMARY,
     marginVertical: 10,
   },
   inputWithout: {
     height: 50,
     borderWidth: 2,
-    paddingLeft: 20,
+    paddingLeft: 10,
     borderRadius: 6,
-    borderColor: colors.lightGrey,
+    borderColor: Colors.GRAY_MEDIUM,
     marginVertical: 10,
   },
   gradientButton: {alignItems: 'center'},

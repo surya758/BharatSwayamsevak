@@ -1,6 +1,5 @@
+import {Colors, Typography} from '../../styles';
 import {Dimensions, StyleSheet} from 'react-native';
-
-import colors from '../../res/colors';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -16,12 +15,13 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     margin: 10,
-    color: colors.white,
-    fontFamily: 'Roboto-Medium',
+    color: Colors.WHITE,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    textTransform: 'uppercase',
   },
   animated: {
     borderRadius: 8,
-    shadowColor: colors.black,
+    shadowColor: Colors.BLACK,
     shadowOffset: {width: -2, height: 3},
     shadowOpacity: 0.5,
     shadowRadius: 2,

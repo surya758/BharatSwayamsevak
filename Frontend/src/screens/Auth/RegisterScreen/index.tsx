@@ -10,6 +10,7 @@ import {
 import React, {useState} from 'react';
 
 import {AuthStackParamList} from '../../../navigation/AuthNav';
+import {Colors} from '../../../styles';
 import CountryPicker from 'react-native-country-picker-modal';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -78,7 +79,7 @@ const RegisterScreen = () => {
           <Icon
             name="back"
             size={30}
-            color="#900"
+            color={Colors.ALERT}
             style={styles.backIconStyle}
             onPress={() => navigation.goBack()}
           />

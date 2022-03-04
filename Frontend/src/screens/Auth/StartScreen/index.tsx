@@ -5,7 +5,7 @@ import GradientButtonComponent from '../../../components/GradientButton';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NormalButtonComponent from '../../../components/NormalButton';
 import React from 'react';
-import images from '../../../res/images';
+import images from '../../../assets/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 

@@ -1,6 +1,7 @@
 import {
   Animated,
   Keyboard,
+  Pressable,
   SafeAreaView,
   Text,
   TouchableWithoutFeedback,
@@ -22,10 +23,10 @@ import styles, {
 } from './styles';
 
 import {AuthStackParamList} from '../../../navigation/AuthNav';
+import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import colors from '../../../res/colors';
 import {useNavigation} from '@react-navigation/native';
 
 type Animate = {
@@ -133,7 +134,7 @@ const VerificationScreen = () => {
           <Icon
             name="back"
             size={30}
-            color={colors.margenta}
+            color={Colors.ALERT}
             style={styles.backIconStyle}
             onPress={() => navigation.goBack()}
           />
@@ -141,7 +142,12 @@ const VerificationScreen = () => {
           <Text style={styles.verificationTwo}>
             Enter the 4 digit code sent on
           </Text>
-          <Text style={styles.verificationThree}>91943632832</Text>
+          <View style={styles.headingView}>
+            <Text style={styles.verificationThree}>91943632832</Text>
+            <Pressable>
+              <Text style={styles.resendText}>RESEND</Text>
+            </Pressable>
+          </View>
           {message ? (
             <View style={styles.errMsgView}>
               <Text style={styles.errMsg}>{message}</Text>
