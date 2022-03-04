@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   lowerContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: 16,
   },
   backIconStyle: {
     marginTop: 30,
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.GRAY_MEDIUM,
     marginVertical: 10,
   },
+  gradientButton: {paddingTop: 10, alignItems: 'center'},
 });
 
 export default styles;

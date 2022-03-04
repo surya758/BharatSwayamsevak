@@ -26,7 +26,7 @@ const UserDetailScreen = () => {
   };
   const onPress = () => {
     designation === ''
-      ? showErrMsg('All fields are mandatory!')
+      ? showErrMsg('All fields are mandatory.')
       : navigation.navigate('donation');
   };
   return (
@@ -58,7 +58,9 @@ const UserDetailScreen = () => {
           autoFocus={true}
           placeholderTextColor="grey"
         />
-        <GradientButtonComponent text="Continue" onPress={onPress} />
+        <View style={styles.gradientButton}>
+          <GradientButtonComponent text="Continue" onPress={onPress} />
+        </View>
       </View>
     </SafeAreaView>
   );
