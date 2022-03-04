@@ -13,6 +13,7 @@ import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
+import {Colors} from '../../../styles';
 import DashedLine from 'react-native-dashed-line';
 import DonationButtonComponent from '../../../components/DonationButton';
 import GradientButtonComponent from '../../../components/GradientButton';
@@ -59,7 +60,7 @@ const DonationScreen = () => {
             <AntDesign
               name="back"
               size={30}
-              color="#900"
+              color={Colors.ALERT}
               style={styles.backIconStyle}
               onPress={() => navigation.goBack()}
             />

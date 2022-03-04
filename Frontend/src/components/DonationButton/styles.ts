@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
 
     // IOS
-    shadowColor: Colors.PRIMARY,
+    shadowColor: Colors.BLACK,
     shadowOffset: {
       width: 3,
       height: 3,
