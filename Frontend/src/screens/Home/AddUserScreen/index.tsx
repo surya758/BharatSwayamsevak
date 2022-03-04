@@ -10,16 +10,15 @@ import {
   View,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
-import PickerModalComponent from '../../../components/PickerModal';
 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GradientButtonComponent from '../../../components/GradientButton';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
-import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import PickerModalComponent from '../../../components/PickerModal';
+import {STATES} from '../../../utils/constants';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {STATES} from '../../../utils/constants';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,
@@ -67,7 +66,7 @@ const AddUserScreen = () => {
           <View style={styles.lowerContainer}>
             <Text style={styles.addUserOne}>Add User</Text>
             <Text style={styles.addUserTwo}>
-              Fill in the details of new user...
+              Fill in the details of the new user...
             </Text>
             {message ? (
               <View style={styles.errMsgView}>
@@ -85,7 +84,6 @@ const AddUserScreen = () => {
               placeholderTextColor="grey"
               autoComplete="off"
               autoCorrect={false}
-              autoFocus={true}
               autoCapitalize="none"
               onSubmitEditing={() => designationRef.current?.focus()}
             />
@@ -114,7 +112,9 @@ const AddUserScreen = () => {
               autoCapitalize="none"
               ref={designationRef}
             />
-            <GradientButtonComponent text="Add user" onPress={onPress} />
+            <View style={styles.gradientButton}>
+              <GradientButtonComponent text="Add user" onPress={onPress} />
+            </View>
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>

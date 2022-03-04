@@ -1,14 +1,16 @@
-import React, {useContext} from 'react';
+import React, {FC, useContext} from 'react';
 
 const GlobalContext = React.createContext({});
 
-export const GlobalContextProvider = ({
+export const GlobalContextProvider: FC = ({
   children,
+  isAdmin,
   isUserLoggedIn,
   setIsUserLoggedIn,
 }) => {
   return (
-    <GlobalContext.Provider value={{isUserLoggedIn, setIsUserLoggedIn}}>
+    <GlobalContext.Provider
+      value={{isAdmin, isUserLoggedIn, setIsUserLoggedIn}}>
       {children}
     </GlobalContext.Provider>
   );

@@ -1,10 +1,11 @@
+import {Colors, Typography} from '../../styles';
+
 import {StyleSheet} from 'react-native';
-import colors from '../../assets/colors';
 
 const styles = StyleSheet.create({
   topContainer: {flex: 1},
   container: {
-    backgroundColor: colors.saffron,
+    backgroundColor: Colors.PRIMARY,
   },
   topDrawerView: {
     paddingVertical: 40,
@@ -17,27 +18,32 @@ const styles = StyleSheet.create({
     width: 80,
     borderRadius: 80,
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: Colors.BLACK,
   },
   nameText: {
-    color: colors.white,
-    fontSize: 16,
+    color: Colors.BLACK,
+    fontSize: Typography.FONT_SIZE_16,
     marginLeft: 10,
-    fontFamily: 'Roboto-Medium',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
-  drawerView: {flex: 1, backgroundColor: colors.white, padding: 10},
-  drawerItems: {
+  drawerView: {flex: 1, backgroundColor: Colors.WHITE, padding: 10},
+  lowerContainer: {
     padding: 20,
-    borderTopColor: '#000',
+    borderTopColor: Colors.BLACK,
     borderTopWidth: 1,
   },
-  drawerItemViewStyle: {
-    borderWidth: 2,
-    borderColor: colors.saffron,
+  shareText: {
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    fontSize: 16,
+    padding: 5,
   },
-  drawerItemLabelStyle: {marginLeft: -25, color: 'black'},
-  drawerItem: {padding: 10, flexDirection: 'row', alignItems: 'center'},
-  drawerText: {fontFamily: 'Roboto-Medium', fontSize: 16, padding: 5},
+  shareTextView: {padding: 10, flexDirection: 'row', alignItems: 'center'},
+  signoutTextView: {padding: 10, flexDirection: 'row', alignItems: 'center'},
+  signoutText: {
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    fontSize: 16,
+    padding: 5,
+  },
 });
 
 export default styles;

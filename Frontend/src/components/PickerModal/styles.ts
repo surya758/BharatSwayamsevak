@@ -1,6 +1,5 @@
+import {Colors, Typography} from '../../styles';
 import {Platform, StyleSheet} from 'react-native';
-
-import colors from '../../assets/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,13 +24,13 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: colors.lightGrey,
+    backgroundColor: Colors.GRAY_MEDIUM,
     alignItems: 'center',
     padding: 5,
   },
   label: {
     fontSize: 16,
-    fontFamily: 'Roboto-Black',
+    fontFamily: Typography.FONT_FAMILY_BOLD,
   },
 });
 export default styles;

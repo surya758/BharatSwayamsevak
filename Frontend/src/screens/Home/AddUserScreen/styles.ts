@@ -1,14 +1,15 @@
+import {Colors, Typography} from '../../../styles';
+
 import {StyleSheet} from 'react-native';
-import colors from '../../../assets/colors';
 
 const styles = StyleSheet.create({
   upperContainer: {
-    backgroundColor: colors.background,
+    backgroundColor: Colors.BACKGROUND,
     flex: 1,
   },
   lowerContainer: {
     paddingTop: 20,
-    marginHorizontal: 10,
+    marginHorizontal: 16,
   },
   backIconStyle: {
     marginTop: 30,
@@ -17,36 +18,36 @@ const styles = StyleSheet.create({
   errMsg: {textAlign: 'center', color: 'red'},
   notErrMsg: {height: 20},
   addUserOne: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     marginVertical: 10,
-    fontSize: 36,
+    fontSize: Typography.FONT_SIZE_36,
   },
   addUserTwo: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
     marginBottom: 10,
-    fontSize: 16,
+    fontSize: Typography.FONT_SIZE_16,
   },
   header: {
-    fontFamily: 'Roboto-Medium',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     marginTop: 15,
     marginBottom: 3,
-    fontSize: 14,
+    fontSize: Typography.FONT_SIZE_14,
   },
   inputWith: {
     height: 50,
     borderWidth: 2,
     paddingLeft: 20,
     borderRadius: 6,
-    borderColor: colors.saffron,
-    marginBottom: 16,
+    borderColor: Colors.PRIMARY,
+    marginVertical: 10,
   },
   inputWithout: {
     height: 50,
     borderWidth: 2,
     paddingLeft: 20,
     borderRadius: 6,
-    borderColor: colors.lightGrey,
-    marginBottom: 16,
+    borderColor: Colors.GRAY_MEDIUM,
+    marginVertical: 10,
   },
   button: {
     marginTop: 30,
@@ -54,17 +55,18 @@ const styles = StyleSheet.create({
   modal: {
     height: 50,
     borderWidth: 2,
-    borderColor: colors.lightGrey,
+    borderColor: Colors.GRAY_MEDIUM,
     borderRadius: 6,
     paddingHorizontal: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginVertical: 10,
   },
   modalText: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
+  gradientButton: {paddingTop: 10, alignItems: 'center'},
 });
 
 export default styles;

@@ -40,18 +40,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Abel-Regular.ttf</string>
-		<string>Roboto-MediumItalic.ttf</string>
-		<string>Comfortaa-Bold.ttf</string>
-		<string>Comfortaa-SemiBold.ttf</string>
 		<string>Ionicon.ttf</string>
-		<string>ABeeZee-Regular.ttf</string>
-		<string>ABeeZee-Italic.ttf</string>
-		<string>ReadexPro-Black.ttf</string>
-		<string>ReadexPro-Medium.ttf</string>
 		<string>AntDesign.ttf</string>
-		<string>Roboto-Medium.ttf</string>
-		<string>Comfortaa-Regular.ttf</string>
-		<string>Roboto-Black.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
 		<string>Feather.ttf</string>
@@ -67,12 +57,10 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
-		<string>SourceSansPro-Bold.ttf</string>
-		<string>SourceSansPro-SemiBold.ttf</string>
 		<string>OpenSans-Bold.ttf</string>
-		<string>OpenSans-Medium.ttf</string>
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-SemiBold.ttf</string>
+		<string>OpenSans-MediumItalic.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
+import {Colors} from '../../../styles';
 import DrawerImageComponent from '../../../components/DrawerImage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
@@ -20,6 +21,7 @@ import PickerModalComponent from '../../../components/PickerModal';
 import images from '../../../assets/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {useStore} from '../../../context/GlobalContext';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,
@@ -30,6 +32,7 @@ const HomeScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
 
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const {isAdmin} = useStore();
   const [state, setState] = useState<string>('Select a state');
   const onClose = () => {
     setIsVisible(false);
@@ -56,7 +59,7 @@ const HomeScreen = () => {
             <DrawerImageComponent />
           </Pressable>
           {/*remember to replace true with isAdmin*/}
-          {true ? (
+          {isAdmin ? (
             <Pressable
               style={
                 false
@@ -99,13 +102,21 @@ const HomeScreen = () => {
             <Text style={styles.modalText} numberOfLines={1}>
               {state}
             </Text>
-            <FontAwesome5 name="arrow-circle-down" size={24} color="#000" />
+            <FontAwesome5
+              name="arrow-circle-down"
+              size={24}
+              color={Colors.BLACK}
+            />
           </Pressable>
           <View style={styles.modal}>
             <Text style={{...styles.modalText, fontSize: 16, left: 10}}>
               {STATES.length} More
             </Text>
-            <FontAwesome5 name="arrow-circle-right" size={24} color="#000" />
+            <FontAwesome5
+              name="arrow-circle-right"
+              size={24}
+              color={Colors.BLACK}
+            />
           </View>
         </View>
         <View style={{flex: 1}}>

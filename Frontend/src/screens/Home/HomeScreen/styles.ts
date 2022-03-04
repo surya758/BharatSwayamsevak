@@ -1,12 +1,13 @@
+import {Colors, Typography} from '../../../styles';
 import {Dimensions, StyleSheet} from 'react-native';
 
-import colors from '../../../assets/colors';
+import {lightGreen} from './../../../styles/colors';
 
 const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   upperContainer: {
-    backgroundColor: colors.background,
+    backgroundColor: Colors.BACKGROUND,
     flex: 1,
     zIndex: 5,
   },
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 70,
     position: 'absolute',
-    backgroundColor: colors.saffron,
+    backgroundColor: Colors.PRIMARY,
     right: 10,
     top: 30,
     alignItems: 'center',
@@ -49,7 +50,8 @@ const styles = StyleSheet.create({
     left: 14,
   },
   userIDCardStyle: {
-    backgroundColor: colors.lightGreen,
+    backgroundColor: Colors.lightGreen,
+    // backgroundColor: Colors.SECONDARY,
     height: 200,
     width: windowWidth - 20,
     borderRadius: 20,
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     elevation: 5,
-    shadowColor: colors.green,
+    shadowColor: Colors.SECONDARY,
     shadowOffset: {
       width: 3,
       height: 3,
@@ -71,25 +73,32 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: windowWidth * 0.3,
     borderWidth: 0.8,
-    borderColor: colors.black,
+    borderColor: Colors.BLACK,
   },
   greetingViewStyle: {alignItems: 'center', margin: 16},
-  greetingTextLeft: {fontFamily: 'ABeeZee-Italic', fontSize: 16},
-  greetingTextRight: {fontFamily: 'Comfortaa-Regular', fontSize: 20},
+  greetingTextLeft: {
+    fontFamily: Typography.FONT_FAMILY_MEDIUMITALIC,
+    fontSize: 16,
+  },
+  greetingTextRight: {fontFamily: Typography.FONT_FAMILY_REGULAR, fontSize: 20},
   idCardTextViewStyle: {paddingVertical: 10},
-  idCardHeadingStyle: {fontSize: 24, fontFamily: 'SourceSansPro-Bold'},
-  idCardTextHeadingStyle: {fontSize: 14, fontFamily: 'SourceSansPro-SemiBold'},
-  idCardTextAnswerStyle: {fontSize: 12, fontFamily: 'Abel-Regular'},
+  idCardHeadingStyle: {fontSize: 24, fontFamily: Typography.FONT_FAMILY_BOLD},
+  idCardTextHeadingStyle: {
+    fontSize: 14,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+  },
+  idCardTextAnswerStyle: {fontSize: 12, fontFamily: Typography.FONT_FAMILY_ALT},
   modal: {
     padding: 8,
-    backgroundColor: colors.lightGreen,
+    // backgroundColor: Colors.SECONDARY,
+    backgroundColor: Colors.lightGreen,
     borderRadius: 6,
     width: '48%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     elevation: 5,
-    shadowColor: colors.green,
+    shadowColor: Colors.SECONDARY,
     shadowOffset: {
       width: 3,
       height: 3,
@@ -98,11 +107,11 @@ const styles = StyleSheet.create({
     shadowRadius: 1.2,
   },
   modalText: {
-    fontFamily: 'SourceSansPro-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
   selectorView: {
     borderTopWidth: 1,
-    borderTopColor: 'black',
+    borderTopColor: Colors.BLACK,
     paddingTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',

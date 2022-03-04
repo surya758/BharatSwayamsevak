@@ -1,5 +1,5 @@
+import {Colors} from '../../styles';
 import {StyleSheet} from 'react-native';
-import colors from '../../assets/colors';
 
 const styles = StyleSheet.create({
   drawerViewStyle: {
@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 70,
     position: 'absolute',
-    backgroundColor: colors.saffron,
+    backgroundColor: Colors.PRIMARY,
     left: 10,
     top: 30,
     alignItems: 'center',

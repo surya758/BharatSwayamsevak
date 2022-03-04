@@ -5,8 +5,10 @@ import MainNav from '../navigation/MainNav';
 
 const GlobalState = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<Boolean>(true);
+  const [isAdmin, setIsAdmin] = useState<Boolean>(true);
   return (
     <GlobalContextProvider
+      isAdmin={isAdmin}
       isUserLoggedIn={isUserLoggedIn}
       setIsUserLoggedIn={setIsUserLoggedIn}>
       <MainNav />
