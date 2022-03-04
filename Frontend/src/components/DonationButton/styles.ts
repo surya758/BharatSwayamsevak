@@ -1,6 +1,5 @@
+import {Colors, Typography} from '../../styles';
 import {Dimensions, StyleSheet} from 'react-native';
-
-import colors from '../../assets/colors';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -8,14 +7,13 @@ const styles = StyleSheet.create({
   container: {
     height: 150,
     width: (windowWidth - 60) / 2,
-    backgroundColor: colors.saffron,
+    backgroundColor: Colors.PRIMARY,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 6,
 
     // IOS
-
-    shadowColor: colors.saffron,
+    shadowColor: Colors.PRIMARY,
     shadowOffset: {
       width: 3,
       height: 3,
@@ -27,9 +25,10 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   textStyle: {
-    color: colors.white,
+    color: Colors.WHITE,
     fontSize: 20,
-    fontFamily: 'Roboto-Black',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
 });
+
 export default styles;

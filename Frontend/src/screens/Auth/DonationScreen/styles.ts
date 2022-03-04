@@ -1,19 +1,22 @@
+import {Colors, Typography} from '../../../styles';
 import {Dimensions, StyleSheet} from 'react-native';
-
-import colors from '../../../assets/colors';
 
 const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 10,
+    marginHorizontal: 16,
   },
   upperContainer: {
-    backgroundColor: colors.background,
+    backgroundColor: Colors.BACKGROUND,
     flex: 1,
   },
   errMsgView: {height: 20},
-  errMsg: {textAlign: 'center', color: 'red'},
+  errMsg: {
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    textAlign: 'center',
+    color: Colors.ALERT,
+  },
   notErrMsg: {height: 20},
   lowerContainer: {
     marginHorizontal: 10,
@@ -22,14 +25,14 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   donationOne: {
-    fontFamily: 'Comfortaa-Regular',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     marginVertical: 10,
-    fontSize: 36,
+    fontSize: Typography.FONT_SIZE_36,
   },
   donationTwo: {
-    fontFamily: 'Comfortaa-Regular',
-    marginBottom: 20,
-    fontSize: 16,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    marginBottom: 10,
+    fontSize: Typography.FONT_SIZE_16,
   },
   donationButtonStyle: {
     flexDirection: 'row',
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
   dashLineStyle: {
     overflow: 'hidden',
     margin: 10,
-    width: (windowWidth * 0.75) / 2,
+    width: (windowWidth * 0.78) / 2,
   },
   gradientDonationButtonView: {
     alignItems: 'center',
@@ -53,18 +56,18 @@ const styles = StyleSheet.create({
   inputWith: {
     height: 50,
     borderWidth: 2,
-    paddingLeft: 20,
+    paddingLeft: 10,
     borderRadius: 6,
-    borderColor: colors.saffron,
+    borderColor: Colors.PRIMARY,
     marginBottom: 20,
     margin: 10,
   },
   inputWithout: {
     height: 50,
     borderWidth: 2,
-    paddingLeft: 20,
+    paddingLeft: 10,
     borderRadius: 6,
-    borderColor: colors.lightGrey,
+    borderColor: Colors.GRAY_MEDIUM,
     marginBottom: 20,
     margin: 10,
   },

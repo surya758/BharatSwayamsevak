@@ -39,11 +39,11 @@ const DonationScreen = () => {
   };
   const onPressDonate = () => {
     donationAmount === ''
-      ? showErrMsg('Please enter a donation amount!')
+      ? showErrMsg('Please enter a donation amount.')
       : parseInt(donationAmount, 10) < 10
-      ? showErrMsg('Please enter a amount greater than 10')
+      ? showErrMsg('Please enter a amount greater than 10.')
       : !/^[0-9]*$/.test(donationAmount)
-      ? showErrMsg('No special characters or alphabets!')
+      ? showErrMsg('No special characters or alphabets.')
       : console.log(donationAmount);
   };
   const onPress = (donation: number) => {
@@ -108,11 +108,7 @@ const DonationScreen = () => {
               autoCapitalize="none"
             />
             <View style={styles.gradientDonationButtonView}>
-              <GradientButtonComponent
-                text="Donate"
-                onPress={onPressDonate}
-                width={windowWidth - 40}
-              />
+              <GradientButtonComponent text="Donate" onPress={onPressDonate} />
             </View>
           </View>
         </KeyboardAvoidingView>
