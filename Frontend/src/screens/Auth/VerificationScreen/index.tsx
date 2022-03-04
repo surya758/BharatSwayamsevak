@@ -13,7 +13,7 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles, {
   ACTIVE_CELL_BG_COLOR,
   CELL_BORDER_RADIUS,
@@ -64,7 +64,8 @@ const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}) => {
 
 const VerificationScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>('');
+  const [showResend, setShowResend] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
   const showErrMsg = (mes: string) => {
@@ -73,6 +74,12 @@ const VerificationScreen = () => {
       setMessage('');
     }, 4000);
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setShowResend(true);
+    }, 5000);
+  }, []);
+
   const onPress = () => {
     value.length < 4
       ? showErrMsg('Fields are currently empty!')
@@ -144,9 +151,11 @@ const VerificationScreen = () => {
           </Text>
           <View style={styles.headingView}>
             <Text style={styles.verificationThree}>91943632832</Text>
-            <Pressable>
-              <Text style={styles.resendText}>RESEND</Text>
-            </Pressable>
+            {showResend ? (
+              <Pressable>
+                <Text style={styles.resendText}>RESEND</Text>
+              </Pressable>
+            ) : null}
           </View>
           {message ? (
             <View style={styles.errMsgView}>

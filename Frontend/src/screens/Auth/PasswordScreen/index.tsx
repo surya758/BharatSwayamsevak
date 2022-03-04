@@ -39,11 +39,9 @@ const PasswordScreen = () => {
 
   const onPress = () => {
     password === ''
-      ? showErrMsg("Password can't be empty!")
+      ? showErrMsg("Password can't be empty.")
       : !isPasswordValid
-      ? showErrMsg(
-          'Password must contain at least one numeric digit and a special character',
-        )
+      ? showErrMsg('Invalid Password.')
       : navigation.navigate('userDetail');
   };
   const passwordIsValid = (enteredPassword: string) => {
@@ -66,13 +64,15 @@ const PasswordScreen = () => {
             onPress={() => navigation.goBack()}
           />
           <View>
-            <Text style={styles.passwordOne}>enter password</Text>
+            <Text style={styles.passwordOne}>Password</Text>
             <Text style={styles.passwordTwo}>
-              please write a password for your account
+              Please enter a password for your account
             </Text>
           </View>
           {message ? (
-            <Text style={styles.errMsg}>{message}</Text>
+            <View style={styles.errMsgView}>
+              <Text style={styles.errMsg}>{message}</Text>
+            </View>
           ) : (
             <View style={styles.notErrMsg} />
           )}
@@ -105,6 +105,10 @@ const PasswordScreen = () => {
           <View style={styles.gradientButton}>
             <GradientButtonComponent text="Continue" onPress={onPress} />
           </View>
+          <Text style={styles.endText}>
+            Password must contain at least one numeric digit and a special
+            character. Minimum length should be 8.
+          </Text>
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>
