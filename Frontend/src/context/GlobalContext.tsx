@@ -1,6 +1,6 @@
-import React, {createContext, useContext} from 'react';
+import React, {useContext} from 'react';
 
-const GlobalContext = createContext({});
+const GlobalContext = React.createContext({});
 
 export const GlobalContextProvider = ({
   children,

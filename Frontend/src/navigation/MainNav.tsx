@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 
 import AuthNav from './AuthNav';
 import HomeNav from './HomeNav';
-import {NavigationContainer} from '@react-navigation/native';
 import {useStore} from '../context/GlobalContext';
 
 const MainNav = () => {
@@ -12,11 +11,7 @@ const MainNav = () => {
     console.log(`in mainnav ${isUserLoggedIn}`);
   }, [isUserLoggedIn]);
 
-  return (
-    <NavigationContainer>
-      {isUserLoggedIn ? <HomeNav /> : <AuthNav />}
-    </NavigationContainer>
-  );
+  return isUserLoggedIn ? <HomeNav /> : <AuthNav />;
 };
 
 export default MainNav;
