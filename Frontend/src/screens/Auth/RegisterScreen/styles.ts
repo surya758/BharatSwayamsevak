@@ -40,6 +40,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 6,
     borderColor: Colors.PRIMARY,
+    fontSize: 20,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
   inputStyleOnChange: {
     flexDirection: 'row',

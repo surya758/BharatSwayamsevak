@@ -42,7 +42,7 @@ const PasswordScreen = () => {
       ? showErrMsg("Password can't be empty.")
       : !isPasswordValid
       ? showErrMsg('Invalid Password.')
-      : navigation.navigate('userDetail');
+      : navigation.navigate('referral');
   };
   const passwordIsValid = (enteredPassword: string) => {
     setIsPasswordValid(

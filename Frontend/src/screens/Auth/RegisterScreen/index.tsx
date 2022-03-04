@@ -111,7 +111,9 @@ const RegisterScreen = () => {
             />
             <TextInput
               style={
-                number ? styles.inputStyleWithout : styles.inputStyleOnChange
+                number.trim()
+                  ? styles.inputStyleWithout
+                  : styles.inputStyleOnChange
               }
               onChangeText={setNumber}
               value={number?.trim()}

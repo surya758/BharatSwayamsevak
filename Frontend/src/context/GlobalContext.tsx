@@ -1,8 +1,8 @@
-import React, {FC, createContext, useState} from 'react';
+import React, {FC, createContext, useContext, useState} from 'react';
 
-export const GlobalContext = createContext({});
+const GlobalContext = createContext({});
 
-const GlobalProvider: FC = ({children}) => {
+export const GlobalProvider: FC = ({children}) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<Boolean>(false);
   return (
     <GlobalContext.Provider value={{isUserLoggedIn, setIsUserLoggedIn}}>
@@ -11,4 +11,6 @@ const GlobalProvider: FC = ({children}) => {
   );
 };
 
-export default GlobalProvider;
+export default GlobalContext;
+
+export const useStore = () => useContext(GlobalContext);

@@ -3,6 +3,7 @@ import DonationScreen from '../screens/Auth/DonationScreen';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import PasswordScreen from '../screens/Auth/PasswordScreen';
 import React from 'react';
+import ReferralScreen from '../screens/Auth/ReferralScreen';
 import RegisterScreen from '../screens/Auth/RegisterScreen';
 import StartScreen from '../screens/Auth/StartScreen';
 import UserDetailScreen from '../screens/Auth/UserDetailScreen';
@@ -18,6 +19,7 @@ export type AuthStackParamList = {
   password: undefined;
   userDetail: undefined;
   adminLogin: undefined;
+  referral: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -38,6 +40,7 @@ const AuthNav = () => {
       <Stack.Screen name="donation" component={DonationScreen} />
       <Stack.Screen name="userDetail" component={UserDetailScreen} />
       <Stack.Screen name="adminLogin" component={AdminLoginScreen} />
+      <Stack.Screen name="referral" component={ReferralScreen} />
     </Stack.Navigator>
   );
 };

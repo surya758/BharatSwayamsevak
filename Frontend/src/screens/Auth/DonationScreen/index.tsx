@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -20,6 +19,7 @@ import GradientButtonComponent from '../../../components/GradientButton';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {useStore} from '../../../context/GlobalContext';
 
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
@@ -30,8 +30,10 @@ const DonationScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [donationAmount, onDonationAmount] = useState<string>('');
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
-  const windowWidth = Dimensions.get('window').width;
   const [message, setMessage] = useState<string>('');
+  const {setIsUserLoggedIn} = useStore();
+  const [wasDonationSucessful, setWasDonationSucessful] =
+    useState<boolean>(false);
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
@@ -48,6 +50,7 @@ const DonationScreen = () => {
       : console.log(donationAmount);
   };
   const onPress = (donation: number) => {
+    setIsUserLoggedIn(true);
     console.log(donation);
   };
   return (
@@ -99,9 +102,11 @@ const DonationScreen = () => {
               <View style={styles.notErrMsg} />
             )}
             <TextInput
-              style={donationAmount ? styles.inputWith : styles.inputWithout}
+              style={
+                donationAmount.trim() ? styles.inputWith : styles.inputWithout
+              }
               onChangeText={onDonationAmount}
-              value={donationAmount}
+              value={donationAmount.trim()}
               placeholder="enter a custom donation amount"
               keyboardType="numeric"
               placeholderTextColor="grey"
