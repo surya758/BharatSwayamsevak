@@ -168,6 +168,7 @@ const VerificationScreen = () => {
             ref={ref}
             {...props}
             value={value}
+            autoFocus={true}
             onChangeText={setValue}
             cellCount={CELL_COUNT}
             rootStyle={styles.codeFieldRoot}

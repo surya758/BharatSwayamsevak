@@ -1,9 +1,12 @@
-import React, {FC, createContext, useContext, useState} from 'react';
+import React, {createContext, useContext} from 'react';
 
 const GlobalContext = createContext({});
 
-export const GlobalProvider: FC = ({children}) => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState<Boolean>(false);
+export const GlobalContextProvider = ({
+  children,
+  isUserLoggedIn,
+  setIsUserLoggedIn,
+}) => {
   return (
     <GlobalContext.Provider value={{isUserLoggedIn, setIsUserLoggedIn}}>
       {children}
