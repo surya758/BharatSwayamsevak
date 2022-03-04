@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   lowerMargin: {marginTop: 10},
   errMsgView: {height: 20},
   errMsg: {
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     textAlign: 'center',
     color: Colors.ALERT,
   },

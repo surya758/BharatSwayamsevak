@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
 import {AuthStackParamList} from '../../../navigation/AuthNav';
+import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -10,17 +11,17 @@ import {useNavigation} from '@react-navigation/native';
 
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
-  'user detail'
+  'userDetail'
 >;
 
 const UserDetailScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [designation, setDesignation] = useState<string | undefined>('');
-  const [message, setMessage] = useState<string | null>('');
+  const [message, setMessage] = useState<string>('');
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
-      setMessage(null);
+      setMessage('');
     }, 4000);
   };
   const onPress = () => {
@@ -34,7 +35,7 @@ const UserDetailScreen = () => {
         <Icon
           name="back"
           size={30}
-          color="#900"
+          color={Colors.ALERT}
           style={styles.backIconStyle}
           onPress={() => navigation.goBack()}
         />
