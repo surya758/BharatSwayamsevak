@@ -1,8 +1,8 @@
 const AWS = require('aws-sdk');
 const httpStatus = require('http-status');
+const storage = require('node-persist');
 const config = require('../config/config');
 const ApiError = require('../utils/ApiError');
-const VERIFICATION_CODES = require('../utils/dataOTP');
 
 const generateOTPcode = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
@@ -21,7 +21,13 @@ const sns = new AWS.SNS();
 // sending OTP
 const sendOtp = async (phoneNumber) => {
   const OTP = generateOTPcode(1000, 9999);
-  VERIFICATION_CODES.push(`${OTP}`);
+  await storage.init();
+  const arrayOfOTPs = await storage.getItem('OTPs');
+  if (arrayOfOTPs === undefined) {
+    await storage.setItem('OTPs', []);
+  }
+  arrayOfOTPs.push(`${OTP}`);
+  await storage.setItem('OTPs', arrayOfOTPs);
 
   try {
     const params1 = {
@@ -35,15 +41,15 @@ const sendOtp = async (phoneNumber) => {
       PhoneNumber: phoneNumber,
     };
 
-    sns.subscribe(params1, function (err, data) {
+    sns.subscribe(params1, function (err) {
       if (err) throw new Error(err, err.stack);
-      else return data;
     });
 
-    sns.publish(params2, function (err, data) {
+    sns.publish(params2, function (err) {
       if (err) throw new Error(err, err.stack);
-      else return data; // successful response
     });
+
+    return { data: 'Sent message successfully.' };
   } catch (error) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Something went wrong.');
   }
@@ -51,9 +57,12 @@ const sendOtp = async (phoneNumber) => {
 
 // verifying OTP
 const verifyOtp = async (phoneNumber, OTP) => {
-  if (VERIFICATION_CODES.pop() === OTP) {
+  await storage.init();
+  const arrayOfOTPs = await storage.getItem('OTPs');
+  if (arrayOfOTPs.pop() === OTP) {
     return { data: 'Successfully verified' };
   }
+  throw new ApiError(httpStatus.BAD_REQUEST, 'Verification failed.');
 };
 
 module.exports = {
