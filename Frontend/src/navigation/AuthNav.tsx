@@ -30,7 +30,6 @@ const AuthNav = () => {
       initialRouteName="start"
       screenOptions={{
         headerShown: false,
-        presentation: 'transparentModal',
       }}>
       <Stack.Screen name="start" component={StartScreen} />
       <Stack.Screen name="login" component={LoginScreen} />

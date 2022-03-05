@@ -7,7 +7,9 @@ import {useStore} from '../context/GlobalContext';
 const MainNav = () => {
   const {isUserLoggedIn} = useStore();
 
-  useEffect(() => {}, [isUserLoggedIn]);
+  // useEffect(() => {
+  console.log(`visited mainnav. isuserloggedin is ${isUserLoggedIn}`);
+  // }, [isUserLoggedIn]);
 
   return isUserLoggedIn ? <HomeNav /> : <AuthNav />;
 };

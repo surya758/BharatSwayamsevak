@@ -32,8 +32,7 @@ const DonationScreen = () => {
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
   const [message, setMessage] = useState<string>('');
   const {setIsUserLoggedIn} = useStore();
-  const [wasDonationSucessful, setWasDonationSucessful] =
-    useState<boolean>(false);
+  useState<boolean>(false);
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
@@ -50,8 +49,8 @@ const DonationScreen = () => {
       : console.log(donationAmount);
   };
   const onPress = (donation: number) => {
-    setIsUserLoggedIn(true);
-    console.log(donation);
+    return setIsUserLoggedIn(true);
+    // console.log(donation);
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

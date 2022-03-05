@@ -16,7 +16,7 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 const UserDetailScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [designation, setDesignation] = useState<string | undefined>('');
+  const [designation, setDesignation] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const showErrMsg = (mes: string) => {
     setMessage(mes);

@@ -8,8 +8,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react';
 import images from '../../assets/images';
 import styles from './styles';
+import {useStore} from '../../context/GlobalContext';
 
 const CustomDrawer = (props: any) => {
+  const {setIsUserLoggedIn} = useStore();
   return (
     <View style={styles.topContainer}>
       <DrawerContentScrollView
@@ -28,7 +30,9 @@ const CustomDrawer = (props: any) => {
           <Icon name="share-social-outline" size={22} />
           <Text style={styles.shareText}>Tell a friend</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.signoutTextView}>
+        <TouchableOpacity
+          style={styles.signoutTextView}
+          onPress={() => setIsUserLoggedIn(false)}>
           <Icon name="log-out-outline" size={22} />
           <Text style={styles.signoutText}>Sign out</Text>
         </TouchableOpacity>
