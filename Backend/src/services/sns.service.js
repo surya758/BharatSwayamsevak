@@ -47,18 +47,6 @@ const sendOtp = async (phoneNumber) => {
   } catch (error) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Something went wrong.');
   }
-
-  // try {
-  //   const params = {
-  //     PhoneNumber: phoneNumber,
-  //   };
-  //   sns.createSMSSandboxPhoneNumber(params, function (err, data) {
-  //     if (err) throw new Error(err, err.stack);
-  //     return data;
-  //   });
-  // } catch (error) {
-  //   throw new ApiError(httpStatus.BAD_REQUEST, 'Something went wrong.');
-  // }
 };
 
 // verifying OTP
@@ -66,18 +54,6 @@ const verifyOtp = async (phoneNumber, OTP) => {
   if (VERIFICATION_CODES.pop() === OTP) {
     return { data: 'Successfully verified' };
   }
-  // try {
-  //   const params = {
-  //     OneTimePassword: otp,
-  //     PhoneNumber: phoneNumber,
-  //   };
-  //   sns.verifySMSSandboxPhoneNumber(params, function (err, data) {
-  //     if (err) throw new Error(err, err.stack);
-  //     return data;
-  //   });
-  // } catch (error) {
-  //   throw new ApiError(httpStatus.NOT_FOUND, 'Verification failed.');
-  // }
 };
 
 module.exports = {
