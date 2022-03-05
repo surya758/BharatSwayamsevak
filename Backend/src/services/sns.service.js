@@ -17,28 +17,31 @@ const sns = new AWS.SNS();
 const sendOtp = async (phoneNumber) => {
   try {
     const params = {
-      PhoneNumber: { phoneNumber },
-      LanguageCode: 'en-US',
+      PhoneNumber: phoneNumber,
     };
     sns.createSMSSandboxPhoneNumber(params, function (err, data) {
       if (err) throw new Error(err, err.stack);
       return data;
     });
   } catch (error) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Something went wrong');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Something went wrong.');
   }
 };
 
 // verifying OTP
 const verifyOtp = async (phoneNumber, otp) => {
-  const params = {
-    OneTimePassword: { otp },
-    PhoneNumber: { phoneNumber },
-  };
-  sns.verifySMSSandboxPhoneNumber(params, function (err, data) {
-    if (err) console.log(err, err.stack);
-    else console.log(data);
-  });
+  try {
+    const params = {
+      OneTimePassword: otp,
+      PhoneNumber: phoneNumber,
+    };
+    sns.verifySMSSandboxPhoneNumber(params, function (err, data) {
+      if (err) throw new Error(err, err.stack);
+      return data;
+    });
+  } catch (error) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Verification failed.');
+  }
 };
 
 module.exports = {
