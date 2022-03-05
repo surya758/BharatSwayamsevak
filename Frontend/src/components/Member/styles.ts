@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 1.2,
+    paddingHorizontal: 3,
   },
   imageStyle: {
     height: 70,
@@ -31,7 +32,13 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 14,
-    fontFamily: Typography.FONT_FAMILY_ALT,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    textAlign: 'center',
+    marginTop: 5,
+  },
+  designation: {
+    fontSize: 12,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
     textAlign: 'center',
   },
 });

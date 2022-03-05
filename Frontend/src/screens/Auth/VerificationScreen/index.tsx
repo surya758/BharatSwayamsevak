@@ -27,6 +27,7 @@ import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 
 type Animate = {
@@ -67,6 +68,7 @@ const VerificationScreen = () => {
   const [value, setValue] = useState<string>('');
   const [showResend, setShowResend] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
+  const [isPressable, setIsPressable] = useState<boolean>(false);
 
   const showErrMsg = (mes: string) => {
     setMessage(mes);
@@ -74,9 +76,19 @@ const VerificationScreen = () => {
       setMessage('');
     }, 4000);
   };
+
+  const pressedResend = () => {
+    setIsPressable(false);
+    setTimeout(() => {
+      setShowResend(true);
+      setIsPressable(true);
+    }, 20000);
+  };
+
   useEffect(() => {
     setTimeout(() => {
       setShowResend(true);
+      setIsPressable(true);
     }, 5000);
   }, []);
 
@@ -152,9 +164,17 @@ const VerificationScreen = () => {
           <View style={styles.headingView}>
             <Text style={styles.verificationThree}>91943632832</Text>
             {showResend ? (
-              <Pressable>
-                <Text style={styles.resendText}>RESEND</Text>
-              </Pressable>
+              <TouchableOpacity
+                disabled={isPressable ? false : true}
+                onPress={pressedResend}>
+                <Text
+                  style={{
+                    ...styles.resendText,
+                    color: isPressable ? Colors.ALERT : Colors.GRAY_DARK,
+                  }}>
+                  RESEND
+                </Text>
+              </TouchableOpacity>
             ) : null}
           </View>
           {message ? (
@@ -179,6 +199,13 @@ const VerificationScreen = () => {
           <View style={styles.verifyButton}>
             <GradientButtonComponent text="Verify" onPress={onPress} />
           </View>
+          {!isPressable ? (
+            showResend ? (
+              <Text style={styles.resendWarningText}>
+                You can resend after twenty seconds. Please wait.
+              </Text>
+            ) : null
+          ) : null}
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

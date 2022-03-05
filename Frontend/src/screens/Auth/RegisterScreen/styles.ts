@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontFamily: Typography.FONT_FAMILY_REGULAR,
     fontSize: Typography.FONT_SIZE_16,
+    color: Colors.GRAY_DARK,
+    paddingLeft: 2,
   },
   inputStyleWithout: {
     flexDirection: 'row',

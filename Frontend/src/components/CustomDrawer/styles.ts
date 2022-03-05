@@ -16,17 +16,17 @@ const styles = StyleSheet.create({
   profileImage: {
     height: 80,
     width: 80,
-    borderRadius: 80,
+    borderRadius: 10,
     borderWidth: 1,
     borderColor: Colors.BLACK,
   },
   nameText: {
-    color: Colors.BLACK,
+    color: Colors.WHITE,
     fontSize: Typography.FONT_SIZE_16,
     marginLeft: 10,
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
-  drawerView: {flex: 1, backgroundColor: Colors.WHITE, padding: 10},
+  drawerView: {flex: 1, backgroundColor: Colors.WHITE, paddingTop: 10},
   lowerContainer: {
     padding: 20,
     borderTopColor: Colors.BLACK,

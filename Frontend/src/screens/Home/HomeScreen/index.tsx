@@ -15,6 +15,7 @@ import {Colors} from '../../../styles';
 import DrawerImageComponent from '../../../components/DrawerImage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MemberComponent from '../../../components/Member';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PickerModalComponent from '../../../components/PickerModal';
@@ -91,6 +92,10 @@ const HomeScreen = () => {
           <Image style={styles.userIDPhotoStyle} source={images.guy} />
         </View>
         <View style={styles.selectorView}>
+          <View style={styles.memberView}>
+            <Ionicons name="people" size={30} color="#000" />
+            <Text style={styles.memberTextStyle}>Members</Text>
+          </View>
           <PickerModalComponent
             visible={isVisible}
             items={STATES}
@@ -102,13 +107,9 @@ const HomeScreen = () => {
             <Text style={styles.modalText} numberOfLines={1}>
               {state}
             </Text>
-            <FontAwesome5
-              name="arrow-circle-down"
-              size={24}
-              color={Colors.BLACK}
-            />
+            <FontAwesome5 name="angle-down" size={30} color={Colors.BLACK} />
           </Pressable>
-          <View style={styles.modal}>
+          {/* <View style={styles.modal}>
             <Text style={{...styles.modalText, fontSize: 16, left: 10}}>
               {STATES.length} More
             </Text>
@@ -117,7 +118,7 @@ const HomeScreen = () => {
               size={24}
               color={Colors.BLACK}
             />
-          </View>
+          </View> */}
         </View>
         <View style={{flex: 1}}>
           <FlatList

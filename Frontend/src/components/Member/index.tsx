@@ -13,7 +13,7 @@ const MemberComponent: React.FC<Props> = ({image, name, designation}) => {
     <View style={styles.container}>
       <Image style={styles.imageStyle} source={image} />
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.name}>{designation}</Text>
+      <Text style={styles.designation}>{designation}</Text>
     </View>
   );
 };

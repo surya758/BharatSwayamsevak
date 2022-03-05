@@ -56,7 +56,7 @@ const sendOtp = async (phoneNumber) => {
 };
 
 // verifying OTP
-const verifyOtp = async (phoneNumber, OTP) => {
+const verifyOtp = async (OTP) => {
   await storage.init();
   const arrayOfOTPs = await storage.getItem('OTPs');
   if (arrayOfOTPs.pop() === OTP) {

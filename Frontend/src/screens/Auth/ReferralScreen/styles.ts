@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
     fontFamily: Typography.FONT_FAMILY_REGULAR,
     marginBottom: 10,
     fontSize: Typography.FONT_SIZE_16,
+    color: Colors.GRAY_DARK,
+    paddingLeft: 2,
   },
   inputWith: {
     height: 50,

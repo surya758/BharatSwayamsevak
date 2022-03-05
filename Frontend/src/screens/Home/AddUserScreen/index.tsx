@@ -1,4 +1,5 @@
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -9,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GradientButtonComponent from '../../../components/GradientButton';
@@ -35,16 +36,10 @@ const AddUserScreen = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
-  const onPress = () => {
-    name === '' || designation === '' || state === ''
-      ? showErrMsg('All fields are mandatory!')
-      : navigation.navigate('home');
-  };
   const onClose = () => {
     setIsVisible(false);
   };
   const onSelect = (selectedState: string) => {
-    console.log(selectedState);
     setState(selectedState);
     setIsVisible(false);
   };
@@ -55,6 +50,23 @@ const AddUserScreen = () => {
     setTimeout(() => {
       setMessage('');
     }, 4000);
+  };
+
+  const createTwoButtonAlert = () => {
+    name === '' || designation === '' || state === ''
+      ? showErrMsg('All fields are mandatory!')
+      : Alert.alert(
+          'Confirmation.',
+          'Are you sure you have entered correct information? This cannot be altered afterwards.',
+          [
+            {
+              text: 'NO',
+              onPress: () => null,
+              style: 'destructive',
+            },
+            {text: 'YES', onPress: () => navigation.navigate('home')},
+          ],
+        );
   };
 
   return (
@@ -98,7 +110,7 @@ const AddUserScreen = () => {
               <Text style={styles.modalText} numberOfLines={1}>
                 {state}
               </Text>
-              <FontAwesome5 name="arrow-circle-down" size={24} color="#000" />
+              <FontAwesome5 name="arrow-down" size={24} color="#000" />
             </Pressable>
             <TextInput
               style={designation ? styles.inputWith : styles.inputWithout}
@@ -113,7 +125,10 @@ const AddUserScreen = () => {
               ref={designationRef}
             />
             <View style={styles.gradientButton}>
-              <GradientButtonComponent text="Add user" onPress={onPress} />
+              <GradientButtonComponent
+                text="Add user"
+                onPress={createTwoButtonAlert}
+              />
             </View>
           </View>
         </KeyboardAvoidingView>

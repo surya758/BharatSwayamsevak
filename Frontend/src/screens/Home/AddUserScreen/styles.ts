@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   inputWith: {
     height: 50,
     borderWidth: 2,
-    paddingLeft: 20,
+    paddingLeft: 10,
     borderRadius: 6,
     borderColor: Colors.PRIMARY,
     marginVertical: 10,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   inputWithout: {
     height: 50,
     borderWidth: 2,
-    paddingLeft: 20,
+    paddingLeft: 10,
     borderRadius: 6,
     borderColor: Colors.GRAY_MEDIUM,
     marginVertical: 10,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.GRAY_MEDIUM,
     borderRadius: 6,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

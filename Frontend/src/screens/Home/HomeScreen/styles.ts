@@ -93,9 +93,9 @@ const styles = StyleSheet.create({
     // backgroundColor: Colors.SECONDARY,
     backgroundColor: Colors.lightGreen,
     borderRadius: 6,
-    width: '48%',
+    width: '60%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center',
     elevation: 5,
     shadowColor: Colors.SECONDARY,
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    paddingLeft: 6,
   },
   selectorView: {
     borderTopWidth: 1,
@@ -115,7 +116,18 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 16,
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  memberTextStyle: {
+    fontSize: 18,
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+    paddingRight: 10,
+    paddingLeft: 5,
+  },
+  memberView: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
