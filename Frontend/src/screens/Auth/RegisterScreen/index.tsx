@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import CountryPicker from 'react-native-country-picker-modal';
@@ -48,13 +49,12 @@ const RegisterScreen = () => {
     region: 'Asia',
     subregion: 'Southern Asia',
   });
-  const [withFlag, setWithFlag] = useState<boolean>(true);
-  const [withCallingCode, setWithCallingCode] = useState<boolean>(true);
-  const [withModal, setWithModal] = useState<boolean>(true);
-  const [withCallingCodeButton, setWithCallingCodeButton] =
-    useState<boolean>(true);
-  const [withEmoji, setWithEmoji] = useState<boolean>(true);
-  const [withFilter, setWithFilter] = useState<boolean>(true);
+  const [withFlag, setWithFlag] = useState(true);
+  const [withCallingCode, setWithCallingCode] = useState(true);
+  const [withModal, setWithModal] = useState(true);
+  const [withCallingCodeButton, setWithCallingCodeButton] = useState(true);
+  const [withEmoji, setWithEmoji] = useState(true);
+  const [withFilter, setWithFilter] = useState(true);
   const onSelect = (selectedCountry: Country) => {
     setCountryCode(selectedCountry.cca2);
     setCountry(selectedCountry);
@@ -65,6 +65,7 @@ const RegisterScreen = () => {
       : number.length < 10 || !/^[0-9]*$/.test(number)
       ? showErrMsg('Enter a valid mobile number.')
       : navigation.navigate('verification');
+    phoneNumberSigninHandler();
   };
   const showErrMsg = (mes: string) => {
     setMessage(mes);
@@ -72,7 +73,26 @@ const RegisterScreen = () => {
       setMessage('');
     }, 4000);
   };
+  const phoneNumberSigninHandler = async () => {
+    //store phone number in tempUserData async
 
+    try {
+      const jsonValue = JSON.stringify({number: number});
+      await AsyncStorage.setItem('@tempUserData', jsonValue);
+    } catch (e) {
+      // saving error
+    }
+
+    // testing only | remove in production
+    try {
+      const jsonValue = await AsyncStorage.getItem('@tempUserData');
+      return jsonValue != null ? console.log(JSON.parse(jsonValue)) : null;
+    } catch (e) {
+      // error reading value
+    }
+
+    // do a request to backend server
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>

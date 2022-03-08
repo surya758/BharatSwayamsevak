@@ -22,6 +22,7 @@ import styles, {
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
@@ -69,6 +70,20 @@ const VerificationScreen = () => {
   const [showResend, setShowResend] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
   const [isPressable, setIsPressable] = useState<boolean>(false);
+  const [number, setNumber] = useState('');
+
+  useEffect(() => {
+    getNumberFunc();
+  }, []);
+
+  const getNumberFunc = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@tempUserData');
+      return jsonValue != null ? setNumber(JSON.parse(jsonValue).number) : null;
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const showErrMsg = (mes: string) => {
     setMessage(mes);
@@ -92,13 +107,34 @@ const VerificationScreen = () => {
     }, 5000);
   }, []);
 
-  const onPress = () => {
+  const otpHandler = async () => {
+    // checks
     value.length < 4
       ? showErrMsg('Fields are currently empty!')
       : !/^[0-9]*$/.test(value)
       ? showErrMsg('No special characters or alphabets allowed!')
-      : navigation.navigate('password');
+      : null;
+
+    //get data from tempUserData
+    try {
+      const tempData = await AsyncStorage.getItem('@tempUserData');
+      if (tempData != null) {
+        const newTempData = {...JSON.parse(tempData), otp: value};
+        await AsyncStorage.setItem(
+          '@tempUserData',
+          JSON.stringify(newTempData),
+        );
+      }
+    } catch (e) {
+      // error reading value
+    }
+
+    //navigate
+    navigation.navigate('password');
+
+    // do a request to backend server
   };
+
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
@@ -162,7 +198,7 @@ const VerificationScreen = () => {
             Enter the 4 digit code sent on
           </Text>
           <View style={styles.headingView}>
-            <Text style={styles.verificationThree}>91943632832</Text>
+            <Text style={styles.verificationThree}>{number}</Text>
             {showResend ? (
               <TouchableOpacity
                 disabled={isPressable ? false : true}
@@ -197,7 +233,7 @@ const VerificationScreen = () => {
             renderCell={renderCell}
           />
           <View style={styles.verifyButton}>
-            <GradientButtonComponent text="Verify" onPress={onPress} />
+            <GradientButtonComponent text="Verify" onPress={otpHandler} />
           </View>
           {!isPressable ? (
             showResend ? (

@@ -40,4 +40,9 @@ export const DATA = [
   {name: 'Rajveer', id: '3', designation: 'Registered Fiduciary'},
 ];
 
-export const URL = 'http://localhost:3000';
+export const URL = 'http://localhost:3000/v1';
+export const ROUTES = {
+  auth: 'auth',
+  users: 'users',
+  referrals: 'referrals',
+};
