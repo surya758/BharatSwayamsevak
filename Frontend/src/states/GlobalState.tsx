@@ -28,7 +28,9 @@ const GlobalState = () => {
       if (!tempUserData) {
         try {
           const jsonValue = await AsyncStorage.getItem('@tempUserData');
-          jsonValue ? setTempUserData(JSON.parse(jsonValue)) : null;
+          jsonValue
+            ? setTempUserData(JSON.parse(jsonValue))
+            : setTempUserData({});
           setState('refresh');
         } catch (e) {
           // error reading value
@@ -37,7 +39,7 @@ const GlobalState = () => {
     };
 
     tempDataLoader();
-  }, [state, tempUserData]);
+  }, [state]);
 
   return (
     <GlobalContextProvider

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
@@ -16,6 +17,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {useStore} from '../../../context/GlobalContext';
 
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
@@ -26,8 +28,36 @@ const ReferralScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [referrerCode, setReferrerCode] = useState<string>('');
   const [message, setMessage] = useState<string>('');
+  const {state, setState, tempUserData} = useStore();
   const [isReferrerAvailable, setIsReferrerAvailable] =
     useState<boolean>(false);
+
+  const referralHandler = () => {
+    // checks
+    const isRefCodeAlright = () => {
+      return referrerCode
+        ? !isReferrerAvailable
+          ? showErrMsg('Invalid referral code.')
+          : true
+        : true;
+    };
+
+    // navigate
+    if (isRefCodeAlright()) {
+      navigation.navigate('userDetail');
+    }
+  };
+
+  const backPressed = async () => {
+    // delete value from async for tempUserData
+    setState('loading');
+    try {
+      await AsyncStorage.removeItem('@tempUserData');
+      setState('refresh');
+    } catch (e) {
+      // error reading value
+    }
+  };
 
   const showErrMsg = (mes: string) => {
     setMessage(mes);
@@ -35,15 +65,7 @@ const ReferralScreen = () => {
       setMessage('');
     }, 4000);
   };
-  const onPress = () => {
-    if (referrerCode) {
-      !isReferrerAvailable
-        ? showErrMsg('Invalid referral code.')
-        : navigation.navigate('userDetail');
-    } else {
-      navigation.navigate('userDetail');
-    }
-  };
+
   const createTwoButtonAlert = () => {
     Alert.alert(
       'Are you sure?',
@@ -54,7 +76,7 @@ const ReferralScreen = () => {
           onPress: () => null,
           style: 'destructive',
         },
-        {text: 'YES', onPress: () => navigation.navigate('start')},
+        {text: 'YES', onPress: () => backPressed()},
       ],
     );
   };
@@ -90,7 +112,10 @@ const ReferralScreen = () => {
             placeholderTextColor="grey"
           />
           <View style={styles.gradientButton}>
-            <GradientButtonComponent text="Continue" onPress={onPress} />
+            <GradientButtonComponent
+              text="Continue"
+              onPress={referralHandler}
+            />
           </View>
         </View>
       </SafeAreaView>

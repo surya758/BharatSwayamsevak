@@ -30,7 +30,42 @@ export type AuthStackParamList = {
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthNav = () => {
-  const {state, setState, tempUserData} = useStore();
+  const {state, tempUserData} = useStore();
+
+  const moveToReferralScreen = () => {
+    if (
+      tempUserData?.number &&
+      tempUserData?.otp &&
+      tempUserData?.password &&
+      tempUserData?.isVerified
+    ) {
+      console.log('been here');
+      return true;
+    }
+  };
+  useEffect(() => {
+    moveToReferralScreen();
+  }, [tempUserData]);
+
+  const screenSet = (routeName: string) => {
+    return (
+      <Stack.Navigator
+        initialRouteName={routeName}
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="start" component={StartScreen} />
+        <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name="register" component={RegisterScreen} />
+        <Stack.Screen name="verification" component={VerificationScreen} />
+        <Stack.Screen name="password" component={PasswordScreen} />
+        <Stack.Screen name="donation" component={DonationScreen} />
+        <Stack.Screen name="userDetail" component={UserDetailScreen} />
+        <Stack.Screen name="adminLogin" component={AdminLoginScreen} />
+        <Stack.Screen name="referral" component={ReferralScreen} />
+      </Stack.Navigator>
+    );
+  };
 
   return state === 'loading' ? (
     <ActivityIndicator
@@ -38,38 +73,10 @@ const AuthNav = () => {
       color="red"
       style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
     />
-  ) : tempUserData.number && tempUserData.otp && tempUserData.password ? (
-    <Stack.Navigator
-      initialRouteName="referral"
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="start" component={StartScreen} />
-      <Stack.Screen name="login" component={LoginScreen} />
-      <Stack.Screen name="register" component={RegisterScreen} />
-      <Stack.Screen name="verification" component={VerificationScreen} />
-      <Stack.Screen name="password" component={PasswordScreen} />
-      <Stack.Screen name="donation" component={DonationScreen} />
-      <Stack.Screen name="userDetail" component={UserDetailScreen} />
-      <Stack.Screen name="adminLogin" component={AdminLoginScreen} />
-      <Stack.Screen name="referral" component={ReferralScreen} />
-    </Stack.Navigator>
+  ) : moveToReferralScreen() ? (
+    screenSet('referral')
   ) : (
-    <Stack.Navigator
-      initialRouteName="start"
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="start" component={StartScreen} />
-      <Stack.Screen name="login" component={LoginScreen} />
-      <Stack.Screen name="register" component={RegisterScreen} />
-      <Stack.Screen name="verification" component={VerificationScreen} />
-      <Stack.Screen name="password" component={PasswordScreen} />
-      <Stack.Screen name="donation" component={DonationScreen} />
-      <Stack.Screen name="userDetail" component={UserDetailScreen} />
-      <Stack.Screen name="adminLogin" component={AdminLoginScreen} />
-      <Stack.Screen name="referral" component={ReferralScreen} />
-    </Stack.Navigator>
+    screenSet('start')
   );
 };
 

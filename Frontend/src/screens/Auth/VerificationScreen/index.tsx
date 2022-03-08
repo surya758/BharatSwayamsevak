@@ -1,7 +1,6 @@
 import {
   Animated,
   Keyboard,
-  Pressable,
   SafeAreaView,
   Text,
   TouchableWithoutFeedback,
@@ -109,11 +108,13 @@ const VerificationScreen = () => {
 
   const otpHandler = async () => {
     // checks
-    value.length < 4
-      ? showErrMsg('Fields are currently empty!')
-      : !/^[0-9]*$/.test(value)
-      ? showErrMsg('No special characters or alphabets allowed!')
-      : null;
+    const isOtpAlright = () => {
+      return value.length < 4
+        ? showErrMsg('Fields are currently empty.')
+        : !/^[0-9]*$/.test(value)
+        ? showErrMsg('No special characters or alphabets allowed.')
+        : true;
+    };
 
     //get data from tempUserData
     try {
@@ -135,7 +136,9 @@ const VerificationScreen = () => {
     }
 
     //navigate
-    navigation.navigate('password');
+    if (isOtpAlright()) {
+      navigation.navigate('password');
+    }
 
     // do a request to backend server
   };
