@@ -85,36 +85,71 @@ const VerificationScreen = () => {
   };
 
   const showErrMsg = (mes: string) => {
-    setMessage(mes);
+    let unmounted = false;
+
+    if (!unmounted) {
+      setMessage(mes);
+    }
     setTimeout(() => {
-      setMessage('');
+      if (!unmounted) {
+        setMessage('');
+      }
     }, 4000);
+
+    return () => {
+      unmounted = true;
+    };
   };
 
   const pressedResend = () => {
-    setIsPressable(false);
+    let unmounted = false;
+
+    if (!unmounted) {
+      setIsPressable(false);
+    }
+
     setTimeout(() => {
-      setShowResend(true);
-      setIsPressable(true);
+      if (!unmounted) {
+        setShowResend(true);
+        setIsPressable(true);
+      }
     }, 20000);
+
+    return () => {
+      unmounted = true;
+    };
   };
 
   useEffect(() => {
+    let unmounted = false;
+
     setTimeout(() => {
-      setShowResend(true);
-      setIsPressable(true);
+      if (!unmounted) {
+        setShowResend(true);
+        setIsPressable(true);
+      }
     }, 5000);
+
+    return () => {
+      unmounted = true;
+    };
   }, []);
 
   const otpHandler = async () => {
     // checks
     const isOtpAlright = () => {
-      return value.length < 4
-        ? showErrMsg('Fields are currently empty.')
-        : !/^[0-9]*$/.test(value)
-        ? showErrMsg('No special characters or alphabets allowed.')
-        : true;
+      if (value.length < 4) {
+        return showErrMsg('Fields are currently empty.');
+      }
+      if (/^[0-9]*$/.test(value)) {
+        // has four digits and passes the test so return true
+        return true;
+      } else {
+        showErrMsg('No special characters or alphabets allowed.');
+      }
     };
+
+    // do a request to backend server
 
     //get data from tempUserData
     try {
@@ -136,11 +171,9 @@ const VerificationScreen = () => {
     }
 
     //navigate
-    if (isOtpAlright()) {
+    if (isOtpAlright() === true) {
       navigation.navigate('password');
     }
-
-    // do a request to backend server
   };
 
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});

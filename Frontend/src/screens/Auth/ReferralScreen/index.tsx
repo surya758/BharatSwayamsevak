@@ -50,20 +50,28 @@ const ReferralScreen = () => {
 
   const backPressed = async () => {
     // delete value from async for tempUserData
-    setState('loading');
     try {
       await AsyncStorage.removeItem('@tempUserData');
-      setState('refresh');
+      navigation.navigate('start');
     } catch (e) {
       // error reading value
     }
   };
 
   const showErrMsg = (mes: string) => {
-    setMessage(mes);
+    let unmounted = false;
+    if (!unmounted) {
+      setMessage(mes);
+    }
     setTimeout(() => {
-      setMessage('');
+      if (!unmounted) {
+        setMessage('');
+      }
     }, 4000);
+
+    return () => {
+      unmounted = true;
+    };
   };
 
   const createTwoButtonAlert = () => {

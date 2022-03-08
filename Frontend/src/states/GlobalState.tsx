@@ -39,7 +39,7 @@ const GlobalState = () => {
     };
 
     tempDataLoader();
-  }, [state]);
+  }, [state, tempUserData]);
 
   return (
     <GlobalContextProvider

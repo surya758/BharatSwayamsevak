@@ -64,14 +64,23 @@ const RegisterScreen = () => {
       ? showErrMsg('Please enter the mobile number.')
       : number.length < 10 || !/^[0-9]*$/.test(number)
       ? showErrMsg('Enter a valid mobile number.')
-      : navigation.navigate('verification');
-    phoneNumberSigninHandler();
+      : phoneNumberSigninHandler();
   };
   const showErrMsg = (mes: string) => {
-    setMessage(mes);
+    let unmounted = false;
+
+    if (!unmounted) {
+      setMessage(mes);
+    }
     setTimeout(() => {
-      setMessage('');
+      if (!unmounted) {
+        setMessage('');
+      }
     }, 4000);
+
+    return () => {
+      unmounted = true;
+    };
   };
   const phoneNumberSigninHandler = async () => {
     //store phone number in tempUserData async
@@ -84,6 +93,9 @@ const RegisterScreen = () => {
     }
 
     // do a request to backend server
+
+    //navigate
+    navigation.navigate('verification');
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

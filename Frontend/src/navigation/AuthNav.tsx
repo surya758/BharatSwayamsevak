@@ -39,13 +39,9 @@ const AuthNav = () => {
       tempUserData?.password &&
       tempUserData?.isVerified
     ) {
-      console.log('been here');
       return true;
     }
   };
-  useEffect(() => {
-    moveToReferralScreen();
-  }, [tempUserData]);
 
   const screenSet = (routeName: string) => {
     return (

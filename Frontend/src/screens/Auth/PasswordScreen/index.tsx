@@ -32,10 +32,20 @@ const PasswordScreen = () => {
   const [message, setMessage] = useState<string>('');
 
   const showErrMsg = (mes: string) => {
-    setMessage(mes);
+    let unmounted = false;
+    if (!unmounted) {
+      setMessage(mes);
+    }
+
     setTimeout(() => {
-      setMessage('');
+      if (!unmounted) {
+        setMessage('');
+      }
     }, 4000);
+
+    return () => {
+      unmounted = true;
+    };
   };
 
   const passwordIsValid = (enteredPassword: string) => {
