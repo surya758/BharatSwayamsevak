@@ -39,3 +39,5 @@ export const DATA = [
   },
   {name: 'Rajveer', id: '3', designation: 'Registered Fiduciary'},
 ];
+
+export const URL = 'http://localhost:3000';

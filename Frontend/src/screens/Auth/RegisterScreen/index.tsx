@@ -15,6 +15,7 @@ import CountryPicker from 'react-native-country-picker-modal';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 

@@ -5,6 +5,7 @@ const GlobalContext = React.createContext({});
 export const GlobalContextProvider: FC = ({
   children,
   isAdmin,
+  userData
   state,
   setState,
   isUserLoggedIn,
@@ -12,7 +13,7 @@ export const GlobalContextProvider: FC = ({
 }) => {
   return (
     <GlobalContext.Provider
-      value={{isAdmin, state, setState, isUserLoggedIn, setIsUserLoggedIn}}>
+      value={{isAdmin, state, userData, setState, isUserLoggedIn, setIsUserLoggedIn}}>
       {children}
     </GlobalContext.Provider>
   );
