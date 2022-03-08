@@ -119,7 +119,12 @@ const VerificationScreen = () => {
     try {
       const tempData = await AsyncStorage.getItem('@tempUserData');
       if (tempData != null) {
-        const newTempData = {...JSON.parse(tempData), otp: value};
+        const newTempData = {
+          ...JSON.parse(tempData),
+          otp: value,
+          // remember to change isverified to func
+          isVerified: true,
+        };
         await AsyncStorage.setItem(
           '@tempUserData',
           JSON.stringify(newTempData),

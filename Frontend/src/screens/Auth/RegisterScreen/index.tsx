@@ -83,14 +83,6 @@ const RegisterScreen = () => {
       // saving error
     }
 
-    // testing only | remove in production
-    try {
-      const jsonValue = await AsyncStorage.getItem('@tempUserData');
-      return jsonValue != null ? console.log(JSON.parse(jsonValue)) : null;
-    } catch (e) {
-      // error reading value
-    }
-
     // do a request to backend server
   };
   return (

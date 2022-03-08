@@ -9,6 +9,7 @@ export const GlobalContextProvider: FC = ({
   state,
   setState,
   isUserLoggedIn,
+  tempUserData,
   setIsUserLoggedIn,
 }) => {
   return (
@@ -18,6 +19,7 @@ export const GlobalContextProvider: FC = ({
         state,
         userData,
         setState,
+        tempUserData,
         isUserLoggedIn,
         setIsUserLoggedIn,
       }}>

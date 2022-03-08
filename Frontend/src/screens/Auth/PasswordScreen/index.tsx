@@ -10,6 +10,7 @@ import {
 import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
@@ -37,13 +38,6 @@ const PasswordScreen = () => {
     }, 4000);
   };
 
-  const onPress = () => {
-    password === ''
-      ? showErrMsg("Password can't be empty.")
-      : !isPasswordValid
-      ? showErrMsg('Invalid Password.')
-      : navigation.navigate('referral');
-  };
   const passwordIsValid = (enteredPassword: string) => {
     setIsPasswordValid(
       /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/.test(
@@ -51,6 +45,41 @@ const PasswordScreen = () => {
       ),
     );
     setPassword(enteredPassword);
+  };
+
+  const passwordHandler = async () => {
+    // checks
+
+    password === ''
+      ? showErrMsg("Password can't be empty.")
+      : !isPasswordValid
+      ? showErrMsg('Invalid Password.')
+      : null;
+
+    //get data from tempUserData
+    try {
+      const tempData = await AsyncStorage.getItem('@tempUserData');
+      if (tempData != null) {
+        const newTempData = {...JSON.parse(tempData), password: password};
+        await AsyncStorage.setItem(
+          '@tempUserData',
+          JSON.stringify(newTempData),
+        );
+      }
+      // try {
+      //   const jsonValue = await AsyncStorage.getItem('@tempUserData');
+      //   jsonValue != null ? console.log(JSON.parse(jsonValue)) : null;
+      // } catch (e) {
+      //   // error reading value
+      // }
+    } catch (e) {
+      // error reading value
+    }
+
+    //navigate
+    navigation.navigate('referral');
+
+    // do a request to backend server
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -84,6 +113,7 @@ const PasswordScreen = () => {
                 value={password.trim()}
                 autoCapitalize="none"
                 autoCorrect={false}
+                autoFocus={true}
                 placeholder="enter your password"
                 textContentType="password"
                 placeholderTextColor="grey"
@@ -103,7 +133,10 @@ const PasswordScreen = () => {
             </View>
           </View>
           <View style={styles.gradientButton}>
-            <GradientButtonComponent text="Continue" onPress={onPress} />
+            <GradientButtonComponent
+              text="Continue"
+              onPress={passwordHandler}
+            />
           </View>
           <Text style={styles.endText}>
             Password must contain at least one numeric digit and a special
