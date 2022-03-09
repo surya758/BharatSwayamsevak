@@ -60,11 +60,13 @@ const PasswordScreen = () => {
   const passwordHandler = async () => {
     // checks
     const isPasswordAlright = () => {
-      return password === ''
-        ? showErrMsg("Password can't be empty.")
-        : !isPasswordValid
-        ? showErrMsg('Invalid Password.')
-        : true;
+      if (password === '') {
+        return showErrMsg("Password can't be empty.");
+      }
+      if (!isPasswordValid) {
+        return showErrMsg('Invalid Password.');
+      }
+      return true;
     };
 
     //get data from tempUserData
@@ -88,7 +90,7 @@ const PasswordScreen = () => {
     }
 
     //navigate
-    if (isPasswordAlright()) {
+    if (isPasswordAlright() === true) {
       navigation.navigate('referral');
     }
 

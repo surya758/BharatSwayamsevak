@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 import {ActivityIndicator} from 'react-native';
 import AdminLoginScreen from '../screens/Auth/AdminLoginScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import DonationScreen from '../screens/Auth/DonationScreen';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import PasswordScreen from '../screens/Auth/PasswordScreen';
@@ -12,7 +11,6 @@ import StartScreen from '../screens/Auth/StartScreen';
 import UserDetailScreen from '../screens/Auth/UserDetailScreen';
 import VerificationScreen from '../screens/Auth/VerificationScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import type {tempUserData} from '../states/GlobalState';
 import {useStore} from '../context/GlobalContext';
 
 export type AuthStackParamList = {
@@ -30,7 +28,7 @@ export type AuthStackParamList = {
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthNav = () => {
-  const {state, tempUserData} = useStore();
+  const {setState, state, tempUserData} = useStore();
 
   const moveToReferralScreen = () => {
     if (
@@ -42,6 +40,11 @@ const AuthNav = () => {
       return true;
     }
   };
+
+  useEffect(() => {
+    moveToReferralScreen();
+    console.log({tempUserData});
+  }, [tempUserData]);
 
   const screenSet = (routeName: string) => {
     return (
@@ -63,14 +66,28 @@ const AuthNav = () => {
     );
   };
 
-  return state === 'loading' ? (
-    <ActivityIndicator
-      animating={true}
-      color="red"
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
-    />
-  ) : moveToReferralScreen() ? (
-    screenSet('referral')
+  // return state === 'loading' ? (
+  // <ActivityIndicator
+  //   animating={true}
+  //   color="red"
+  //   style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+  // />
+  // ) : moveToReferralScreen() ? (
+  //   screenSet('referral')
+  // ) : (
+  //   screenSet('start')
+  // );
+
+  return tempUserData ? (
+    tempUserData === 'loading' ? (
+      <ActivityIndicator
+        animating={true}
+        color="red"
+        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+      />
+    ) : moveToReferralScreen() ? (
+      screenSet('referral')
+    ) : null
   ) : (
     screenSet('start')
   );

@@ -17,29 +17,46 @@ export type tempUserData = {
 const GlobalState = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(true);
-  const [state, setState] = useState<string>('loading');
+  const [state, setState] = useState(false);
   const [userData, setUserData] = useState<Object | null | 'loading'>(
     'loading',
   );
-  const [tempUserData, setTempUserData] = useState<tempUserData>();
+  // const [tempUserData, setTempUserData] = useState<tempUserData>();
+  const [tempUserData, setTempUserData] = useState<
+    tempUserData | 'loading' | null
+  >('loading');
+
+  // useEffect(() => {
+  //   const tempDataLoader = async () => {
+  //     if (!tempUserData) {
+  //       try {
+  //         const jsonValue = await AsyncStorage.getItem('@tempUserData');
+  //         jsonValue
+  //           ? setTempUserData(JSON.parse(jsonValue))
+  //           : setTempUserData({});
+  //         setState('refresh');
+  //       } catch (e) {
+  //         // error reading value
+  //       }
+  //     }
+  //   };
+
+  //   tempDataLoader();
+  // }, [state, tempUserData]);
 
   useEffect(() => {
     const tempDataLoader = async () => {
-      if (!tempUserData) {
-        try {
-          const jsonValue = await AsyncStorage.getItem('@tempUserData');
-          jsonValue
-            ? setTempUserData(JSON.parse(jsonValue))
-            : setTempUserData({});
-          setState('refresh');
-        } catch (e) {
-          // error reading value
-        }
+      try {
+        const jsonValue = await AsyncStorage.getItem('@tempUserData');
+        jsonValue
+          ? setTempUserData(JSON.parse(jsonValue))
+          : setTempUserData(null);
+      } catch (e) {
+        setTempUserData(null);
       }
     };
-
     tempDataLoader();
-  }, [state, tempUserData]);
+  }, [state]);
 
   return (
     <GlobalContextProvider

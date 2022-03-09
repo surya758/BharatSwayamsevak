@@ -1,10 +1,9 @@
 import {ActivityIndicator, Animated, Pressable, Text} from 'react-native';
+import React, {useState} from 'react';
 
 import {Colors} from '../../styles';
 import LinearGradient from 'react-native-linear-gradient';
-import React from 'react';
 import styles from './styles';
-import {useStore} from '../../context/GlobalContext';
 
 type Props = {
   onPress: () => void;
@@ -12,7 +11,7 @@ type Props = {
 };
 
 const GradientButtonComponent: React.FC<Props> = props => {
-  const {state} = useStore();
+  const [state, setState] = useState(true);
   const animatedButtonScale = new Animated.Value(1);
 
   // When button is pressed in, animate the scale to 1.5
@@ -35,6 +34,7 @@ const GradientButtonComponent: React.FC<Props> = props => {
   const animatedScaleStyle = {
     transform: [{scale: animatedButtonScale}],
   };
+
   return (
     <Pressable
       onPress={props.onPress}
