@@ -40,8 +40,8 @@ type Country = {
 const RegisterScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [isLoading, setIsLoading] = useState(false);
-  const [number, setNumber] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [number, setNumber] = useState('');
+  const [message, setMessage] = useState('');
   const [countryCode, setCountryCode] = useState('IN');
   const [country, setCountry] = useState<Country>({
     callingCode: '91',

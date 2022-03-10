@@ -13,12 +13,8 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import {
-  NavigationHelpersContext,
-  useNavigation,
-} from '@react-navigation/native';
 import {ROUTES, baseURL} from '../../../utils/constants';
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styles, {
   ACTIVE_CELL_BG_COLOR,
   CELL_BORDER_RADIUS,
@@ -35,6 +31,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 
 type Animate = {
   hasValue: boolean;
@@ -54,7 +51,7 @@ const CELL_COUNT = 4;
 
 const animationsColor = [...new Array(CELL_COUNT)].map(() => new Value(0));
 const animationsScale = [...new Array(CELL_COUNT)].map(() => new Value(1));
-const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}) => {
+const animateCell: FC<Animate> = ({hasValue, index, isFocused}) => {
   Animated.parallel([
     Animated.timing(animationsColor[index], {
       useNativeDriver: false,

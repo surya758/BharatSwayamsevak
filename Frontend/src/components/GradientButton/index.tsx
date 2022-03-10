@@ -1,8 +1,9 @@
+import * as React from 'react';
+
 import {ActivityIndicator, Animated, Pressable, Text} from 'react-native';
 
 import {Colors} from '../../styles';
 import LinearGradient from 'react-native-linear-gradient';
-import React from 'react';
 import styles from './styles';
 
 type Props = {

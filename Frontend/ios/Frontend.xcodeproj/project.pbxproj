@@ -15,7 +15,12 @@
 		7EF68E3733C33B6898317E18 /* libPods-Frontend-FrontendTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-Frontend-FrontendTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E4CE1BC027D2177200331D09 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = E4B5733427AC3A3E00C290A0 /* Fonts */; };
-		E4CE1BCA27D7E48D00331D09 /* OpenSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93891F94686A467993FD2CF4 /* OpenSans-MediumItalic.ttf */; };
+		E4CE1BCB27DA74BC00331D09 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FDC88464BC54C419F69B9EF /* OpenSans-Regular.ttf */; };
+		E4CE1BCC27DA74F800331D09 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C577217521D43C0A823956C /* OpenSans-SemiBold.ttf */; };
+		E4CE1BCD27DA750000331D09 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D130CF17A09F4B0BB06E8318 /* OpenSans-Medium.ttf */; };
+		E4CE1BCE27DA750600331D09 /* OpenSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93891F94686A467993FD2CF4 /* OpenSans-MediumItalic.ttf */; };
+		E4CE1BCF27DA750B00331D09 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD8DFAD3D0B84DE0BB1F3EBD /* Abel-Regular.ttf */; };
+		E4CE1BD027DA794F00331D09 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F8AB6C05C4044499A515BDB /* OpenSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,7 +361,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4CE1BCA27D7E48D00331D09 /* OpenSans-MediumItalic.ttf in Resources */,
+				E4CE1BD027DA794F00331D09 /* OpenSans-Bold.ttf in Resources */,
+				E4CE1BCF27DA750B00331D09 /* Abel-Regular.ttf in Resources */,
+				E4CE1BCE27DA750600331D09 /* OpenSans-MediumItalic.ttf in Resources */,
+				E4CE1BCD27DA750000331D09 /* OpenSans-Medium.ttf in Resources */,
+				E4CE1BCC27DA74F800331D09 /* OpenSans-SemiBold.ttf in Resources */,
+				E4CE1BCB27DA74BC00331D09 /* OpenSans-Regular.ttf in Resources */,
 				E4CE1BC027D2177200331D09 /* Fonts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,

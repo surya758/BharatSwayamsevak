@@ -16,6 +16,8 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "axios": "^0.26.0",
+    "lottie-ios": "3.2.3",
+    "lottie-react-native": "^5.0.1",
     "react": "17.0.2",
     "react-native": "0.67.2",
     "react-native-confirmation-code-field": "^7.3.0",

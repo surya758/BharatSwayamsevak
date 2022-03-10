@@ -65,18 +65,6 @@ const AuthNav = () => {
     );
   };
 
-  // return state === 'loading' ? (
-  // <ActivityIndicator
-  //   animating={true}
-  //   color="red"
-  //   style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
-  // />
-  // ) : moveToReferralScreen() ? (
-  //   screenSet('referral')
-  // ) : (
-  //   screenSet('start')
-  // );
-
   return tempUserData ? (
     tempUserData === 'loading' ? (
       <ActivityIndicator

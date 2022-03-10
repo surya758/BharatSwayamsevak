@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
+  doneLottie: {
+    width: 40,
+    height: 40,
+  },
   headingView: {
     flexDirection: 'row',
     alignItems: 'center',

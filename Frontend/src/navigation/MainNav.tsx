@@ -1,6 +1,7 @@
+import * as React from 'react';
+
 import AuthNav from './AuthNav';
 import HomeNav from './HomeNav';
-import React from 'react';
 import {useStore} from '../context/GlobalContext';
 
 const MainNav = () => {

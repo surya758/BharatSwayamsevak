@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useEffect, useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -21,28 +22,9 @@ const GlobalState = () => {
   const [userData, setUserData] = useState<Object | null | 'loading'>(
     'loading',
   );
-  // const [tempUserData, setTempUserData] = useState<tempUserData>();
   const [tempUserData, setTempUserData] = useState<
     tempUserData | 'loading' | null
   >('loading');
-
-  // useEffect(() => {
-  //   const tempDataLoader = async () => {
-  //     if (!tempUserData) {
-  //       try {
-  //         const jsonValue = await AsyncStorage.getItem('@tempUserData');
-  //         jsonValue
-  //           ? setTempUserData(JSON.parse(jsonValue))
-  //           : setTempUserData({});
-  //         setState('refresh');
-  //       } catch (e) {
-  //         // error reading value
-  //       }
-  //     }
-  //   };
-
-  //   tempDataLoader();
-  // }, [state, tempUserData]);
 
   useEffect(() => {
     const tempDataLoader = async () => {
