@@ -1,17 +1,17 @@
 import {ActivityIndicator, Animated, Pressable, Text} from 'react-native';
-import React, {useState} from 'react';
 
 import {Colors} from '../../styles';
 import LinearGradient from 'react-native-linear-gradient';
+import React from 'react';
 import styles from './styles';
 
 type Props = {
   onPress: () => void;
   text: string;
+  isLoading: boolean;
 };
 
 const GradientButtonComponent: React.FC<Props> = props => {
-  const [state, setState] = useState(true);
   const animatedButtonScale = new Animated.Value(1);
 
   // When button is pressed in, animate the scale to 1.5
@@ -47,7 +47,7 @@ const GradientButtonComponent: React.FC<Props> = props => {
           locations={[0.4, 0.7, 1]}
           colors={['#2bb11f', '#55a851', '#3b9c32']}
           style={styles.container}>
-          {state ? (
+          {!props.isLoading ? (
             <Text style={styles.buttonText}>{props.text}</Text>
           ) : (
             <ActivityIndicator animating={true} color={Colors.ALERT} />

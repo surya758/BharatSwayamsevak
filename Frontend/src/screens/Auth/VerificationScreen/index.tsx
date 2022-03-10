@@ -1,4 +1,5 @@
 import {
+  Alert,
   Animated,
   Keyboard,
   SafeAreaView,
@@ -12,6 +13,11 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
+import {
+  NavigationHelpersContext,
+  useNavigation,
+} from '@react-navigation/native';
+import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useEffect, useState} from 'react';
 import styles, {
   ACTIVE_CELL_BG_COLOR,
@@ -28,7 +34,7 @@ import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 
 type Animate = {
   hasValue: boolean;
@@ -63,13 +69,15 @@ const animateCell: React.FC<Animate> = ({hasValue, index, isFocused}) => {
   ]).start();
 };
 
-const VerificationScreen = () => {
+const VerificationScreen = ({route}) => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [value, setValue] = useState<string>('');
-  const [showResend, setShowResend] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>('');
-  const [isPressable, setIsPressable] = useState<boolean>(false);
+  const [value, setValue] = useState('');
+  const [showResend, setShowResend] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isPressable, setIsPressable] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [number, setNumber] = useState('');
+  const {phoneNumber} = route.params;
 
   useEffect(() => {
     getNumberFunc();
@@ -101,7 +109,7 @@ const VerificationScreen = () => {
     };
   };
 
-  const pressedResend = () => {
+  const pressedResend = async () => {
     let unmounted = false;
 
     if (!unmounted) {
@@ -110,10 +118,24 @@ const VerificationScreen = () => {
 
     setTimeout(() => {
       if (!unmounted) {
-        setShowResend(true);
         setIsPressable(true);
+        setShowResend(true);
       }
     }, 20000);
+
+    try {
+      const response = await axios.post(`${baseURL}/${ROUTES.auth}/send-sns`, {
+        phoneNumber: phoneNumber,
+      });
+      if (response.status === 202) {
+        Alert.alert('Successfully resend.');
+        //
+      }
+    } catch (err) {
+      // throw an error
+      navigation.navigate('start');
+      throw new Error('Something went wrong');
+    }
 
     return () => {
       unmounted = true;
@@ -135,44 +157,61 @@ const VerificationScreen = () => {
     };
   }, []);
 
-  const otpHandler = async () => {
-    // checks
-    const isOtpAlright = () => {
-      if (value.length < 4) {
-        return showErrMsg('Fields are currently empty.');
-      }
-      if (/^[0-9]*$/.test(value)) {
-        // has four digits and passes the test so return true
-        return true;
-      } else {
-        showErrMsg('No special characters or alphabets allowed.');
-      }
-    };
-
-    // do a request to backend server
-
-    //get data from tempUserData
-    try {
-      const tempData = await AsyncStorage.getItem('@tempUserData');
-      if (tempData != null) {
-        const newTempData = {
-          ...JSON.parse(tempData),
-          otp: value,
-          // remember to change isverified to func
-          isVerified: true,
-        };
-        await AsyncStorage.setItem(
-          '@tempUserData',
-          JSON.stringify(newTempData),
-        );
-      }
-    } catch (e) {
-      // error reading value
+  const isOtpAlright = () => {
+    if (value.length < 4) {
+      return showErrMsg('Fields are currently empty.');
     }
+    if (/^[0-9]*$/.test(value)) {
+      // has four digits and passes the test so return true
+      return true;
+    } else {
+      return showErrMsg('No special characters or alphabets allowed.');
+    }
+  };
 
-    //navigate
+  const otpHandler = async () => {
     if (isOtpAlright() === true) {
-      navigation.navigate('password');
+      setIsLoading(true);
+      try {
+        const response = await axios.post(
+          `${baseURL}/${ROUTES.auth}/verify-sns`,
+          {
+            otp: `${value}`,
+          },
+        );
+        if (response.status === 202) {
+          setIsLoading(false);
+          setValue('');
+          Alert.alert('Otp has been verified');
+
+          //storing data to tempUserData
+          try {
+            const tempData = await AsyncStorage.getItem('@tempUserData');
+            if (tempData != null) {
+              const newTempData = {
+                ...JSON.parse(tempData),
+                otp: value,
+                isVerified: true,
+              };
+              await AsyncStorage.setItem(
+                '@tempUserData',
+                JSON.stringify(newTempData),
+              );
+            }
+          } catch (e) {
+            // error reading value
+          }
+
+          //navigate
+          navigation.navigate('password');
+        } else {
+          throw new Error('An error has occurred');
+        }
+      } catch (error) {
+        Alert.alert('Failed to verify otp.');
+        setValue('');
+        setIsLoading(false);
+      }
     }
   };
 
@@ -274,7 +313,11 @@ const VerificationScreen = () => {
             renderCell={renderCell}
           />
           <View style={styles.verifyButton}>
-            <GradientButtonComponent text="Verify" onPress={otpHandler} />
+            <GradientButtonComponent
+              text="Verify"
+              onPress={otpHandler}
+              isLoading={isLoading}
+            />
           </View>
           {!isPressable ? (
             showResend ? (

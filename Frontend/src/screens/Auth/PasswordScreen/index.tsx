@@ -1,4 +1,5 @@
 import {
+  Alert,
   Keyboard,
   SafeAreaView,
   Text,
@@ -7,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -16,6 +18,7 @@ import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -26,10 +29,11 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 const PasswordScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [hidePass, setHidePass] = useState<boolean>(true);
+  const [hidePass, setHidePass] = useState(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [password, setPassword] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const showErrMsg = (mes: string) => {
     let unmounted = false;
@@ -79,12 +83,6 @@ const PasswordScreen = () => {
           JSON.stringify(newTempData),
         );
       }
-      // try {
-      //   const jsonValue = await AsyncStorage.getItem('@tempUserData');
-      //   jsonValue != null ? console.log(JSON.parse(jsonValue)) : null;
-      // } catch (e) {
-      //   // error reading value
-      // }
     } catch (e) {
       // error reading value
     }
@@ -93,8 +91,6 @@ const PasswordScreen = () => {
     if (isPasswordAlright() === true) {
       navigation.navigate('referral');
     }
-
-    // do a request to backend server
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

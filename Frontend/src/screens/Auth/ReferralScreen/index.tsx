@@ -28,7 +28,7 @@ const ReferralScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [referrerCode, setReferrerCode] = useState<string>('');
   const [message, setMessage] = useState<string>('');
-  const {state, setState, tempUserData} = useStore();
+  const {setState, tempUserData} = useStore();
   const [isReferrerAvailable, setIsReferrerAvailable] =
     useState<boolean>(false);
 
@@ -44,7 +44,7 @@ const ReferralScreen = () => {
 
     // navigate
     if (isRefCodeAlright()) {
-      navigation.navigate('userDetail');
+      setState(true);
     }
   };
 

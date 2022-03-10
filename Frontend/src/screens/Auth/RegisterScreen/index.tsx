@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
+  Alert,
   Keyboard,
   SafeAreaView,
   Text,
@@ -7,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,7 +28,7 @@ type authScreenNavigationType = NativeStackNavigationProp<
 >;
 
 type Country = {
-  callingCode: [string];
+  callingCode: string;
   cca2: string;
   currency: [string];
   flag: string;
@@ -37,11 +39,12 @@ type Country = {
 
 const RegisterScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
+  const [isLoading, setIsLoading] = useState(false);
   const [number, setNumber] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [countryCode, setCountryCode] = useState('IN');
   const [country, setCountry] = useState<Country>({
-    callingCode: ['91'],
+    callingCode: '91',
     cca2: 'IN',
     currency: ['INR'],
     flag: 'flag-in',
@@ -84,7 +87,6 @@ const RegisterScreen = () => {
   };
   const phoneNumberSigninHandler = async () => {
     //store phone number in tempUserData async
-
     try {
       const jsonValue = JSON.stringify({number: number});
       await AsyncStorage.setItem('@tempUserData', jsonValue);
@@ -93,10 +95,28 @@ const RegisterScreen = () => {
     }
 
     // do a request to backend server
-
-    //navigate
-    navigation.navigate('verification');
+    setIsLoading(true);
+    try {
+      const response = await axios.post(`${baseURL}/${ROUTES.auth}/send-sns`, {
+        phoneNumber: `+${country.callingCode}${number}`,
+      });
+      if (response.status === 202) {
+        setIsLoading(false);
+        setNumber('');
+        Alert.alert('You have created');
+        //navigate
+        navigation.navigate('verification', {
+          phoneNumber: `+${country.callingCode}${number}`,
+        });
+      } else {
+        throw new Error('An error has occurred');
+      }
+    } catch (error) {
+      Alert.alert('Failed to do request.');
+      setIsLoading(false);
+    }
   };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>
@@ -152,7 +172,11 @@ const RegisterScreen = () => {
             />
           </View>
           <View style={styles.gradientButton}>
-            <GradientButtonComponent text="Continue" onPress={onPress} />
+            <GradientButtonComponent
+              text="Continue"
+              onPress={onPress}
+              isLoading={isLoading}
+            />
           </View>
           <Text style={styles.endText}>
             We will send a text with a verification code. Message and data rates

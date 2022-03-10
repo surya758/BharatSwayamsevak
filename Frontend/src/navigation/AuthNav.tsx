@@ -17,7 +17,7 @@ export type AuthStackParamList = {
   start: undefined;
   login: undefined;
   register: undefined;
-  verification: undefined;
+  verification: {phoneNumber: string};
   donation: undefined;
   password: undefined;
   userDetail: undefined;
@@ -28,7 +28,7 @@ export type AuthStackParamList = {
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthNav = () => {
-  const {setState, state, tempUserData} = useStore();
+  const {tempUserData} = useStore();
 
   const moveToReferralScreen = () => {
     if (
@@ -43,7 +43,6 @@ const AuthNav = () => {
 
   useEffect(() => {
     moveToReferralScreen();
-    console.log({tempUserData});
   }, [tempUserData]);
 
   const screenSet = (routeName: string) => {
@@ -87,7 +86,10 @@ const AuthNav = () => {
       />
     ) : moveToReferralScreen() ? (
       screenSet('referral')
-    ) : null
+    ) : (
+      // change null to screenset('donation')
+      screenSet('start')
+    )
   ) : (
     screenSet('start')
   );

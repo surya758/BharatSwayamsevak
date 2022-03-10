@@ -48,6 +48,7 @@ const GlobalState = () => {
     const tempDataLoader = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('@tempUserData');
+        console.log(jsonValue);
         jsonValue
           ? setTempUserData(JSON.parse(jsonValue))
           : setTempUserData(null);
@@ -56,6 +57,7 @@ const GlobalState = () => {
       }
     };
     tempDataLoader();
+    setState(false);
   }, [state]);
 
   return (
