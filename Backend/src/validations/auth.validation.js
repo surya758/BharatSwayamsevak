@@ -8,6 +8,7 @@ const register = {
     name: Joi.string().required(),
     referrer: Joi.string(),
     designation: Joi.string().required(),
+    donation: Joi.string().required(),
   }),
 };
 

@@ -9,7 +9,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import {ROUTES, baseURL} from '../../../utils/constants';
+import React, {useEffect, useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,7 +20,9 @@ import DashedLine from 'react-native-dashed-line';
 import DonationButtonComponent from '../../../components/DonationButton';
 import GradientButtonComponent from '../../../components/GradientButton';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import axios from 'axios';
 import styles from './styles';
+import type {tempUserData} from '../../../states/GlobalState';
 import {useNavigation} from '@react-navigation/native';
 import {useStore} from '../../../context/GlobalContext';
 
@@ -34,9 +37,22 @@ const DonationScreen = () => {
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [wasDonationSuccessful, setWassDonationSuccessful] = useState(true);
+  const [tempUserData, setTempUserData] = useState<tempUserData>({});
+  const [wasDonationSuccessful, setWasDonationSuccessful] = useState(false);
 
-  const {setIsUserLoggedIn} = useStore();
+  const {setState} = useStore();
+
+  useEffect(() => {
+    const loadTempUserData = async () => {
+      const jsonValue = await AsyncStorage.getItem('@tempUserData');
+      if (jsonValue) {
+        setTempUserData(JSON.parse(jsonValue));
+        console.log(tempUserData);
+      }
+    };
+    loadTempUserData();
+  }, []);
+
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
@@ -97,7 +113,62 @@ const DonationScreen = () => {
     }
   };
 
-  const donationHandler = async (value: number | string) => {};
+  const handleUserRegistration = async () => {
+    try {
+      const response = await axios.post(`${baseURL}/${ROUTES.auth}/register`, {
+        name: tempUserData.name,
+        phoneNumber: `${tempUserData.number}`,
+        password: tempUserData.password,
+        designation: tempUserData.designation,
+        donation: donationAmount,
+      });
+      if (response.status === 201) {
+        storeUserData(response);
+      } else {
+        throw new Error('An error has occurred');
+      }
+    } catch (error) {
+      setIsLoading(false);
+    }
+  };
+
+  const storeUserData = async (response: any) => {
+    try {
+      await AsyncStorage.setItem('@userData', JSON.stringify(response.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const removeTempUserData = async () => {
+    // delete value from async for tempUserData
+    try {
+      await AsyncStorage.removeItem('@tempUserData');
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  const donationHandler = async (value: number | string) => {
+    setIsLoading(true);
+
+    // checking if donation was successful
+    setWasDonationSuccessful(true);
+
+    // persist it on local storage
+    storeTempUserData(value);
+
+    // register the user
+    handleUserRegistration();
+
+    // removing persisting data i.e, tempUserData
+    removeTempUserData();
+
+    // setState
+    setState(true);
+
+    setIsLoading(false);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

@@ -5,9 +5,9 @@ import HomeNav from './HomeNav';
 import {useStore} from '../context/GlobalContext';
 
 const MainNav = () => {
-  const {isUserLoggedIn} = useStore();
+  const {userData} = useStore();
 
-  return isUserLoggedIn ? <HomeNav /> : <AuthNav />;
+  return userData ? <HomeNav /> : <AuthNav />;
 };
 
 export default MainNav;

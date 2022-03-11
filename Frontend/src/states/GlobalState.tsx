@@ -6,6 +6,7 @@ import {GlobalContextProvider} from '../context/GlobalContext';
 import MainNav from '../navigation/MainNav';
 
 export type tempUserData = {
+  name?: string;
   number?: string;
   otp?: string;
   password?: string;
@@ -16,7 +17,6 @@ export type tempUserData = {
 };
 
 const GlobalState = () => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(true);
   const [state, setState] = useState(false);
   const [userData, setUserData] = useState<Object | null | 'loading'>(
@@ -41,14 +41,29 @@ const GlobalState = () => {
     tempDataLoader();
   }, [state]);
 
+  const getUserDataFromLocalStorage = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@userData');
+      if (jsonValue) {
+        setUserData(JSON.parse(jsonValue));
+      } else {
+        setUserData(null);
+      }
+    } catch (e) {
+      setUserData(null);
+    }
+  };
+
+  useEffect(() => {
+    getUserDataFromLocalStorage();
+  }, [state]);
+
   return (
     <GlobalContextProvider
       isAdmin={isAdmin}
       state={state}
       setState={setState}
       tempUserData={tempUserData}
-      isUserLoggedIn={isUserLoggedIn}
-      setIsUserLoggedIn={setIsUserLoggedIn}
       userData={userData}>
       <MainNav />
     </GlobalContextProvider>

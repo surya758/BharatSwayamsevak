@@ -88,7 +88,9 @@ const RegisterScreen = () => {
   const phoneNumberSigninHandler = async () => {
     //store phone number in tempUserData async
     try {
-      const jsonValue = JSON.stringify({number: number});
+      const jsonValue = JSON.stringify({
+        number: `+${country.callingCode}${number}`,
+      });
       await AsyncStorage.setItem('@tempUserData', jsonValue);
     } catch (e) {
       // saving error

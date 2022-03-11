@@ -9,18 +9,6 @@ interface gloablContentProvider {
   tempUserData: tempUserData | 'loading' | null;
   state: boolean;
   setState: React.Dispatch<React.SetStateAction<boolean>>;
-  isUserLoggedIn: boolean;
-  setIsUserLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface lContentProvider {
-  isAdmin: boolean;
-  userData: Object | null | 'loading';
-  tempUserData: tempUserData | 'loading' | null;
-  state: boolean;
-  setState: React.Dispatch<React.SetStateAction<boolean>>;
-  isUserLoggedIn: boolean;
-  setIsUserLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const GlobalContext = React.createContext({});
@@ -31,9 +19,7 @@ export const GlobalContextProvider: React.FC<gloablContentProvider> = ({
   userData,
   state,
   setState,
-  isUserLoggedIn,
   tempUserData,
-  setIsUserLoggedIn,
 }) => {
   return (
     <GlobalContext.Provider
@@ -43,8 +29,6 @@ export const GlobalContextProvider: React.FC<gloablContentProvider> = ({
         userData,
         setState,
         tempUserData,
-        isUserLoggedIn,
-        setIsUserLoggedIn,
       }}>
       {children}
     </GlobalContext.Provider>

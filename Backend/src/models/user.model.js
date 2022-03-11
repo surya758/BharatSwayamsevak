@@ -5,6 +5,9 @@ const { roles } = require('../config/roles');
 
 const userSchema = mongoose.Schema(
   {
+    email: {
+      type: String,
+    },
     name: {
       type: String,
       required: true,
@@ -17,8 +20,6 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      trim: true,
-      lowercase: true,
     },
     password: {
       type: String,
@@ -42,6 +43,9 @@ const userSchema = mongoose.Schema(
       type: String,
       length: 8,
     },
+    donation: {
+      type: String,
+    },
     role: {
       type: String,
       enum: roles,
@@ -63,8 +67,8 @@ userSchema.plugin(paginate);
  * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
  * @returns {Promise<boolean>}
  */
-userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
-  const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
+userSchema.statics.isPhoneTaken = async function (phoneNumber, excludeUserId) {
+  const user = await this.findOne({ phoneNumber, _id: { $ne: excludeUserId } });
   return !!user;
 };
 
