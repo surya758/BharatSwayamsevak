@@ -6,6 +6,12 @@ const usersReferred = catchAsync(async (req, res) => {
   res.send(users);
 });
 
+const doesReferralExist = catchAsync(async (req, res) => {
+  const isReferralViable = await referralService.referralCodeQuery(req.body.referrerCode);
+  res.send(isReferralViable);
+});
+
 module.exports = {
   usersReferred,
+  doesReferralExist,
 };

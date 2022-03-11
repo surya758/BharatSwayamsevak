@@ -10,15 +10,15 @@ const register = catchAsync(async (req, res) => {
     count: 1,
     charset: voucher_codes.charset('alphanumeric'),
   });
-  const newUserBody = { ...req.body, refferalCode: referralCode[0] };
+  const newUserBody = { ...req.body, referralCode: referralCode[0] };
   const user = await userService.createUser(newUserBody);
   const tokens = await tokenService.generateAuthTokens(user);
   res.status(httpStatus.CREATED).send({ user, tokens });
 });
 
 const login = catchAsync(async (req, res) => {
-  const { email, password } = req.body;
-  const user = await authService.loginUserWithEmailAndPassword(email, password);
+  const { phoneNumber, password } = req.body;
+  const user = await authService.loginUserWithPhoneAndPassword(phoneNumber, password);
   const tokens = await tokenService.generateAuthTokens(user);
   res.send({ user, tokens });
 });

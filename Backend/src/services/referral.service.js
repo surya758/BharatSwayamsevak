@@ -5,6 +5,15 @@ const getUsersByParticularReferrer = async (referralCode) => {
   return users;
 };
 
+const referralCodeQuery = async (referrerCode) => {
+  const user = await User.findOne({ referralCode: referrerCode });
+  if (user) {
+    return true;
+  }
+  return false;
+};
+
 module.exports = {
   getUsersByParticularReferrer,
+  referralCodeQuery,
 };

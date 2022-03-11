@@ -39,7 +39,6 @@ const GlobalState = () => {
       }
     };
     tempDataLoader();
-    setState(false);
   }, [state]);
 
   return (

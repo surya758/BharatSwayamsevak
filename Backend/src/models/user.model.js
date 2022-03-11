@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
@@ -11,17 +10,15 @@ const userSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    email: {
+    designation: {
+      type: String,
+    },
+    phoneNumber: {
       type: String,
       required: true,
       unique: true,
       trim: true,
       lowercase: true,
-      validate(value) {
-        if (!validator.isEmail(value)) {
-          throw new Error('Invalid email');
-        }
-      },
     },
     password: {
       type: String,
@@ -35,7 +32,7 @@ const userSchema = mongoose.Schema(
       },
       private: true, // used by the toJSON plugin
     },
-    refferalCode: {
+    referralCode: {
       type: String,
       unique: true,
       length: 8,
@@ -49,10 +46,6 @@ const userSchema = mongoose.Schema(
       type: String,
       enum: roles,
       default: 'user',
-    },
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
     },
   },
   {

@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,6 +16,7 @@ import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/AntDesign';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {useStore} from '../../../context/GlobalContext';
@@ -26,13 +28,13 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 const ReferralScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [referrerCode, setReferrerCode] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [referrerCode, setReferrerCode] = useState('');
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const {setState, tempUserData} = useStore();
-  const [isReferrerAvailable, setIsReferrerAvailable] =
-    useState<boolean>(false);
+  const [isReferrerAvailable, setIsReferrerAvailable] = useState(false);
 
-  const referralHandler = () => {
+  const referralHandler = async () => {
     // checks
     const isRefCodeAlright = () => {
       return referrerCode
@@ -42,9 +44,39 @@ const ReferralScreen = () => {
         : true;
     };
 
+    //store referrer in tempUserData async
+    try {
+      const jsonValue = JSON.stringify({referrer: referrerCode});
+      await AsyncStorage.setItem('@tempUserData', jsonValue);
+    } catch (e) {
+      // saving error
+    }
+
+    // do a request to backend server
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`${baseURL}/${ROUTES.referrals}`, {
+        referrerCode: `${referrerCode}`,
+      });
+      if (response.status === 200) {
+        setIsLoading(false);
+        setNumber('');
+        Alert.alert('You have created');
+        //navigate
+        navigation.navigate('verification', {
+          phoneNumber: `+${country.callingCode}${number}`,
+        });
+      } else {
+        throw new Error('An error has occurred');
+      }
+    } catch (error) {
+      Alert.alert('Failed to do request.');
+      setIsLoading(false);
+    }
+
     // navigate
     if (isRefCodeAlright()) {
-      setState(true);
+      navigation.navigate('userDetail');
     }
   };
 
@@ -123,6 +155,7 @@ const ReferralScreen = () => {
             <GradientButtonComponent
               text="Continue"
               onPress={referralHandler}
+              isLoading={isLoading}
             />
           </View>
         </View>
