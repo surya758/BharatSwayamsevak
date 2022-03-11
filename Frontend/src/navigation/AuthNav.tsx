@@ -41,6 +41,19 @@ const AuthNav = () => {
     }
   };
 
+  const moveToDonationScreen = () => {
+    if (
+      tempUserData?.number &&
+      tempUserData?.otp &&
+      tempUserData?.password &&
+      tempUserData?.isVerified &&
+      tempUserData?.name &&
+      tempUserData?.designation
+    ) {
+      return true;
+    }
+  };
+
   useEffect(() => {
     moveToReferralScreen();
   }, [tempUserData]);
@@ -72,10 +85,11 @@ const AuthNav = () => {
         color="red"
         style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
       />
+    ) : moveToDonationScreen() ? (
+      screenSet('donation')
     ) : moveToReferralScreen() ? (
       screenSet('referral')
     ) : (
-      // change null to screenset('donation')
       screenSet('start')
     )
   ) : (

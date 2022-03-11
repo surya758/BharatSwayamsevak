@@ -7,7 +7,7 @@ const usersReferred = catchAsync(async (req, res) => {
 });
 
 const doesReferralExist = catchAsync(async (req, res) => {
-  const isReferralViable = await referralService.referralCodeQuery(req.body.referrerCode);
+  const isReferralViable = await referralService.referralCodeQuery(req.query.referrerCode);
   res.send(isReferralViable);
 });
 

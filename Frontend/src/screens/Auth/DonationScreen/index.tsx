@@ -1,4 +1,5 @@
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -11,6 +12,7 @@ import {
 import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import DashedLine from 'react-native-dashed-line';
@@ -52,6 +54,7 @@ const DonationScreen = () => {
     return setIsUserLoggedIn(true);
     // console.log(donation);
   };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>
@@ -64,7 +67,7 @@ const DonationScreen = () => {
               size={30}
               color={Colors.ALERT}
               style={styles.backIconStyle}
-              onPress={() => navigation.goBack()}
+              onPress={createTwoButtonAlert}
             />
             <View>
               <Text style={styles.donationOne}>Donation</Text>

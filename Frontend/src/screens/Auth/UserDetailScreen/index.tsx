@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
@@ -16,8 +17,9 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 const UserDetailScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [designation, setDesignation] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [designation, setDesignation] = useState('');
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
@@ -25,9 +27,29 @@ const UserDetailScreen = () => {
     }, 4000);
   };
   const onPress = () => {
-    designation === ''
+    name === '' || designation === ''
       ? showErrMsg('All fields are mandatory.')
-      : navigation.navigate('donation');
+      : detailsHandler();
+  };
+
+  const detailsHandler = async () => {
+    //storing data to tempUserData
+    try {
+      const tempData = await AsyncStorage.getItem('@tempUserData');
+      if (tempData != null) {
+        const newTempData = {
+          ...JSON.parse(tempData),
+          name: name,
+          designation: designation,
+        };
+        await AsyncStorage.setItem(
+          '@tempUserData',
+          JSON.stringify(newTempData),
+        ).then(() => navigation.navigate('donation'));
+      }
+    } catch (e) {
+      // error reading value
+    }
   };
   return (
     <SafeAreaView style={styles.upperContainer}>
@@ -48,6 +70,16 @@ const UserDetailScreen = () => {
         ) : (
           <View style={styles.notErrMsg} />
         )}
+        <TextInput
+          style={name ? styles.inputWith : styles.inputWithout}
+          onChangeText={setName}
+          value={name}
+          placeholder="enter your name"
+          autoComplete="off"
+          autoCapitalize="none"
+          autoFocus={true}
+          placeholderTextColor="grey"
+        />
         <TextInput
           style={designation ? styles.inputWith : styles.inputWithout}
           onChangeText={setDesignation}

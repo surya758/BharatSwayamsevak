@@ -19,7 +19,6 @@ import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-import {useStore} from '../../../context/GlobalContext';
 
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
@@ -31,52 +30,61 @@ const ReferralScreen = () => {
   const [referrerCode, setReferrerCode] = useState('');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const {setState, tempUserData} = useStore();
-  const [isReferrerAvailable, setIsReferrerAvailable] = useState(false);
 
   const referralHandler = async () => {
     // checks
     const isRefCodeAlright = () => {
-      return referrerCode
-        ? !isReferrerAvailable
-          ? showErrMsg('Invalid referral code.')
-          : true
-        : true;
+      return referrerCode && /^[a-z0-9]+$/i.test(referrerCode)
+        ? true
+        : showErrMsg('No special character');
     };
 
-    //store referrer in tempUserData async
-    try {
-      const jsonValue = JSON.stringify({referrer: referrerCode});
-      await AsyncStorage.setItem('@tempUserData', jsonValue);
-    } catch (e) {
-      // saving error
+    console.log(referrerCode);
+
+    // if referrer empty, then simply navigate
+    if (!referrerCode) {
+      return navigation.navigate('userDetail');
     }
 
     // do a request to backend server
-    setIsLoading(true);
-    try {
-      const response = await axios.get(`${baseURL}/${ROUTES.referrals}`, {
-        referrerCode: `${referrerCode}`,
-      });
-      if (response.status === 200) {
-        setIsLoading(false);
-        setNumber('');
-        Alert.alert('You have created');
-        //navigate
-        navigation.navigate('verification', {
-          phoneNumber: `+${country.callingCode}${number}`,
-        });
-      } else {
-        throw new Error('An error has occurred');
-      }
-    } catch (error) {
-      Alert.alert('Failed to do request.');
-      setIsLoading(false);
-    }
+    if (isRefCodeAlright() === true) {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          `${baseURL}/${ROUTES.referrals}?referrerCode=${referrerCode}`,
+        );
+        console.log(response.data);
+        if (response.data) {
+          setIsLoading(false);
+          setReferrerCode('');
+          Alert.alert('You have been referred');
 
-    // navigate
-    if (isRefCodeAlright()) {
-      navigation.navigate('userDetail');
+          //storing data to tempUserData
+          try {
+            const tempData = await AsyncStorage.getItem('@tempUserData');
+            if (tempData != null) {
+              const newTempData = {
+                ...JSON.parse(tempData),
+                referrer: referrerCode,
+              };
+              await AsyncStorage.setItem(
+                '@tempUserData',
+                JSON.stringify(newTempData),
+              );
+            }
+          } catch (e) {
+            // error reading value
+          }
+
+          //navigate
+          navigation.navigate('userDetail');
+        } else {
+          throw new Error('An error has occurred');
+        }
+      } catch (error) {
+        Alert.alert('Referral code is invalid.');
+        setIsLoading(false);
+      }
     }
   };
 
