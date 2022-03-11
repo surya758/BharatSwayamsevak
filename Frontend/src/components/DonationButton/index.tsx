@@ -1,8 +1,8 @@
 import {Animated, Pressable, Text} from 'react-native';
+import React, {FC} from 'react';
 
 import {Colors} from '../../styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import React from 'react';
 import styles from './styles';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   onPress: (value: number) => void;
 };
 
-const DonationButtonComponent: React.FC<Props> = ({value, onPress}) => {
+const DonationButtonComponent: FC<Props> = ({value, onPress}) => {
   const animatedButtonScale = new Animated.Value(1);
 
   // When button is pressed in, animate the scale to 1.5

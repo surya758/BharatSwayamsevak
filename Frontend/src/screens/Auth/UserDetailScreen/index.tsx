@@ -18,6 +18,7 @@ type authScreenNavigationType = NativeStackNavigationProp<
 const UserDetailScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
   const [designation, setDesignation] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const showErrMsg = (mes: string) => {
@@ -87,11 +88,14 @@ const UserDetailScreen = () => {
           placeholder="enter your designation"
           autoComplete="off"
           autoCapitalize="none"
-          autoFocus={true}
           placeholderTextColor="grey"
         />
         <View style={styles.gradientButton}>
-          <GradientButtonComponent text="Continue" onPress={onPress} />
+          <GradientButtonComponent
+            text="Continue"
+            onPress={onPress}
+            isLoading={isLoading}
+          />
         </View>
       </View>
     </SafeAreaView>

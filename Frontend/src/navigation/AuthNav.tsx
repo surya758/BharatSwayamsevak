@@ -28,7 +28,8 @@ export type AuthStackParamList = {
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthNav = () => {
-  const {tempUserData} = useStore();
+  const {tempUserData, setIsUserLoggedIn, isUserLoggedIn, setState} =
+    useStore();
 
   const moveToReferralScreen = () => {
     if (
@@ -54,8 +55,26 @@ const AuthNav = () => {
     }
   };
 
+  // useEffect(() => {
+  //   moveToReferralScreen();
+  //   moveToDonationScreen();
+  // }, [tempUserData]);
+
   useEffect(() => {
-    moveToReferralScreen();
+    const isRegisterProcessComplete = () => {
+      if (
+        tempUserData?.number &&
+        tempUserData?.otp &&
+        tempUserData?.password &&
+        tempUserData?.isVerified &&
+        tempUserData?.name &&
+        tempUserData?.designation &&
+        tempUserData?.donation
+      ) {
+        setIsUserLoggedIn(true);
+      }
+    };
+    isRegisterProcessComplete();
   }, [tempUserData]);
 
   const screenSet = (routeName: string) => {

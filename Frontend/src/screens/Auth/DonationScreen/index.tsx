@@ -30,11 +30,13 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 const DonationScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [donationAmount, onDonationAmount] = useState<string>('');
+  const [donationAmount, setDonationAmount] = useState('');
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [wasDonationSuccessful, setWassDonationSuccessful] = useState(true);
+
   const {setIsUserLoggedIn} = useStore();
-  useState<boolean>(false);
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
@@ -48,11 +50,7 @@ const DonationScreen = () => {
       ? showErrMsg('Please enter a amount greater than 10.')
       : !/^[0-9]*$/.test(donationAmount)
       ? showErrMsg('No special characters or alphabets.')
-      : console.log(donationAmount);
-  };
-  const onPress = (donation: number) => {
-    return setIsUserLoggedIn(true);
-    // console.log(donation);
+      : donationHandler(donationAmount);
   };
 
   const createTwoButtonAlert = () => {
@@ -79,6 +77,28 @@ const DonationScreen = () => {
       // error reading value
     }
   };
+
+  const storeTempUserData = async (value: number | string) => {
+    //storing donation data to tempUserData
+    try {
+      const tempData = await AsyncStorage.getItem('@tempUserData');
+      if (tempData != null) {
+        const newTempData = {
+          ...JSON.parse(tempData),
+          donation: `${value}`,
+        };
+        await AsyncStorage.setItem(
+          '@tempUserData',
+          JSON.stringify(newTempData),
+        );
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  const donationHandler = async (value: number | string) => {};
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>
@@ -99,12 +119,24 @@ const DonationScreen = () => {
             </View>
             <View>
               <View style={styles.donationButtonStyle}>
-                <DonationButtonComponent value={101} onPress={onPress} />
-                <DonationButtonComponent value={501} onPress={onPress} />
+                <DonationButtonComponent
+                  value={101}
+                  onPress={donationHandler}
+                />
+                <DonationButtonComponent
+                  value={501}
+                  onPress={donationHandler}
+                />
               </View>
               <View style={styles.donationButtonStyle}>
-                <DonationButtonComponent value={1001} onPress={onPress} />
-                <DonationButtonComponent value={5001} onPress={onPress} />
+                <DonationButtonComponent
+                  value={1001}
+                  onPress={donationHandler}
+                />
+                <DonationButtonComponent
+                  value={5001}
+                  onPress={donationHandler}
+                />
               </View>
             </View>
             <View style={styles.dashViewStyle}>
@@ -131,7 +163,7 @@ const DonationScreen = () => {
               style={
                 donationAmount.trim() ? styles.inputWith : styles.inputWithout
               }
-              onChangeText={onDonationAmount}
+              onChangeText={setDonationAmount}
               value={donationAmount.trim()}
               placeholder="enter a custom donation amount"
               keyboardType="numeric"
@@ -140,7 +172,11 @@ const DonationScreen = () => {
               autoCapitalize="none"
             />
             <View style={styles.gradientDonationButtonView}>
-              <GradientButtonComponent text="Donate" onPress={onPressDonate} />
+              <GradientButtonComponent
+                text="Donate"
+                onPress={onPressDonate}
+                isLoading={isLoading}
+              />
             </View>
           </View>
         </KeyboardAvoidingView>
