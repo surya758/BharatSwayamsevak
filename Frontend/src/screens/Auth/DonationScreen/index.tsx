@@ -55,6 +55,30 @@ const DonationScreen = () => {
     // console.log(donation);
   };
 
+  const createTwoButtonAlert = () => {
+    Alert.alert(
+      'Are you sure?',
+      'You will exit this sign-up process and all your information will be deleted.',
+      [
+        {
+          text: 'NO',
+          onPress: () => null,
+          style: 'destructive',
+        },
+        {text: 'YES', onPress: () => backPressed()},
+      ],
+    );
+  };
+
+  const backPressed = async () => {
+    // delete value from async for tempUserData
+    try {
+      await AsyncStorage.removeItem('@tempUserData');
+      navigation.navigate('start');
+    } catch (e) {
+      // error reading value
+    }
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>
