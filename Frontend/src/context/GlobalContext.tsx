@@ -7,8 +7,8 @@ interface gloablContentProvider {
   isAdmin: boolean;
   userData: Object | null | 'loading';
   tempUserData: tempUserData | 'loading' | null;
-  state: boolean;
-  setState: React.Dispatch<React.SetStateAction<boolean>>;
+  state: string;
+  setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const GlobalContext = React.createContext({});

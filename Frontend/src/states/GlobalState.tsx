@@ -18,7 +18,7 @@ export type tempUserData = {
 
 const GlobalState = () => {
   const [isAdmin, setIsAdmin] = useState(true);
-  const [state, setState] = useState(false);
+  const [state, setState] = useState<string>('lol');
   const [userData, setUserData] = useState<Object | null | 'loading'>(
     'loading',
   );
@@ -26,24 +26,10 @@ const GlobalState = () => {
     tempUserData | 'loading' | null
   >('loading');
 
-  useEffect(() => {
-    const tempDataLoader = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('@tempUserData');
-        console.log(jsonValue);
-        jsonValue
-          ? setTempUserData(JSON.parse(jsonValue))
-          : setTempUserData(null);
-      } catch (e) {
-        setTempUserData(null);
-      }
-    };
-    tempDataLoader();
-  }, [state]);
-
   const getUserDataFromLocalStorage = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('@userData');
+
       if (jsonValue) {
         setUserData(JSON.parse(jsonValue));
       } else {
@@ -57,6 +43,20 @@ const GlobalState = () => {
   useEffect(() => {
     getUserDataFromLocalStorage();
   }, [state]);
+
+  useEffect(() => {
+    const tempDataLoader = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('@tempUserData');
+        jsonValue
+          ? setTempUserData(JSON.parse(jsonValue))
+          : setTempUserData(null);
+      } catch (e) {
+        setTempUserData(null);
+      }
+    };
+    tempDataLoader();
+  }, []);
 
   return (
     <GlobalContextProvider

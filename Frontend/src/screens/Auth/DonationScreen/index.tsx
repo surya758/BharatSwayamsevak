@@ -47,7 +47,6 @@ const DonationScreen = () => {
       const jsonValue = await AsyncStorage.getItem('@tempUserData');
       if (jsonValue) {
         setTempUserData(JSON.parse(jsonValue));
-        console.log(tempUserData);
       }
     };
     loadTempUserData();
@@ -113,20 +112,19 @@ const DonationScreen = () => {
     }
   };
 
-  const handleUserRegistration = async () => {
+  const handleUserRegistration = async (val: number | string) => {
     try {
-      const response = await axios.post(`${baseURL}/${ROUTES.auth}/register`, {
-        name: tempUserData.name,
-        phoneNumber: `${tempUserData.number}`,
-        password: tempUserData.password,
-        designation: tempUserData.designation,
-        donation: donationAmount,
-      });
-      if (response.status === 201) {
-        storeUserData(response);
-      } else {
-        throw new Error('An error has occurred');
-      }
+      await axios
+        .post(`${baseURL}/${ROUTES.auth}/register`, {
+          name: tempUserData.name,
+          phoneNumber: `${tempUserData.number}`,
+          password: tempUserData.password,
+          designation: tempUserData.designation,
+          donation: `${val}`,
+        })
+        .then(res => storeUserData(res.data))
+        .then(() => removeTempUserData())
+        .then(() => setState('refresh'));
     } catch (error) {
       setIsLoading(false);
     }
@@ -134,7 +132,7 @@ const DonationScreen = () => {
 
   const storeUserData = async (response: any) => {
     try {
-      await AsyncStorage.setItem('@userData', JSON.stringify(response.data));
+      await AsyncStorage.setItem('@userData', JSON.stringify(response));
     } catch (err) {
       console.log(err);
     }
@@ -157,15 +155,10 @@ const DonationScreen = () => {
 
     // persist it on local storage
     storeTempUserData(value);
+    const val = value;
 
     // register the user
-    handleUserRegistration();
-
-    // removing persisting data i.e, tempUserData
-    removeTempUserData();
-
-    // setState
-    setState(true);
+    handleUserRegistration(val);
 
     setIsLoading(false);
   };

@@ -1,6 +1,6 @@
-import {DATA, STATES} from '../../../utils/constants';
 /* eslint-disable react-native/no-inline-styles */
 import {
+  Alert,
   FlatList,
   Image,
   ImageBackground,
@@ -9,8 +9,11 @@ import {
   Text,
   View,
 } from 'react-native';
+import {DATA, STATES} from '../../../utils/constants';
+import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useState} from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Colors} from '../../../styles';
 import DrawerImageComponent from '../../../components/DrawerImage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -19,6 +22,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MemberComponent from '../../../components/Member';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PickerModalComponent from '../../../components/PickerModal';
+import axios from 'axios';
 import images from '../../../assets/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -32,9 +36,9 @@ type homeScreenNavigationType = NativeStackNavigationProp<
 const HomeScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
 
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const {isAdmin} = useStore();
-  const [state, setState] = useState<string>('Select a state');
+  const [isVisible, setIsVisible] = useState(false);
+  const {isAdmin, userData} = useStore();
+  const [state, setState] = useState('Select a state');
   const onClose = () => {
     setIsVisible(false);
   };
@@ -44,6 +48,35 @@ const HomeScreen = () => {
     setIsVisible(false);
   };
   const title = 'state';
+
+  const cleanData = async () => {
+    try {
+      await AsyncStorage.removeItem('@userData').then(() =>
+        setState('Refreshing'),
+      );
+    } catch (exception) {}
+  };
+
+  const signOutFunc = async () => {
+    try {
+      await axios
+        .post(`${baseURL}/${ROUTES.auth}/send-sns`, {
+          refreshToken: `${userData.tokens.refresh.token}`,
+        })
+        .then(() => {
+          cleanData();
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const showSignOutAlert = async () => {
+    return Alert.alert('Sign out?', 'You can always log back in', [
+      {text: 'Cancel'},
+      {text: 'Sign out', onPress: () => signOutFunc()},
+    ]);
+  };
 
   return (
     <SafeAreaView style={styles.upperContainer}>

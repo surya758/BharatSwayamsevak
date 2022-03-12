@@ -7,16 +7,20 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useRef, useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {useStore} from '../../../context/GlobalContext';
 
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
@@ -26,20 +30,45 @@ type authScreenNavigationType = NativeStackNavigationProp<
 const LoginScreen = () => {
   const passwordRef = useRef<null | TextInput>(null);
   const navigation = useNavigation<authScreenNavigationType>();
-  const [number, setNumber] = useState<string | undefined>('');
+  const [number, setNumber] = useState('');
   const [hidePass, setHidePass] = useState(true);
-  const [password, setPassword] = useState<string | undefined>('');
-  const [message, setMessage] = useState<string | null>('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const {setState} = useStore();
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
-      setMessage(null);
+      setMessage('');
     }, 4000);
   };
   const onPress = () => {
     number === '' || password === ''
       ? showErrMsg('All fields are mandatory.')
-      : console.log('signed in');
+      : loginHandler();
+  };
+
+  const loginHandler = async () => {
+    setIsLoading(true);
+    try {
+      await axios
+        .post(`${baseURL}/${ROUTES.auth}/login`, {
+          phoneNumber: `+91${number}`,
+          password: password,
+        })
+        .then(res => storeUserData(res.data))
+        .then(() => setState('refresh'));
+    } catch (error) {
+      setIsLoading(false);
+    }
+  };
+
+  const storeUserData = async (response: any) => {
+    try {
+      await AsyncStorage.setItem('@userData', JSON.stringify(response));
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -102,7 +131,11 @@ const LoginScreen = () => {
           </View>
           <View style={styles.lowerMargin} />
           <View style={styles.gradientButton}>
-            <GradientButtonComponent text="Login" onPress={onPress} />
+            <GradientButtonComponent
+              text="Login"
+              onPress={onPress}
+              isLoading={isLoading}
+            />
           </View>
         </View>
       </SafeAreaView>

@@ -1,17 +1,50 @@
+import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {ROUTES, baseURL} from '../../utils/constants';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react';
+import axios from 'axios';
 import images from '../../assets/images';
 import styles from './styles';
 import {useStore} from '../../context/GlobalContext';
 
 const CustomDrawer = (props: any) => {
-  const {setIsUserLoggedIn} = useStore();
+  const {setState, userData} = useStore();
+
+  const cleanData = async () => {
+    try {
+      await AsyncStorage.removeItem('@userData').then(() =>
+        setState('Refreshing'),
+      );
+    } catch (exception) {}
+  };
+
+  const signOutFunc = async () => {
+    try {
+      await axios
+        .post(`${baseURL}/${ROUTES.auth}/logout`, {
+          refreshToken: `${userData.tokens.refresh.token}`,
+        })
+        .then(() => {
+          cleanData();
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const showSignOutAlert = async () => {
+    return Alert.alert('Sign out?', 'You can always log back in', [
+      {text: 'Cancel'},
+      {text: 'Sign out', onPress: () => signOutFunc()},
+    ]);
+  };
+
   return (
     <View style={styles.topContainer}>
       <DrawerContentScrollView
@@ -32,7 +65,7 @@ const CustomDrawer = (props: any) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.signoutTextView}
-          onPress={() => setIsUserLoggedIn(false)}>
+          onPress={showSignOutAlert}>
           <Icon name="log-out-outline" size={22} />
           <Text style={styles.signoutText}>Sign out</Text>
         </TouchableOpacity>
