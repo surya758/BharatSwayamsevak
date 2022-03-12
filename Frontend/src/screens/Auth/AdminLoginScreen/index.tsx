@@ -1,4 +1,5 @@
 import {
+  Alert,
   Keyboard,
   SafeAreaView,
   Text,
@@ -57,17 +58,23 @@ const AdminLoginScreen = () => {
           password: password,
         })
         .then(res => storeUserData(res.data))
-        .then(() => setState('refresh'));
+        .then(() => setState('refreshing'));
     } catch (error) {
+      Alert.alert('You number or password is wrong.');
       setIsLoading(false);
     }
   };
 
   const storeUserData = async (response: any) => {
-    try {
-      await AsyncStorage.setItem('@userData', JSON.stringify(response));
-    } catch (err) {
-      console.log(err);
+    //check
+    if (response.user.role === 'admin') {
+      try {
+        await AsyncStorage.setItem('@userData', JSON.stringify(response));
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      Alert.alert('Invalid admin credentials.');
     }
   };
   return (

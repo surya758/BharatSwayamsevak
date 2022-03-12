@@ -1,4 +1,5 @@
 import {
+  Alert,
   Keyboard,
   SafeAreaView,
   Text,
@@ -59,15 +60,21 @@ const LoginScreen = () => {
         .then(res => storeUserData(res.data))
         .then(() => setState('refresh'));
     } catch (error) {
+      Alert.alert('Incorrect number or password.');
       setIsLoading(false);
     }
   };
 
   const storeUserData = async (response: any) => {
-    try {
-      await AsyncStorage.setItem('@userData', JSON.stringify(response));
-    } catch (err) {
-      console.log(err);
+    if (response.user.role === 'user') {
+      try {
+        await AsyncStorage.setItem('@userData', JSON.stringify(response));
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      Alert.alert('Go through admin login.');
+      setIsLoading(false);
     }
   };
   return (

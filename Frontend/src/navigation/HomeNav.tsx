@@ -15,7 +15,13 @@ export type HomeStackParamList = {
 };
 const Drawer = createDrawerNavigator<HomeStackParamList>();
 const HomeNav = () => {
-  const {isAdmin} = useStore();
+  const {userData} = useStore();
+  const isAdmin = () => {
+    if (userData.user.role === 'admin') {
+      return true;
+    }
+    return false;
+  };
   return (
     <Drawer.Navigator
       initialRouteName="home"
@@ -45,7 +51,7 @@ const HomeNav = () => {
           drawerLabel: 'Dashboard',
         }}
       />
-      {isAdmin ? (
+      {isAdmin() ? (
         <Drawer.Screen
           name="addUser"
           component={AddUserScreen}
