@@ -74,7 +74,7 @@ const AdminLoginScreen = () => {
         console.log(err);
       }
     } else {
-      Alert.alert('Invalid admin credentials.');
+      Alert.alert('Go through user login.');
     }
   };
   return (
@@ -108,6 +108,7 @@ const AdminLoginScreen = () => {
               placeholder="enter your mobile number"
               keyboardType="numeric"
               autoFocus={true}
+              maxLength={10}
               onSubmitEditing={() => passwordRef.current?.focus()}
             />
             <View>
@@ -137,7 +138,11 @@ const AdminLoginScreen = () => {
             </View>
           </View>
           <View style={styles.gradientButton}>
-            <GradientButtonComponent text="Login" onPress={onPress} />
+            <GradientButtonComponent
+              text="Login"
+              onPress={onPress}
+              isLoading={isLoading}
+            />
           </View>
         </View>
       </SafeAreaView>

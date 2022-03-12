@@ -37,46 +37,26 @@ const HomeScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
 
   const [isVisible, setIsVisible] = useState(false);
-  const {isAdmin, userData} = useStore();
+  const {userData} = useStore();
+  const {name, role, designation} = userData.user;
   const [state, setState] = useState('Select a state');
   const onClose = () => {
     setIsVisible(false);
   };
+
+  const isAdmin = () => {
+    if (userData.user.role === 'admin') {
+      return true;
+    }
+    return false;
+  };
+
   const onSelect = (selectedState: string) => {
     console.log(selectedState);
     setState(selectedState);
     setIsVisible(false);
   };
   const title = 'state';
-
-  const cleanData = async () => {
-    try {
-      await AsyncStorage.removeItem('@userData').then(() =>
-        setState('Refreshing'),
-      );
-    } catch (exception) {}
-  };
-
-  const signOutFunc = async () => {
-    try {
-      await axios
-        .post(`${baseURL}/${ROUTES.auth}/send-sns`, {
-          refreshToken: `${userData.tokens.refresh.token}`,
-        })
-        .then(() => {
-          cleanData();
-        });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const showSignOutAlert = async () => {
-    return Alert.alert('Sign out?', 'You can always log back in', [
-      {text: 'Cancel'},
-      {text: 'Sign out', onPress: () => signOutFunc()},
-    ]);
-  };
 
   return (
     <SafeAreaView style={styles.upperContainer}>
@@ -92,8 +72,7 @@ const HomeScreen = () => {
             onPress={() => navigation.openDrawer()}>
             <DrawerImageComponent />
           </Pressable>
-          {/*remember to replace true with isAdmin*/}
-          {isAdmin ? (
+          {isAdmin() ? (
             <Pressable
               style={
                 false
@@ -107,19 +86,22 @@ const HomeScreen = () => {
         </View>
         <View style={styles.greetingViewStyle}>
           <Text style={styles.greetingTextLeft}>
-            Hola, <Text style={styles.greetingTextRight}>User</Text>
+            Hola,{' '}
+            <Text style={styles.greetingTextRight}>
+              {role === 'admin' ? 'Admin' : 'User'}
+            </Text>
           </Text>
         </View>
         <View style={styles.userIDCardStyle}>
           <View>
-            <Text style={styles.idCardHeadingStyle}>Maddy Gibson</Text>
+            <Text style={styles.idCardHeadingStyle}>{name}</Text>
             <View style={styles.idCardTextViewStyle}>
               <Text style={styles.idCardTextAnswerStyle}>STATE</Text>
               <Text style={styles.idCardTextHeadingStyle}>Uttar Pradesh</Text>
             </View>
             <View>
-              <Text style={styles.idCardTextAnswerStyle}>POSITION</Text>
-              <Text style={styles.idCardTextHeadingStyle}>Volunteer</Text>
+              <Text style={styles.idCardTextAnswerStyle}>DESIGNATION</Text>
+              <Text style={styles.idCardTextHeadingStyle}>{designation}</Text>
             </View>
           </View>
           <Image style={styles.userIDPhotoStyle} source={images.guy} />

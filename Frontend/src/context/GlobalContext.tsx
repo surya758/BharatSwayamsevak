@@ -4,7 +4,6 @@ import type {tempUserData} from '../states/GlobalState';
 
 interface gloablContentProvider {
   children: React.ReactNode;
-  isAdmin: boolean;
   userData: Object | null | 'loading';
   tempUserData: tempUserData | 'loading' | null;
   state: string;
@@ -15,7 +14,6 @@ const GlobalContext = React.createContext({});
 
 export const GlobalContextProvider: React.FC<gloablContentProvider> = ({
   children,
-  isAdmin,
   userData,
   state,
   setState,
@@ -24,7 +22,6 @@ export const GlobalContextProvider: React.FC<gloablContentProvider> = ({
   return (
     <GlobalContext.Provider
       value={{
-        isAdmin,
         state,
         userData,
         setState,

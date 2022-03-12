@@ -17,7 +17,6 @@ export type tempUserData = {
 };
 
 const GlobalState = () => {
-  const [isAdmin, setIsAdmin] = useState(true);
   const [state, setState] = useState<string>('lol');
   const [userData, setUserData] = useState<Object | null | 'loading'>(
     'loading',
@@ -60,7 +59,6 @@ const GlobalState = () => {
 
   return (
     <GlobalContextProvider
-      isAdmin={isAdmin}
       state={state}
       setState={setState}
       tempUserData={tempUserData}

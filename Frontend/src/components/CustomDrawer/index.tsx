@@ -15,6 +15,7 @@ import {useStore} from '../../context/GlobalContext';
 
 const CustomDrawer = (props: any) => {
   const {setState, userData} = useStore();
+  const {name} = userData.user;
 
   const cleanData = async () => {
     try {
@@ -52,7 +53,7 @@ const CustomDrawer = (props: any) => {
         {...props}>
         <View style={styles.topDrawerView}>
           <Image source={images.guy} style={styles.profileImage} />
-          <Text style={styles.nameText}>A sample name</Text>
+          <Text style={styles.nameText}>{name}</Text>
         </View>
         <View style={styles.drawerView}>
           <DrawerItemList {...props} />
