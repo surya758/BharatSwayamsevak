@@ -1,8 +1,6 @@
 import {Colors, Typography} from '../../../styles';
 import {Dimensions, StyleSheet} from 'react-native';
 
-import {lightGreen} from './../../../styles/colors';
-
 const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({

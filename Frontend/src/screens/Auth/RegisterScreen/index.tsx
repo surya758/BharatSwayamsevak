@@ -86,6 +86,24 @@ const RegisterScreen = () => {
     };
   };
   const phoneNumberSigninHandler = async () => {
+    //check if mobile number already in use?
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`${baseURL}/${ROUTES.users}`);
+      const isNumberTaken = response.data.results.map(el =>
+        el.phoneNumber === `+${country.callingCode}${number}` ? true : false,
+      );
+      if (isNumberTaken.find(el => el === true) === true) {
+        Alert.alert('Number is already taken.');
+        setNumber('');
+        return setIsLoading(false);
+      }
+    } catch (e) {
+      Alert.alert('Failed to verify.');
+      setNumber('');
+      return setIsLoading(false);
+    }
+
     //store phone number in tempUserData async
     try {
       const jsonValue = JSON.stringify({
@@ -97,7 +115,7 @@ const RegisterScreen = () => {
     }
 
     // do a request to backend server
-    setIsLoading(true);
+
     try {
       const response = await axios.post(`${baseURL}/${ROUTES.auth}/send-sns`, {
         phoneNumber: `+${country.callingCode}${number}`,
