@@ -124,16 +124,6 @@ const HomeScreen = () => {
             </Text>
             <FontAwesome5 name="angle-down" size={30} color={Colors.BLACK} />
           </Pressable>
-          {/* <View style={styles.modal}>
-            <Text style={{...styles.modalText, fontSize: 16, left: 10}}>
-              {STATES.length} More
-            </Text>
-            <FontAwesome5
-              name="arrow-circle-right"
-              size={24}
-              color={Colors.BLACK}
-            />
-          </View> */}
         </View>
         <View style={{flex: 1}}>
           <FlatList

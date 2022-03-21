@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema(
     designation: {
       type: String,
     },
+    state: {
+      type: String,
+      required: true,
+    },
     phoneNumber: {
       type: String,
       required: true,

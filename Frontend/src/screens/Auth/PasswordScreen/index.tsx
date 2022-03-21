@@ -1,5 +1,4 @@
 import {
-  Alert,
   Keyboard,
   SafeAreaView,
   Text,
@@ -8,7 +7,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -18,7 +16,6 @@ import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -33,7 +30,6 @@ const PasswordScreen = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   const showErrMsg = (mes: string) => {
     let unmounted = false;
@@ -145,6 +141,8 @@ const PasswordScreen = () => {
           </View>
           <View style={styles.gradientButton}>
             <GradientButtonComponent
+              isLoading={false}
+              isActive={isPasswordValid ? true : false}
               text="Continue"
               onPress={passwordHandler}
             />

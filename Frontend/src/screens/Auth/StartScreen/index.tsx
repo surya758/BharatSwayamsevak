@@ -36,6 +36,8 @@ const StartScreen = () => {
           <View style={styles.gradient}>
             <GradientButtonComponent
               text="Register"
+              isLoading={false}
+              isActive={true}
               onPress={onPressRegister}
             />
           </View>

@@ -140,6 +140,7 @@ const LoginScreen = () => {
           <View style={styles.gradientButton}>
             <GradientButtonComponent
               text="Login"
+              isActive={true}
               onPress={onPress}
               isLoading={isLoading}
             />

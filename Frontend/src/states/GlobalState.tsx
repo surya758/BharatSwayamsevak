@@ -14,6 +14,7 @@ export type tempUserData = {
   referrer?: string;
   designation?: string;
   donation?: number;
+  state?: string;
 };
 
 const GlobalState = () => {
@@ -41,6 +42,7 @@ const GlobalState = () => {
 
   useEffect(() => {
     getUserDataFromLocalStorage();
+    console.log(userData);
   }, [state]);
 
   useEffect(() => {

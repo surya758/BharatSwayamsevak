@@ -11,6 +11,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BACKGROUND,
     flex: 1,
   },
+  eyeStyle: {position: 'absolute', zIndex: 5, left: 24, top: 16},
+
   errMsgView: {height: 20},
   errMsg: {
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
@@ -52,25 +54,24 @@ const styles = StyleSheet.create({
     width: (windowWidth * 0.78) / 2,
   },
   gradientDonationButtonView: {
+    marginTop: 20,
     alignItems: 'center',
   },
   inputWith: {
     height: 50,
     borderWidth: 2,
-    paddingLeft: 10,
+    paddingLeft: 30,
     borderRadius: 6,
     borderColor: Colors.PRIMARY,
-    marginBottom: 20,
-    margin: 10,
+    marginHorizontal: 10,
   },
   inputWithout: {
     height: 50,
     borderWidth: 2,
-    paddingLeft: 10,
+    paddingLeft: 30,
     borderRadius: 6,
     borderColor: Colors.GRAY_MEDIUM,
-    marginBottom: 20,
-    margin: 10,
+    marginHorizontal: 10,
   },
 });
 

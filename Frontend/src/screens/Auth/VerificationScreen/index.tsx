@@ -147,7 +147,7 @@ const VerificationScreen = ({route}) => {
         setShowResend(true);
         setIsPressable(true);
       }
-    }, 5000);
+    }, 20000);
 
     return () => {
       unmounted = true;
@@ -238,7 +238,7 @@ const VerificationScreen = ({route}) => {
         {
           scale: animationsScale[index].interpolate({
             inputRange: [0, 1],
-            outputRange: [0.8, 1],
+            outputRange: [0.92, 1],
           }),
         },
       ],
@@ -312,6 +312,7 @@ const VerificationScreen = ({route}) => {
           <View style={styles.verifyButton}>
             <GradientButtonComponent
               text="Verify"
+              isActive={value.length === 4 ? true : false}
               onPress={otpHandler}
               isLoading={isLoading}
             />

@@ -9,6 +9,7 @@ import styles from './styles';
 type Props = {
   onPress: () => void;
   text: string;
+  isActive: boolean;
   isLoading: boolean;
 };
 
@@ -38,6 +39,7 @@ const GradientButtonComponent: React.FC<Props> = props => {
 
   return (
     <Pressable
+      disabled={!props.isActive ? true : false}
       onPress={props.onPress}
       onPressIn={onPressIn}
       onPressOut={onPressOut}>
@@ -46,7 +48,11 @@ const GradientButtonComponent: React.FC<Props> = props => {
           start={{x: 0.1, y: 0.1}}
           end={{x: 0.7, y: 0.3}}
           locations={[0.4, 0.7, 1]}
-          colors={['#2bb11f', '#55a851', '#3b9c32']}
+          colors={
+            props.isActive
+              ? ['#2bb11f', '#55a851', '#3b9c32']
+              : ['#808080', '#808080', '#808080']
+          }
           style={styles.container}>
           {!props.isLoading ? (
             <Text style={styles.buttonText}>{props.text}</Text>

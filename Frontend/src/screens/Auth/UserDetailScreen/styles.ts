@@ -13,6 +13,20 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
+  modal: {
+    height: 50,
+    borderWidth: 2,
+    borderColor: Colors.GRAY_MEDIUM,
+    borderRadius: 6,
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  modalText: {
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+  },
   errMsgView: {height: 20},
   errMsg: {
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,

@@ -39,8 +39,6 @@ const ReferralScreen = () => {
         : showErrMsg('No special character');
     };
 
-    console.log(referrerCode);
-
     // if referrer empty, then simply navigate
     if (!referrerCode) {
       return navigation.navigate('userDetail');
@@ -53,7 +51,6 @@ const ReferralScreen = () => {
         const response = await axios.get(
           `${baseURL}/${ROUTES.referrals}?referrerCode=${referrerCode}`,
         );
-        console.log(response.data);
         if (response.data) {
           setIsLoading(false);
           setReferrerCode('');
@@ -162,6 +159,7 @@ const ReferralScreen = () => {
           <View style={styles.gradientButton}>
             <GradientButtonComponent
               text="Continue"
+              isActive={referrerCode.length === 8 ? true : false}
               onPress={referralHandler}
               isLoading={isLoading}
             />

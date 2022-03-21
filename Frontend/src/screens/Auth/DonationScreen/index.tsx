@@ -18,6 +18,7 @@ import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import DashedLine from 'react-native-dashed-line';
 import DonationButtonComponent from '../../../components/DonationButton';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import GradientButtonComponent from '../../../components/GradientButton';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import axios from 'axios';
@@ -121,6 +122,7 @@ const DonationScreen = () => {
           password: tempUserData.password,
           designation: tempUserData.designation,
           donation: `${val}`,
+          state: tempUserData.state,
         })
         .then(res => storeUserData(res.data))
         .then(() => removeTempUserData())
@@ -223,21 +225,29 @@ const DonationScreen = () => {
             ) : (
               <View style={styles.notErrMsg} />
             )}
-            <TextInput
-              style={
-                donationAmount.trim() ? styles.inputWith : styles.inputWithout
-              }
-              onChangeText={setDonationAmount}
-              value={donationAmount.trim()}
-              placeholder="enter a custom donation amount"
-              keyboardType="numeric"
-              placeholderTextColor="grey"
-              autoComplete="off"
-              autoCapitalize="none"
-            />
+            <View style={{marginBottom: 10}} />
+            <View>
+              <View style={styles.eyeStyle}>
+                <FontAwesome name="rupee" size={20} color={Colors.ALERT} />
+              </View>
+              <TextInput
+                style={
+                  donationAmount.trim() ? styles.inputWith : styles.inputWithout
+                }
+                onChangeText={setDonationAmount}
+                value={donationAmount.trim()}
+                placeholder="enter a custom donation amount"
+                keyboardType="numeric"
+                placeholderTextColor="grey"
+                autoComplete="off"
+                autoCapitalize="none"
+              />
+            </View>
+
             <View style={styles.gradientDonationButtonView}>
               <GradientButtonComponent
                 text="Donate"
+                isActive={donationAmount.length > 0 ? true : false}
                 onPress={onPressDonate}
                 isLoading={isLoading}
               />

@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GradientButtonComponent from '../../../components/GradientButton';
@@ -50,6 +50,13 @@ const AddUserScreen = () => {
     setTimeout(() => {
       setMessage('');
     }, 4000);
+  };
+
+  const isActive = () => {
+    if (name.length && state.length && designation.length > 0) {
+      return true;
+    }
+    return false;
   };
 
   const createTwoButtonAlert = () => {
@@ -126,6 +133,8 @@ const AddUserScreen = () => {
             />
             <View style={styles.gradientButton}>
               <GradientButtonComponent
+                isActive={isActive() ? true : false}
+                isLoading={false}
                 text="Add user"
                 onPress={createTwoButtonAlert}
               />
