@@ -100,32 +100,33 @@ const RegisterScreen = () => {
 
   return (
     <SafeAreaView style={styles.upperContainer}>
-      <View style={styles.lowerContainer}>
-        <Icon
-          name="arrow-left-l"
-          size={30}
-          color={Colors.BLACK}
-          style={styles.backIconStyle}
-          onPress={() => navigation.goBack()}
-        />
-        <View>
-          <Text style={styles.registerOne}>Register</Text>
-          <Text style={styles.registerTwo}>Please enter your phone number</Text>
-        </View>
-        {message ? (
-          <View style={styles.errMsgView}>
-            <Text style={styles.errMsg}>{message}</Text>
+      <View>
+        <View style={styles.headingContainer}>
+          <Icon
+            name="arrow-left-l"
+            size={30}
+            color={Colors.BLACK}
+            style={styles.backIconStyle}
+            onPress={() => navigation.goBack()}
+          />
+          <View>
+            <Text style={styles.registerOne}>Register</Text>
+            <Text style={styles.registerTwo}>
+              Please enter your phone number
+            </Text>
           </View>
-        ) : (
-          <View style={styles.notErrMsg} />
-        )}
+          {message ? (
+            <View style={styles.errMsgView}>
+              <Text style={styles.errMsg}>{message}</Text>
+            </View>
+          ) : (
+            <View style={styles.notErrMsg} />
+          )}
+        </View>
+
         <View style={styles.countryPickerStyle}>
           <TextInput
-            style={
-              number.trim()
-                ? styles.inputStyleWithout
-                : styles.inputStyleOnChange
-            }
+            style={styles.inputStyle}
             onChangeText={setNumber}
             value={number?.trim()}
             keyboardType="numeric"

@@ -11,14 +11,13 @@ import {
   View,
 } from 'react-native';
 import {Colors, Typography} from '../../../styles';
+import {ROUTES, STATES, baseURL} from '../../../utils/constants';
 import React, {useRef, useState} from 'react';
 
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GradientButtonComponent from '../../../components/GradientButton';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import PickerModalComponent from '../../../components/PickerModal';
-import {STATES} from '../../../utils/constants';
+import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -32,8 +31,19 @@ const AddUserScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
   const [number, setNumber] = useState('');
 
-  const onPress = () => {
-    console.log('checked');
+  const checkIfUserExistWithThisNumber = async () => {
+    try {
+      const response = await axios.get(
+        `${baseURL}/${ROUTES.users}?phoneNumber=${number}`,
+      );
+      if (response.data?.results.length) {
+        Alert.alert('user with this number exists');
+      } else {
+        Alert.alert("user doesn't exist");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
@@ -53,10 +63,10 @@ const AddUserScreen = () => {
               onChangeText={setNumber}
               maxLength={10}
             />
-            <View style={{marginTop: 20, alignItems: 'center'}}>
+            <View style={styles.buttonContainer}>
               <GradientButtonComponent
                 text="Check"
-                onPress={onPress}
+                onPress={checkIfUserExistWithThisNumber}
                 isActive={number.length === 10 ? true : false}
                 isLoading={false}
               />

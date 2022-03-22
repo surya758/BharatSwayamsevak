@@ -25,6 +25,12 @@ const createUser = async (userBody) => {
  */
 const queryUsers = async (filter, options) => {
   const users = await User.paginate(filter, options);
+  if (filter.referralCode) {
+    if (users.results.length > 0) {
+      return true;
+    }
+    return false;
+  }
   return users;
 };
 

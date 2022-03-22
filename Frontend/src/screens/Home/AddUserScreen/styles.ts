@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: Typography.FONT_FAMILY_REGULAR,
   },
+  buttonContainer: {marginTop: 20, alignItems: 'center'},
 });
 
 export default styles;

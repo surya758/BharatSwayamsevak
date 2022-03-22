@@ -17,6 +17,9 @@ const getUsers = catchAsync(async (req, res) => {
   if (req.query.state) {
     filter = { state: req.query.state, added: true };
   }
+  if (req.query.referralCode) {
+    filter = { referralCode: req.query.referralCode };
+  }
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await userService.queryUsers(filter, options);
   res.send(result);

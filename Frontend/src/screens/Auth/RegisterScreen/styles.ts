@@ -8,9 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BACKGROUND,
     flex: 1,
   },
-  lowerContainer: {
-    marginHorizontal: 16,
-  },
+  headingContainer: {marginHorizontal: 16},
   backIconStyle: {
     marginTop: 30,
   },
@@ -33,25 +31,16 @@ const styles = StyleSheet.create({
     color: Colors.GRAY_DARK,
     paddingLeft: 2,
   },
-  inputStyleWithout: {
+  inputStyle: {
     textAlign: 'center',
-    flexDirection: 'row',
-    height: 50,
-    borderWidth: 2,
-    flex: 1,
-    borderRadius: 6,
+    height: 70,
+    backgroundColor: 'rgb(255,202,149)',
     borderColor: Colors.PRIMARY,
     fontSize: 20,
-    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
-  },
-  inputStyleOnChange: {
-    flexDirection: 'row',
-    textAlign: 'center',
-    height: 50,
-    borderWidth: 2,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
     flex: 1,
-    borderRadius: 6,
-    borderColor: Colors.GRAY_MEDIUM,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
   countryPickerStyle: {
     flexDirection: 'row',

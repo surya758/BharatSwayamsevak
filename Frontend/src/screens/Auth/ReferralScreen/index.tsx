@@ -49,9 +49,9 @@ const ReferralScreen = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `${baseURL}/${ROUTES.referrals}?referrerCode=${referrerCode}`,
+          `${baseURL}/${ROUTES.users}?referrerCode=${referrerCode}`,
         );
-        if (response.data) {
+        if (response) {
           setIsLoading(false);
           setReferrerCode('');
           Alert.alert('You have been referred');
