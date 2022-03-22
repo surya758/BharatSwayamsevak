@@ -14,7 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import axios from 'axios';
 import styles from './styles';
@@ -130,9 +130,9 @@ const ReferralScreen = () => {
       <SafeAreaView style={styles.upperContainer}>
         <View style={styles.lowerContainer}>
           <Icon
-            name="back"
+            name="arrow-left-l"
             size={30}
-            color={Colors.ALERT}
+            color={Colors.BLACK}
             style={styles.backIconStyle}
             onPress={createTwoButtonAlert}
           />

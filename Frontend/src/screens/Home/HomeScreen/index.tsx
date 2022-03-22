@@ -39,7 +39,7 @@ const HomeScreen = () => {
   const [isVisible, setIsVisible] = useState(false);
   const {userData} = useStore();
   const {name, role, designation} = userData.user;
-  const [state, setState] = useState('Select a state');
+  const [state, setState] = useState(userData.user.state);
   const onClose = () => {
     setIsVisible(false);
   };
@@ -97,7 +97,9 @@ const HomeScreen = () => {
             <Text style={styles.idCardHeadingStyle}>{name}</Text>
             <View style={styles.idCardTextViewStyle}>
               <Text style={styles.idCardTextAnswerStyle}>STATE</Text>
-              <Text style={styles.idCardTextHeadingStyle}>Uttar Pradesh</Text>
+              <Text style={styles.idCardTextHeadingStyle}>
+                {userData.user.state}
+              </Text>
             </View>
             <View>
               <Text style={styles.idCardTextAnswerStyle}>DESIGNATION</Text>
@@ -117,6 +119,7 @@ const HomeScreen = () => {
             title={title}
             onClose={onClose}
             onSelect={onSelect}
+            state2={state}
           />
           <Pressable onPress={() => setIsVisible(true)} style={styles.modal}>
             <Text style={styles.modalText} numberOfLines={1}>

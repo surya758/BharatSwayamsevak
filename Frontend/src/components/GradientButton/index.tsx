@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import {ActivityIndicator, Animated, Pressable, Text} from 'react-native';
+import {ActivityIndicator, Animated, Pressable, Text, View} from 'react-native';
 
 import {Colors} from '../../styles';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 
@@ -51,9 +52,9 @@ const GradientButtonComponent: React.FC<Props> = props => {
           colors={
             props.isActive
               ? ['#2bb11f', '#55a851', '#3b9c32']
-              : ['#808080', '#808080', '#808080']
+              : ['#cacaca', '#cacaca', '#cacaca']
           }
-          style={styles.container}>
+          style={{...styles.container, opacity: props.isActive ? 1 : 0.6}}>
           {!props.isLoading ? (
             <Text style={styles.buttonText}>{props.text}</Text>
           ) : (

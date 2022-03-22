@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import axios from 'axios';
 import styles from './styles';
@@ -56,7 +56,7 @@ const RegisterScreen = () => {
         el.phoneNumber === phoneNumber ? true : false,
       );
       if (isNumberTaken.find(el => el === true) === true) {
-        showErrMsg('Number already exists.');
+        showErrMsg('Number is already in use.');
         setNumber('');
         return setIsLoading(false);
       }
@@ -102,17 +102,15 @@ const RegisterScreen = () => {
     <SafeAreaView style={styles.upperContainer}>
       <View style={styles.lowerContainer}>
         <Icon
-          name="back"
+          name="arrow-left-l"
           size={30}
-          color={Colors.ALERT}
+          color={Colors.BLACK}
           style={styles.backIconStyle}
           onPress={() => navigation.goBack()}
         />
         <View>
           <Text style={styles.registerOne}>Register</Text>
-          <Text style={styles.registerTwo}>
-            Please confirm your country code and enter your phone number
-          </Text>
+          <Text style={styles.registerTwo}>Please enter your phone number</Text>
         </View>
         {message ? (
           <View style={styles.errMsgView}>

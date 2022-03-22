@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     fontFamily: Typography.FONT_FAMILY_REGULAR,
     width: windowWidth * 0.85,
     alignSelf: 'center',
+    textAlign: 'center',
   },
 });
 

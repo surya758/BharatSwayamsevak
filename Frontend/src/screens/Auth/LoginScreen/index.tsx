@@ -11,10 +11,10 @@ import {
 import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useRef, useState} from 'react';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -81,10 +81,10 @@ const LoginScreen = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.upperContainer}>
         <View style={styles.lowerContainer}>
-          <AntDesign
-            name="back"
+          <Fontisto
+            name="arrow-left-l"
             size={30}
-            color={Colors.ALERT}
+            color={Colors.BLACK}
             style={styles.backIconStyle}
             onPress={() => navigation.goBack()}
           />
@@ -140,7 +140,7 @@ const LoginScreen = () => {
           <View style={styles.gradientButton}>
             <GradientButtonComponent
               text="Login"
-              isActive={true}
+              isActive={number.length && password.length > 0 ? true : false}
               onPress={onPress}
               isLoading={isLoading}
             />

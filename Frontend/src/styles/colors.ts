@@ -3,7 +3,7 @@ export const SECONDARY = '#138808';
 export const TERTIARY = '#AA336A';
 export const WHITE = '#FFFFFF';
 export const BLACK = '#000000';
-export const BACKGROUND = 'rgb(255,231,208)';
+export const BACKGROUND = 'rgb(245,231,220)';
 export const lightSaffron = '#F4C430';
 export const lightGreen = 'rgb(152, 251, 152)';
 

@@ -44,6 +44,10 @@ const userSchema = mongoose.Schema(
       type: String,
       length: 8,
     },
+    added: {
+      type: Boolean,
+      default: false,
+    },
     donation: {
       type: String,
     },

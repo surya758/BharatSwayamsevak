@@ -12,13 +12,13 @@ import {
 import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useEffect, useState} from 'react';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import DashedLine from 'react-native-dashed-line';
 import DonationButtonComponent from '../../../components/DonationButton';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import GradientButtonComponent from '../../../components/GradientButton';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import axios from 'axios';
@@ -123,6 +123,7 @@ const DonationScreen = () => {
           designation: tempUserData.designation,
           donation: `${val}`,
           state: tempUserData.state,
+          referrer: tempUserData.referrer,
         })
         .then(res => storeUserData(res.data))
         .then(() => removeTempUserData())
@@ -172,10 +173,10 @@ const DonationScreen = () => {
           behavior="position"
           keyboardVerticalOffset={keyboardVerticalOffset}>
           <View style={styles.lowerContainer}>
-            <AntDesign
-              name="back"
+            <Fontisto
+              name="arrow-left-l"
               size={30}
-              color={Colors.ALERT}
+              color={Colors.BLACK}
               style={styles.backIconStyle}
               onPress={createTwoButtonAlert}
             />

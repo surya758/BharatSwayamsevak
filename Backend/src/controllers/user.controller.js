@@ -10,7 +10,13 @@ const createUser = catchAsync(async (req, res) => {
 });
 
 const getUsers = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
+  let filter = {};
+  if (req.query.phoneNumber) {
+    filter = { phoneNumber: `+91${req.query.phoneNumber}` };
+  }
+  if (req.query.state) {
+    filter = { state: req.query.state, added: true };
+  }
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await userService.queryUsers(filter, options);
   res.send(result);

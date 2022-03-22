@@ -10,7 +10,6 @@ const register = catchAsync(async (req, res) => {
     count: 1,
     charset: voucher_codes.charset('alphanumeric'),
   });
-  console.log(req.body);
   const newUserBody = { ...req.body, referralCode: referralCode[0] };
   const user = await userService.createUser(newUserBody);
   const tokens = await tokenService.generateAuthTokens(user);

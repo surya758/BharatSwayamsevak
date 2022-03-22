@@ -6,7 +6,7 @@ import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GradientButtonComponent from '../../../components/GradientButton';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PickerModalComponent from '../../../components/PickerModal';
 import {STATES} from '../../../utils/constants';
@@ -74,9 +74,9 @@ const UserDetailScreen = () => {
     <SafeAreaView style={styles.upperContainer}>
       <View style={styles.lowerContainer}>
         <Icon
-          name="back"
+          name="arrow-left-l"
           size={30}
-          color={Colors.ALERT}
+          color={Colors.BLACK}
           style={styles.backIconStyle}
           onPress={() => navigation.goBack()}
         />
