@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
+import {DATA, STATES} from '../../../utils/constants';
 import {
-  Alert,
   FlatList,
   Image,
   ImageBackground,
@@ -9,8 +8,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import {DATA, STATES} from '../../../utils/constants';
-import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useState} from 'react';
 
 import {Colors} from '../../../styles';

@@ -18,6 +18,7 @@ import Toast from 'react-native-toast-message';
 import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {useStore} from '../../../context/GlobalContext';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,
@@ -27,7 +28,8 @@ type tempUserDataType = {
   name: string;
   donation: string;
   state: string;
-  referrer: string;
+  designation: string;
+  id: string;
 };
 
 const ShowFields = (props: any) => {
@@ -42,6 +44,8 @@ const AddUserScreen = () => {
   const designationRef = useRef<null | TextInput>(null);
   const navigation = useNavigation<homeScreenNavigationType>();
   const [number, setNumber] = useState('');
+  const {userData} = useStore();
+  const [isLoading, setIsLoading] = useState(false);
   const [tempAddUserData, setTempAddUserData] =
     useState<tempUserDataType | null>(null);
 
@@ -54,6 +58,13 @@ const AddUserScreen = () => {
       const response = await axios.get(
         `${baseURL}/${ROUTES.users}?phoneNumber=${number}`,
       );
+      if (response.data.results[0].added === true) {
+        return Toast.show({
+          type: 'info',
+          text2: 'User with this number is already added',
+          position: 'bottom',
+        });
+      }
       if (response.data?.results.length) {
         Toast.show({
           type: 'success',
@@ -64,12 +75,49 @@ const AddUserScreen = () => {
       } else {
         Toast.show({
           type: 'error',
-          text2: "user doesn't exist",
+          text2: "User with this number doesn't exist",
+          position: 'bottom',
+        });
+      }
+    } catch (e) {
+      Toast.show({
+        type: 'error',
+        text2: "User with this number doesn't exist",
+        position: 'bottom',
+      });
+    }
+  };
+
+  const addUserHandler = async () => {
+    try {
+      let config = {
+        headers: {
+          Authorization: 'Bearer ' + userData.tokens.access.token,
+        },
+      };
+
+      let data = {
+        added: true,
+      };
+      const response = await axios.patch(
+        `${baseURL}/${ROUTES.users}/${tempAddUserData?.id}`,
+        data,
+        config,
+      );
+      if (response) {
+        Toast.show({
+          type: 'success',
+          text2: 'Successfully added user',
           position: 'bottom',
         });
       }
     } catch (e) {
       console.log(e);
+      Toast.show({
+        type: 'error',
+        text2: 'Something went wrong',
+        position: 'bottom',
+      });
     }
   };
 
@@ -99,27 +147,30 @@ const AddUserScreen = () => {
               />
             </View>
             {tempAddUserData ? (
-              <View
-                style={{
-                  marginTop: 30,
-                  paddingHorizontal: 10,
-                  marginHorizontal: 10,
-                }}>
+              <View style={styles.lowerContainer}>
                 <View>
                   <Text style={styles.headingStyle}>Name</Text>
                   <ShowFields str={tempAddUserData.name} />
                 </View>
                 <View>
                   <Text style={styles.headingStyle}>State</Text>
-                  {/* <ShowFields str={tempAddUserData.name} /> */}
+                  <ShowFields str={tempAddUserData.state} />
                 </View>
                 <View>
-                  <Text style={styles.headingStyle}>Referrer</Text>
-                  {/* <ShowFields str={tempAddUserData.name} /> */}
+                  <Text style={styles.headingStyle}>Designation</Text>
+                  <ShowFields str={tempAddUserData.designation} />
                 </View>
                 <View>
                   <Text style={styles.headingStyle}>Donation Amount</Text>
-                  {/* <ShowFields str={tempAddUserData.name} /> */}
+                  <ShowFields str={tempAddUserData.donation} />
+                </View>
+                <View style={{...styles.buttonContainer, marginTop: 0}}>
+                  <GradientButtonComponent
+                    text="Add User"
+                    onPress={addUserHandler}
+                    isActive={true}
+                    isLoading={false}
+                  />
                 </View>
               </View>
             ) : null}

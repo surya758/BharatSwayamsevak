@@ -75,6 +75,7 @@ const AdminLoginScreen = () => {
       }
     } else {
       Alert.alert('Go through user login.');
+      setIsLoading(false);
     }
   };
   return (

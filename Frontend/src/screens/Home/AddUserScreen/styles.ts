@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(255,202,149)',
     borderBottomColor: Colors.PRIMARY,
   },
+  lowerContainer: {
+    marginTop: 30,
+    paddingHorizontal: 10,
+    marginHorizontal: 10,
+  },
   fieldText: {
     fontFamily: Typography.FONT_FAMILY_REGULAR,
     paddingLeft: 8,
