@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BACKGROUND,
     flex: 1,
   },
+
   lowerContainer: {
     marginHorizontal: 16,
   },
@@ -34,7 +35,15 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
   },
   eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 20},
-
+  input: {
+    height: 52,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    borderColor: Colors.PRIMARY,
+    borderBottomWidth: 2,
+    backgroundColor: Colors.BACKGROUND_ALT,
+    paddingLeft: 6,
+    marginBottom: 16,
+  },
   inputWith: {
     height: 50,
     borderWidth: 2,

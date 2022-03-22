@@ -4,6 +4,7 @@ export const TERTIARY = '#AA336A';
 export const WHITE = '#FFFFFF';
 export const BLACK = '#000000';
 export const BACKGROUND = 'rgb(245,231,220)';
+export const BACKGROUND_ALT = 'rgb(255,202,149)';
 export const lightSaffron = '#F4C430';
 export const lightGreen = 'rgb(152, 251, 152)';
 

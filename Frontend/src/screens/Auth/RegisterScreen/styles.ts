@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   inputStyle: {
     textAlign: 'center',
     height: 70,
-    backgroundColor: 'rgb(255,202,149)',
+    backgroundColor: Colors.BACKGROUND_ALT,
     borderColor: Colors.PRIMARY,
     fontSize: 20,
     borderBottomWidth: 1,

@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   designation: {
+    maxWidth: '80%',
     fontSize: 12,
     fontFamily: Typography.FONT_FAMILY_REGULAR,
     textAlign: 'center',

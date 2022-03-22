@@ -8,7 +8,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import {ROUTES, baseURL} from '../../../utils/constants';
+import React, {useEffect, useState} from 'react';
 
 import {Colors} from '../../../styles';
 import DrawerImageComponent from '../../../components/DrawerImage';
@@ -18,6 +19,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MemberComponent from '../../../components/Member';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PickerModalComponent from '../../../components/PickerModal';
+import axios from 'axios';
 import images from '../../../assets/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -28,6 +30,12 @@ type homeScreenNavigationType = NativeStackNavigationProp<
   'home'
 >;
 
+type userType = {
+  name: string;
+  designation: string;
+  id: string;
+};
+
 const HomeScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
 
@@ -35,6 +43,22 @@ const HomeScreen = () => {
   const {userData} = useStore();
   const {name, role, designation} = userData.user;
   const [state, setState] = useState(userData.user.state);
+  const [users, setUsers] = useState<Array<userType>>([]);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const response = await axios.get(
+          `${baseURL}/${ROUTES.users}?state=${state}`,
+        );
+        if (response.data.results) {
+          setUsers(response.data.results);
+        }
+      } catch (e) {}
+    };
+    loadUser();
+  }, [state]);
+
   const onClose = () => {
     setIsVisible(false);
   };
@@ -47,7 +71,6 @@ const HomeScreen = () => {
   };
 
   const onSelect = (selectedState: string) => {
-    console.log(selectedState);
     setState(selectedState);
     setIsVisible(false);
   };
@@ -127,7 +150,7 @@ const HomeScreen = () => {
         </View>
         <View style={{flex: 1}}>
           <FlatList
-            data={DATA}
+            data={users}
             renderItem={({item}) => (
               <MemberComponent
                 name={item.name}

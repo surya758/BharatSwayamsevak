@@ -82,6 +82,7 @@ const AuthNav = () => {
         initialRouteName={routeName}
         screenOptions={{
           headerShown: false,
+          gestureEnabled: false,
         }}>
         <Stack.Screen name="start" component={StartScreen} />
         <Stack.Screen name="login" component={LoginScreen} />

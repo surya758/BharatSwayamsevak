@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     ...Platform.select({web: {lineHeight: 65}}),
     fontSize: 30,
     textAlign: 'center',
-    borderRadius: CELL_BORDER_RADIUS,
+    borderRadius: 14,
     color: Colors.PRIMARY,
     backgroundColor: '#fff',
 

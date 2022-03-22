@@ -40,7 +40,7 @@ const CustomDrawer = (props: any) => {
   };
 
   const showSignOutAlert = async () => {
-    return Alert.alert('Sign out?', 'You can always log back in', [
+    Alert.alert('Sign out?', 'You can always log back in', [
       {text: 'Cancel'},
       {text: 'Sign out', onPress: () => signOutFunc()},
     ]);
@@ -60,10 +60,11 @@ const CustomDrawer = (props: any) => {
         </View>
       </DrawerContentScrollView>
       <View style={styles.lowerContainer}>
-        <TouchableOpacity style={styles.shareTextView}>
-          <Icon name="share-social-outline" size={22} />
-          <Text style={styles.shareText}>Tell a friend</Text>
-        </TouchableOpacity>
+        <View style={styles.shareTextView}>
+          <Text style={styles.shareText}>
+            Referral Code: {userData.user.referralCode}
+          </Text>
+        </View>
         <TouchableOpacity
           style={styles.signoutTextView}
           onPress={showSignOutAlert}>

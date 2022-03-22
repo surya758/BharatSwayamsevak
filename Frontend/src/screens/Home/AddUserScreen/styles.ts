@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
+  nameView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   fields: {
     height: 40,
     width: '100%',
@@ -21,7 +25,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderBottomWidth: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgb(255,202,149)',
+    backgroundColor: Colors.BACKGROUND_ALT,
     borderBottomColor: Colors.PRIMARY,
   },
   lowerContainer: {
@@ -36,10 +40,11 @@ const styles = StyleSheet.create({
   headingStyle: {
     fontFamily: Typography.FONT_FAMILY_REGULAR,
     fontSize: Typography.FONT_SIZE_16,
+    marginRight: 5,
   },
   mobileNumber: {
     height: 70,
-    backgroundColor: 'rgb(255,202,149)',
+    backgroundColor: Colors.BACKGROUND_ALT,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: Colors.PRIMARY,

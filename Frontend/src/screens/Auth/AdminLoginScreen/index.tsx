@@ -1,15 +1,12 @@
+import {ROUTES, baseURL} from '../../../utils/constants';
+import React, {useRef, useState} from 'react';
 import {
-  Alert,
-  Keyboard,
   SafeAreaView,
   Text,
   TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {ROUTES, baseURL} from '../../../utils/constants';
-import React, {useRef, useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
@@ -18,6 +15,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import Toast from 'react-native-toast-message';
 import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -60,7 +58,11 @@ const AdminLoginScreen = () => {
         .then(res => storeUserData(res.data))
         .then(() => setState('refreshing'));
     } catch (error) {
-      Alert.alert('You number or password is wrong.');
+      Toast.show({
+        type: 'error',
+        text2: 'Incorrect number or password',
+        position: 'bottom',
+      });
       setIsLoading(false);
     }
   };
@@ -74,81 +76,83 @@ const AdminLoginScreen = () => {
         console.log(err);
       }
     } else {
-      Alert.alert('Go through user login.');
+      Toast.show({
+        type: 'info',
+        text2: 'Go through user login',
+        position: 'bottom',
+      });
       setIsLoading(false);
     }
   };
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <SafeAreaView style={styles.upperContainer}>
-        <View style={styles.lowerContainer}>
-          <Fontisto
-            name="arrow-left-l"
-            size={30}
-            color={Colors.BLACK}
-            style={styles.backIconStyle}
-            onPress={() => navigation.goBack()}
+    <SafeAreaView style={styles.upperContainer}>
+      <View style={styles.lowerContainer}>
+        <Fontisto
+          name="arrow-left-l"
+          size={30}
+          color={Colors.BLACK}
+          style={styles.backIconStyle}
+          onPress={() => navigation.goBack()}
+        />
+        <View>
+          <Text style={styles.loginOne}>Admin Log in</Text>
+          <Text style={styles.loginTwo}>Sign in to your account</Text>
+        </View>
+        {message ? (
+          <View style={styles.errMsgView}>
+            <Text style={styles.errMsg}>{message}</Text>
+          </View>
+        ) : (
+          <View style={styles.notErrMsg} />
+        )}
+        <View>
+          <TextInput
+            style={number ? styles.inputWith : styles.inputWithout}
+            onChangeText={setNumber}
+            value={number}
+            placeholderTextColor="grey"
+            placeholder="enter your mobile number"
+            keyboardType="numeric"
+            autoFocus={true}
+            maxLength={10}
+            onSubmitEditing={() => passwordRef.current?.focus()}
           />
           <View>
-            <Text style={styles.loginOne}>Admin Log in</Text>
-            <Text style={styles.loginTwo}>Sign in to your account</Text>
-          </View>
-          {message ? (
-            <View style={styles.errMsgView}>
-              <Text style={styles.errMsg}>{message}</Text>
-            </View>
-          ) : (
-            <View style={styles.notErrMsg} />
-          )}
-          <View>
             <TextInput
-              style={number ? styles.inputWith : styles.inputWithout}
-              onChangeText={setNumber}
-              value={number}
+              style={password ? styles.inputWith : styles.inputWithout}
+              onChangeText={setPassword}
+              value={password}
+              placeholder="enter your password"
+              textContentType="password"
+              secureTextEntry={hidePass ? true : false}
+              returnKeyType="go"
               placeholderTextColor="grey"
-              placeholder="enter your mobile number"
-              keyboardType="numeric"
-              autoFocus={true}
-              maxLength={10}
-              onSubmitEditing={() => passwordRef.current?.focus()}
+              autoCapitalize="none"
+              ref={passwordRef}
+              autoCorrect={false}
             />
-            <View>
-              <TextInput
-                style={password ? styles.inputWith : styles.inputWithout}
-                onChangeText={setPassword}
-                value={password}
-                placeholder="enter your password"
-                textContentType="password"
-                secureTextEntry={hidePass ? true : false}
-                returnKeyType="go"
-                placeholderTextColor="grey"
-                autoCapitalize="none"
-                ref={passwordRef}
-                autoCorrect={false}
+            <TouchableOpacity
+              onPress={() => setHidePass(!hidePass)}
+              style={styles.eyeStyle}
+              hitSlop={{top: 20, bottom: 20, left: 30, right: 30}}>
+              <Ionicons
+                name={hidePass ? 'eye-off' : 'eye'}
+                size={24}
+                color={Colors.BLACK}
               />
-              <TouchableOpacity
-                onPress={() => setHidePass(!hidePass)}
-                style={styles.eyeStyle}
-                hitSlop={{top: 20, bottom: 20, left: 30, right: 30}}>
-                <Ionicons
-                  name={hidePass ? 'eye-off' : 'eye'}
-                  size={24}
-                  color={Colors.BLACK}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.gradientButton}>
-            <GradientButtonComponent
-              isActive={number.length && password.length > 0 ? true : false}
-              text="Login"
-              onPress={onPress}
-              isLoading={isLoading}
-            />
+            </TouchableOpacity>
           </View>
         </View>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+        <View style={styles.gradientButton}>
+          <GradientButtonComponent
+            isActive={number.length && password.length > 0 ? true : false}
+            text="Login"
+            onPress={onPress}
+            isLoading={isLoading}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 

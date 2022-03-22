@@ -9,6 +9,7 @@ import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import Toast from 'react-native-toast-message';
 import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -61,7 +62,11 @@ const RegisterScreen = () => {
         return setIsLoading(false);
       }
     } catch (e) {
-      Alert.alert('Failed to verify.');
+      Toast.show({
+        type: 'error',
+        text2: 'Failed to process request',
+        position: 'bottom',
+      });
       setNumber('');
       return setIsLoading(false);
     }
@@ -93,7 +98,11 @@ const RegisterScreen = () => {
         throw new Error('An error has occurred');
       }
     } catch (error) {
-      Alert.alert('Failed to do request.');
+      Toast.show({
+        type: 'error',
+        text2: 'Failed to process request',
+        position: 'bottom',
+      });
       setIsLoading(false);
     }
   };
