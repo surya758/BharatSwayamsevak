@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {Colors, Typography} from '../../../styles';
 import React, {useRef, useState} from 'react';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -29,6 +30,11 @@ type homeScreenNavigationType = NativeStackNavigationProp<
 const AddUserScreen = () => {
   const designationRef = useRef<null | TextInput>(null);
   const navigation = useNavigation<homeScreenNavigationType>();
+  const [number, setNumber] = useState('');
+
+  const onPress = () => {
+    console.log('checked');
+  };
 
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
 
@@ -37,9 +43,26 @@ const AddUserScreen = () => {
       <SafeAreaView style={styles.upperContainer}>
         <KeyboardAvoidingView
           behavior="position"
-          keyboardVerticalOffset={
-            keyboardVerticalOffset
-          }></KeyboardAvoidingView>
+          keyboardVerticalOffset={keyboardVerticalOffset}>
+          <View>
+            <Text style={styles.headingText}>Enter Mobile Number</Text>
+            <TextInput
+              style={styles.mobileNumber}
+              value={number}
+              autoFocus
+              onChangeText={setNumber}
+              maxLength={10}
+            />
+            <View style={{marginTop: 20, alignItems: 'center'}}>
+              <GradientButtonComponent
+                text="Check"
+                onPress={onPress}
+                isActive={number.length === 10 ? true : false}
+                isLoading={false}
+              />
+            </View>
+          </View>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
