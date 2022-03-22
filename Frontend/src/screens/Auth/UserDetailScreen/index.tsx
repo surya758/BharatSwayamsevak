@@ -93,6 +93,7 @@ const UserDetailScreen = () => {
           style={name ? styles.inputWith : styles.inputWithout}
           onChangeText={setName}
           value={name}
+          maxLength={32}
           placeholder="enter your name"
           autoComplete="off"
           autoCapitalize="none"

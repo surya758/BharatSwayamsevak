@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   idCardTextHeadingStyle: {
     fontSize: 14,
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    maxWidth: 150,
   },
   idCardTextAnswerStyle: {fontSize: 12, fontFamily: Typography.FONT_FAMILY_ALT},
   modal: {

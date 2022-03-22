@@ -13,7 +13,6 @@ import {DATA, STATES} from '../../../utils/constants';
 import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useState} from 'react';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Colors} from '../../../styles';
 import DrawerImageComponent from '../../../components/DrawerImage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -22,7 +21,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MemberComponent from '../../../components/Member';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PickerModalComponent from '../../../components/PickerModal';
-import axios from 'axios';
 import images from '../../../assets/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -103,7 +101,9 @@ const HomeScreen = () => {
             </View>
             <View>
               <Text style={styles.idCardTextAnswerStyle}>DESIGNATION</Text>
-              <Text style={styles.idCardTextHeadingStyle}>{designation}</Text>
+              <Text style={styles.idCardTextHeadingStyle} numberOfLines={1}>
+                {designation}
+              </Text>
             </View>
           </View>
           <Image style={styles.userIDPhotoStyle} source={images.guy} />

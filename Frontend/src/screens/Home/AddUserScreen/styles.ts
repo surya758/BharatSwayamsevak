@@ -4,8 +4,8 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   upperContainer: {
-    backgroundColor: Colors.BACKGROUND,
     flex: 1,
+    backgroundColor: Colors.GRAY_LIGHT,
   },
   headingText: {
     textAlign: 'center',
@@ -13,6 +13,24 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginBottom: 20,
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+  },
+  fields: {
+    height: 40,
+    width: '100%',
+    marginTop: 5,
+    marginBottom: 16,
+    borderBottomWidth: 1,
+    justifyContent: 'center',
+    backgroundColor: 'rgb(255,202,149)',
+    borderBottomColor: Colors.PRIMARY,
+  },
+  fieldText: {
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    paddingLeft: 8,
+  },
+  headingStyle: {
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    fontSize: Typography.FONT_SIZE_16,
   },
   mobileNumber: {
     height: 70,

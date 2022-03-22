@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 
   inputWith: {
     height: 50,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
     borderWidth: 2,
     paddingLeft: 10,
     borderRadius: 6,

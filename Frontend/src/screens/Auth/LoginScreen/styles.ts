@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 2,
     paddingLeft: 10,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
     borderRadius: 6,
     borderColor: Colors.PRIMARY,
     marginVertical: 10,

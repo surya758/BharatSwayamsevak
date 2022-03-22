@@ -16,6 +16,7 @@ import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import Toast from 'react-native-toast-message';
 import axios from 'axios';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -49,12 +50,16 @@ const ReferralScreen = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `${baseURL}/${ROUTES.users}?referrerCode=${referrerCode}`,
+          `${baseURL}/${ROUTES.users}?referralCode=${referrerCode}`,
         );
-        if (response) {
+        if (response.data) {
           setIsLoading(false);
           setReferrerCode('');
-          Alert.alert('You have been referred');
+          Toast.show({
+            type: 'success',
+            text2: 'You have been referred',
+            position: 'bottom',
+          });
 
           //storing data to tempUserData
           try {
@@ -79,7 +84,11 @@ const ReferralScreen = () => {
           throw new Error('An error has occurred');
         }
       } catch (error) {
-        Alert.alert('Referral code is invalid.');
+        Toast.show({
+          type: 'error',
+          text2: 'Referral code is invalid',
+          position: 'bottom',
+        });
         setIsLoading(false);
       }
     }

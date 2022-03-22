@@ -29,6 +29,7 @@ import {Colors} from '../../../styles';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import Toast from 'react-native-toast-message';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
@@ -75,6 +76,13 @@ const VerificationScreen = ({route}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [number, setNumber] = useState('');
   const {phoneNumber} = route.params;
+  const [counter, setCounter] = React.useState(20);
+
+  useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    return () => clearInterval(timer);
+  }, [counter]);
 
   useEffect(() => {
     getNumberFunc();
@@ -107,6 +115,7 @@ const VerificationScreen = ({route}) => {
   };
 
   const pressedResend = async () => {
+    setCounter(20);
     let unmounted = false;
 
     if (!unmounted) {
@@ -125,8 +134,11 @@ const VerificationScreen = ({route}) => {
         phoneNumber: phoneNumber,
       });
       if (response.status === 202) {
-        Alert.alert('Successfully resend.');
-        //
+        Toast.show({
+          type: 'success',
+          text2: 'Successfully resend OTP',
+          position: 'bottom',
+        });
       }
     } catch (err) {
       // throw an error
@@ -179,7 +191,11 @@ const VerificationScreen = ({route}) => {
         if (response.status === 202) {
           setIsLoading(false);
           setValue('');
-          Alert.alert('Otp has been verified');
+          Toast.show({
+            type: 'success',
+            text2: 'Otp has been verified',
+            position: 'bottom',
+          });
 
           //storing data to tempUserData
           try {
@@ -205,7 +221,12 @@ const VerificationScreen = ({route}) => {
           throw new Error('An error has occurred');
         }
       } catch (error) {
-        Alert.alert('Failed to verify otp.');
+        Toast.show({
+          type: 'error',
+          text2: 'Failed to verify otp',
+          position: 'bottom',
+        });
+        // Alert.alert('Failed to verify otp.');
         setValue('');
         setIsLoading(false);
       }
@@ -283,7 +304,7 @@ const VerificationScreen = ({route}) => {
                 <Text
                   style={{
                     ...styles.resendText,
-                    color: isPressable ? Colors.ALERT : Colors.GRAY_DARK,
+                    color: isPressable ? Colors.PRIMARY : Colors.GRAY_DARK,
                   }}>
                   RESEND
                 </Text>
@@ -320,9 +341,13 @@ const VerificationScreen = ({route}) => {
           {!isPressable ? (
             showResend ? (
               <Text style={styles.resendWarningText}>
-                You can resend after twenty seconds. Please wait.
+                You can resend OTP after {counter} seconds
               </Text>
-            ) : null
+            ) : (
+              <Text style={styles.resendWarningText}>
+                You can resend OTP after {counter} seconds
+              </Text>
+            )
           ) : null}
         </View>
       </SafeAreaView>

@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   resendText: {
     fontSize: Typography.FONT_SIZE_16,
-    color: Colors.ALERT,
+    color: Colors.PRIMARY,
     fontFamily: Typography.FONT_FAMILY_BOLD,
   },
   errMsgView: {height: 20},
@@ -62,7 +62,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     justifyContent: 'center',
   },
-  resendWarningText: {padding: 10, textAlign: 'center', fontSize: 12},
+  resendWarningText: {
+    padding: 10,
+    textAlign: 'center',
+    fontSize: 12,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+  },
   cell: {
     marginHorizontal: 8,
     height: CELL_SIZE,
@@ -72,7 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     borderRadius: CELL_BORDER_RADIUS,
-    color: Colors.ALERT,
+    color: Colors.PRIMARY,
     backgroundColor: '#fff',
 
     // IOS
