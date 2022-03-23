@@ -107,7 +107,7 @@ const AdminLoginScreen = () => {
         )}
         <View>
           <TextInput
-            style={number ? styles.inputWith : styles.inputWithout}
+            style={styles.input}
             onChangeText={setNumber}
             value={number}
             placeholderTextColor="grey"
@@ -119,7 +119,7 @@ const AdminLoginScreen = () => {
           />
           <View>
             <TextInput
-              style={password ? styles.inputWith : styles.inputWithout}
+              style={styles.input}
               onChangeText={setPassword}
               value={password}
               placeholder="enter your password"

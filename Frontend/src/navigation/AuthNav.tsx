@@ -1,13 +1,16 @@
+import {ActivityIndicator, View} from 'react-native';
+import {Colors, Typography} from '../styles';
 import React, {useEffect} from 'react';
 
-import {ActivityIndicator} from 'react-native';
 import AdminLoginScreen from '../screens/Auth/AdminLoginScreen';
 import DonationScreen from '../screens/Auth/DonationScreen';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import PasswordScreen from '../screens/Auth/PasswordScreen';
 import ReferralScreen from '../screens/Auth/ReferralScreen';
 import RegisterScreen from '../screens/Auth/RegisterScreen';
 import StartScreen from '../screens/Auth/StartScreen';
+import StateScreen from '../screens/Auth/StateScreen';
 import UserDetailScreen from '../screens/Auth/UserDetailScreen';
 import VerificationScreen from '../screens/Auth/VerificationScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -23,6 +26,7 @@ export type AuthStackParamList = {
   userDetail: undefined;
   adminLogin: undefined;
   referral: undefined;
+  state: {getBackData: (data: string) => void};
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -47,34 +51,11 @@ const AuthNav = () => {
       tempUserData?.otp &&
       tempUserData?.password &&
       tempUserData?.isVerified &&
-      tempUserData?.name &&
-      tempUserData?.designation
+      tempUserData?.name
     ) {
       return true;
     }
   };
-
-  // useEffect(() => {
-  //   moveToReferralScreen();
-  //   moveToDonationScreen();
-  // }, [tempUserData]);
-
-  // useEffect(() => {
-  //   const isRegisterProcessComplete = () => {
-  //     if (
-  //       tempUserData?.number &&
-  //       tempUserData?.otp &&
-  //       tempUserData?.password &&
-  //       tempUserData?.isVerified &&
-  //       tempUserData?.name &&
-  //       tempUserData?.designation &&
-  //       tempUserData?.donation
-  //     ) {
-  //       setIsUserLoggedIn(true);
-  //     }
-  //   };
-  //   isRegisterProcessComplete();
-  // }, [tempUserData]);
 
   const screenSet = (routeName: string) => {
     return (
@@ -91,6 +72,29 @@ const AuthNav = () => {
         <Stack.Screen name="password" component={PasswordScreen} />
         <Stack.Screen name="donation" component={DonationScreen} />
         <Stack.Screen name="userDetail" component={UserDetailScreen} />
+        <Stack.Screen
+          name="state"
+          component={StateScreen}
+          options={props => {
+            const {navigation, route} = props;
+            return {
+              headerShown: true,
+              title: 'State',
+              headerStyle: {backgroundColor: Colors.BACKGROUND},
+              headerTitleStyle: {
+                fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+              },
+              headerBackTitleVisible: false,
+              headerLeft: () => (
+                <Fontisto
+                  name="arrow-left-l"
+                  size={24}
+                  onPress={() => navigation.goBack()}
+                />
+              ),
+            };
+          }}
+        />
         <Stack.Screen name="adminLogin" component={AdminLoginScreen} />
         <Stack.Screen name="referral" component={ReferralScreen} />
       </Stack.Navigator>

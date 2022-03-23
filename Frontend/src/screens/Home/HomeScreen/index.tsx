@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useEffect, useState} from 'react';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 
 import {Colors} from '../../../styles';
 import DrawerImageComponent from '../../../components/DrawerImage';
@@ -22,7 +23,6 @@ import PickerModalComponent from '../../../components/PickerModal';
 import axios from 'axios';
 import images from '../../../assets/images';
 import styles from './styles';
-import {useNavigation} from '@react-navigation/native';
 import {useStore} from '../../../context/GlobalContext';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
@@ -38,7 +38,7 @@ type userType = {
 
 const HomeScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
-
+  const isFocused = useIsFocused();
   const [isVisible, setIsVisible] = useState(false);
   const {userData} = useStore();
   const {name, role, designation} = userData.user;
@@ -57,7 +57,7 @@ const HomeScreen = () => {
       } catch (e) {}
     };
     loadUser();
-  }, [state]);
+  }, [state, isFocused]);
 
   const onClose = () => {
     setIsVisible(false);

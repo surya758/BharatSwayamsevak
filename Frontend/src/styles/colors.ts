@@ -1,12 +1,12 @@
 export const PRIMARY = '#FF9933';
-export const SECONDARY = '#138808';
+export const SECONDARY = '#90EE90';
 export const TERTIARY = '#AA336A';
 export const WHITE = '#FFFFFF';
 export const BLACK = '#000000';
 export const BACKGROUND = 'rgb(245,231,220)';
 export const BACKGROUND_ALT = 'rgb(255,202,149)';
 export const lightSaffron = '#F4C430';
-export const lightGreen = 'rgb(152, 251, 152)';
+export const lightGreen = '#90EE90';
 
 // ACTIONS
 export const SUCCESS = '#3adb76';

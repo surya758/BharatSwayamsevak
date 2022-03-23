@@ -1,5 +1,5 @@
 import {Modal, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Picker} from '@react-native-picker/picker';
@@ -12,18 +12,16 @@ type Props = {
   onClose: () => void;
   onSelect: (value: string) => void;
   value?: string;
-  state2: string;
 };
-const PickerModalComponent: React.FC<Props> = ({
+const PickerModalComponent: FC<Props> = ({
   visible,
   items,
   title,
   onClose,
   onSelect,
   value,
-  state2,
 }) => {
-  const [state, setState] = useState<string>(state2);
+  const [state, setState] = useState<string>('');
 
   useEffect(() => {
     if (value) {

@@ -9,10 +9,6 @@ import {useStore} from '../context/GlobalContext';
 const MainNav = () => {
   const {state, userData} = useStore();
 
-  useEffect(() => {
-    console.log({userData});
-  }, [userData]);
-
   return userData ? (
     userData === 'loading' ? (
       <ActivityIndicator

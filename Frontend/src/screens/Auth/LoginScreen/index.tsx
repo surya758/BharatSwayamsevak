@@ -106,16 +106,6 @@ const LoginScreen = () => {
           <View style={styles.notErrMsg} />
         )}
         <View>
-          {/* <TextInput
-            style={number ? styles.inputWith : styles.inputWithout}
-            onChangeText={setNumber}
-            value={number}
-            placeholderTextColor="grey"
-            placeholder="enter your mobile number"
-            keyboardType="numeric"
-            autoFocus={true}
-            onSubmitEditing={() => passwordRef?.current?.focus()}
-          /> */}
           <TextInput
             style={styles.input}
             onChangeText={setNumber}
@@ -128,7 +118,6 @@ const LoginScreen = () => {
           />
           <View>
             <TextInput
-              // style={password ? styles.inputWith : styles.inputWithout}
               style={styles.input}
               onChangeText={setPassword}
               value={password}

@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     color: Colors.GRAY_DARK,
     paddingLeft: 2,
   },
-  eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 20},
+  eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 15},
   input: {
     height: 52,
     fontFamily: Typography.FONT_FAMILY_REGULAR,
@@ -43,23 +43,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BACKGROUND_ALT,
     paddingLeft: 6,
     marginBottom: 16,
-  },
-  inputWith: {
-    height: 50,
-    borderWidth: 2,
-    paddingLeft: 10,
-    fontFamily: Typography.FONT_FAMILY_REGULAR,
-    borderRadius: 6,
-    borderColor: Colors.PRIMARY,
-    marginVertical: 10,
-  },
-  inputWithout: {
-    height: 50,
-    borderWidth: 2,
-    paddingLeft: 10,
-    borderRadius: 6,
-    borderColor: Colors.GRAY_MEDIUM,
-    marginVertical: 10,
   },
   gradientButton: {alignItems: 'center'},
 });

@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {Alert, SafeAreaView, Text, TextInput, View} from 'react-native';
 import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useState} from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';

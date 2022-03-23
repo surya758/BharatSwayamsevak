@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 16,
-    color: Colors.SECONDARY,
+    color: 'green',
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     textAlign: 'center',
     textTransform: 'uppercase',

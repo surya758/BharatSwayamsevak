@@ -1,5 +1,5 @@
 import {Pressable, SafeAreaView, Text, TextInput, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
@@ -9,7 +9,7 @@ import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PickerModalComponent from '../../../components/PickerModal';
-import {STATES} from '../../../utils/constants';
+import {states} from '../../../utils/constants';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -20,13 +20,18 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 const UserDetailScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [designation, setDesignation] = useState('');
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [state, setState] = useState<string>('Select a state');
-
+  const [isVisible, setIsVisible] = useState(false);
+  const [state, setState] = useState('Select a state');
+  // const [district, setDistrict] = useState('Select a district');
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  let STATES = states.map(a => a.state);
+  // let DISTRICT = states.find(function (ele, index) {
+  //   if (ele.state === state) {
+  //     return true;
+  //   }
+  // });
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
@@ -34,20 +39,17 @@ const UserDetailScreen = () => {
     }, 4000);
   };
 
+  const getBackData = (data: string) => {
+    console.log(data);
+    setState(data);
+  };
+
   const onClose = () => {
     setIsVisible(false);
   };
-  const onSelect = (selectedState: string) => {
-    setState(selectedState);
-    setIsVisible(false);
-  };
-
-  const title = 'state';
 
   const onPress = () => {
-    name === '' || designation === ''
-      ? showErrMsg('All fields are mandatory.')
-      : detailsHandler();
+    name === '' ? showErrMsg('All fields are mandatory.') : detailsHandler();
   };
 
   const detailsHandler = async () => {
@@ -58,7 +60,6 @@ const UserDetailScreen = () => {
         const newTempData = {
           ...JSON.parse(tempData),
           name: name,
-          designation: designation,
           state: state,
         };
         await AsyncStorage.setItem(
@@ -72,25 +73,28 @@ const UserDetailScreen = () => {
   };
   return (
     <SafeAreaView style={styles.upperContainer}>
-      <View style={styles.lowerContainer}>
-        <Icon
-          name="arrow-left-l"
-          size={30}
-          color={Colors.BLACK}
-          style={styles.backIconStyle}
-          onPress={() => navigation.goBack()}
-        />
-        <Text style={styles.detailsOne}>Details</Text>
-        <Text style={styles.detailsTwo}>Just a few more details...</Text>
-        {message ? (
-          <View style={styles.errMsgView}>
-            <Text style={styles.errMsg}>{message}</Text>
-          </View>
-        ) : (
-          <View style={styles.notErrMsg} />
-        )}
+      <View>
+        <View style={styles.lowerContainer}>
+          <Icon
+            name="arrow-left-l"
+            size={30}
+            color={Colors.BLACK}
+            style={styles.backIconStyle}
+            onPress={() => navigation.goBack()}
+          />
+          <Text style={styles.detailsOne}>Details</Text>
+          <Text style={styles.detailsTwo}>Just a few more details...</Text>
+          {message ? (
+            <View style={styles.errMsgView}>
+              <Text style={styles.errMsg}>{message}</Text>
+            </View>
+          ) : (
+            <View style={styles.notErrMsg} />
+          )}
+        </View>
+
         <TextInput
-          style={name ? styles.inputWith : styles.inputWithout}
+          style={styles.input}
           onChangeText={setName}
           value={name}
           maxLength={32}
@@ -100,31 +104,16 @@ const UserDetailScreen = () => {
           autoFocus={true}
           placeholderTextColor="grey"
         />
-        <PickerModalComponent
-          visible={isVisible}
-          items={STATES}
-          title={title}
-          onClose={onClose}
-          onSelect={onSelect}
-        />
-        <Pressable onPress={() => setIsVisible(true)} style={styles.modal}>
-          <Text style={styles.modalText} numberOfLines={1}>
-            {state}
-          </Text>
-          <FontAwesome5 name="arrow-down" size={24} color="#000" />
+        <Pressable
+          onPress={() =>
+            navigation.navigate('state', {getBackData: getBackData})
+          }
+          style={styles.stateView}>
+          <Text style={styles.stateText}>{state}</Text>
         </Pressable>
-        <TextInput
-          style={designation ? styles.inputWith : styles.inputWithout}
-          onChangeText={setDesignation}
-          value={designation}
-          placeholder="enter your designation"
-          autoComplete="off"
-          autoCapitalize="none"
-          placeholderTextColor="grey"
-        />
         <View style={styles.gradientButton}>
           <GradientButtonComponent
-            isActive={name.length && designation.length > 0 ? true : false}
+            isActive={name.length > 0 ? true : false}
             text="Continue"
             onPress={onPress}
             isLoading={isLoading}

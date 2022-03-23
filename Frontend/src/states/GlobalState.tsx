@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useEffect, useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -42,7 +41,6 @@ const GlobalState = () => {
 
   useEffect(() => {
     getUserDataFromLocalStorage();
-    console.log(userData);
   }, [state]);
 
   useEffect(() => {

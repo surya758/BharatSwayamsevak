@@ -1,6 +1,5 @@
 import {Colors, Typography} from '../../../styles';
-
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   upperContainer: {
@@ -13,20 +12,16 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 30,
   },
-  modal: {
+  stateView: {
     height: 50,
-    borderWidth: 2,
-    borderColor: Colors.GRAY_MEDIUM,
-    borderRadius: 6,
-    paddingHorizontal: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    backgroundColor: Colors.PRIMARY,
+    marginBottom: 16,
+    marginHorizontal: 16,
     alignItems: 'center',
-    marginVertical: 10,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
-  modalText: {
-    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
-  },
+  stateText: {paddingLeft: 6, fontFamily: Typography.FONT_FAMILY_SEMIBOLD},
   errMsgView: {height: 20},
   errMsg: {
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
@@ -45,23 +40,47 @@ const styles = StyleSheet.create({
     fontSize: Typography.FONT_SIZE_16,
     color: Colors.GRAY_DARK,
   },
-  inputWith: {
-    height: 50,
-    borderWidth: 2,
-    paddingLeft: 10,
-    borderRadius: 6,
+  input: {
+    height: 52,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
     borderColor: Colors.PRIMARY,
-    marginVertical: 10,
-  },
-  inputWithout: {
-    height: 50,
-    borderWidth: 2,
-    paddingLeft: 10,
-    borderRadius: 6,
-    borderColor: Colors.GRAY_MEDIUM,
-    marginVertical: 10,
+    borderBottomWidth: 2,
+    backgroundColor: Colors.BACKGROUND_ALT,
+    paddingLeft: 6,
+    marginBottom: 16,
+    marginHorizontal: 16,
   },
   gradientButton: {paddingTop: 10, alignItems: 'center'},
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: Colors.GRAY_MEDIUM,
+    alignItems: 'center',
+    padding: 5,
+  },
+  label: {
+    fontSize: 16,
+    fontFamily: Typography.FONT_FAMILY_BOLD,
+  },
+  pickerContainer: {
+    ...Platform.select({
+      android: {
+        height: 100,
+      },
+      ios: {
+        height: 200,
+      },
+    }),
+
+    width: '100%',
+    backgroundColor: 'white',
+  },
 });
 
 export default styles;

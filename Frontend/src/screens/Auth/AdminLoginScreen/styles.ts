@@ -10,6 +10,15 @@ const styles = StyleSheet.create({
   lowerContainer: {
     marginHorizontal: 16,
   },
+  input: {
+    height: 52,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    borderColor: Colors.PRIMARY,
+    borderBottomWidth: 2,
+    backgroundColor: Colors.BACKGROUND_ALT,
+    paddingLeft: 6,
+    marginBottom: 16,
+  },
   backIconStyle: {
     marginTop: 30,
   },
@@ -32,25 +41,7 @@ const styles = StyleSheet.create({
     fontSize: Typography.FONT_SIZE_16,
     color: Colors.GRAY_DARK,
   },
-  eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 20},
-
-  inputWith: {
-    height: 50,
-    fontFamily: Typography.FONT_FAMILY_REGULAR,
-    borderWidth: 2,
-    paddingLeft: 10,
-    borderRadius: 6,
-    borderColor: Colors.PRIMARY,
-    marginVertical: 10,
-  },
-  inputWithout: {
-    height: 50,
-    borderWidth: 2,
-    paddingLeft: 10,
-    borderRadius: 6,
-    borderColor: Colors.GRAY_MEDIUM,
-    marginVertical: 10,
-  },
+  eyeStyle: {position: 'absolute', zIndex: 5, right: 10, top: 15},
   gradientButton: {marginTop: 10, alignItems: 'center'},
 });
 

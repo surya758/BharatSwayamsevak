@@ -16,6 +16,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Toast from 'react-native-toast-message';
 import axios from 'axios';
 import styles from './styles';
+import {useIsFocused} from '@react-navigation/native';
 import {useStore} from '../../../context/GlobalContext';
 
 type tempUserDataType = {
@@ -38,6 +39,8 @@ const ShowFields = (props: any) => {
 const AddUserScreen = () => {
   const [number, setNumber] = useState('');
   const {userData} = useStore();
+  const isFocused = useIsFocused();
+
   const [isLoading, setIsLoading] = useState(false);
   const [tempAddUserData, setTempAddUserData] =
     useState<tempUserDataType | null>(null);
@@ -47,7 +50,7 @@ const AddUserScreen = () => {
   useEffect(() => {
     setNumber('');
     setTempAddUserData(null);
-  }, []);
+  }, [isFocused]);
 
   const checkIfUserExistWithThisNumber = async () => {
     setIsLoading(true);
@@ -63,11 +66,6 @@ const AddUserScreen = () => {
         });
       }
       if (response.data?.results.length) {
-        Toast.show({
-          type: 'success',
-          text2: 'User with this number exists',
-          position: 'bottom',
-        });
         setTempAddUserData(response.data?.results[0]);
       } else {
         Toast.show({
@@ -114,7 +112,6 @@ const AddUserScreen = () => {
       }
       setIsLoading(false);
     } catch (e) {
-      console.log(e);
       Toast.show({
         type: 'error',
         text2: 'Something went wrong',
