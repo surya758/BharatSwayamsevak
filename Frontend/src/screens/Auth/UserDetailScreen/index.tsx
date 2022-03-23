@@ -4,12 +4,9 @@ import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
 import {Colors} from '../../../styles';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GradientButtonComponent from '../../../components/GradientButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import PickerModalComponent from '../../../components/PickerModal';
-import {states} from '../../../utils/constants';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -20,18 +17,11 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 const UserDetailScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [isVisible, setIsVisible] = useState(false);
-  const [state, setState] = useState('Select a state');
-  // const [district, setDistrict] = useState('Select a district');
+  const [state, setState] = useState('');
+  const [district, setDistrict] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
-  let STATES = states.map(a => a.state);
-  // let DISTRICT = states.find(function (ele, index) {
-  //   if (ele.state === state) {
-  //     return true;
-  //   }
-  // });
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
@@ -39,13 +29,15 @@ const UserDetailScreen = () => {
     }, 4000);
   };
 
-  const getBackData = (data: string) => {
-    console.log(data);
+  useEffect(() => {
+    setDistrict('');
+  }, [state]);
+
+  const getBackDataFromStateScreen = (data: string) => {
     setState(data);
   };
-
-  const onClose = () => {
-    setIsVisible(false);
+  const getBackDataFromDistrictScreen = (data: string) => {
+    setDistrict(data);
   };
 
   const onPress = () => {
@@ -106,10 +98,24 @@ const UserDetailScreen = () => {
         />
         <Pressable
           onPress={() =>
-            navigation.navigate('state', {getBackData: getBackData})
+            navigation.navigate('state', {
+              getBackData: getBackDataFromStateScreen,
+            })
           }
           style={styles.stateView}>
-          <Text style={styles.stateText}>{state}</Text>
+          <Text style={styles.stateText1}>State</Text>
+          <Text style={styles.stateText2}>{state}</Text>
+        </Pressable>
+        <Pressable
+          onPress={() =>
+            navigation.navigate('district', {
+              getBackData: getBackDataFromDistrictScreen,
+              state: state,
+            })
+          }
+          style={styles.stateView}>
+          <Text style={styles.stateText1}>District</Text>
+          <Text style={styles.stateText2}>{district}</Text>
         </Pressable>
         <View style={styles.gradientButton}>
           <GradientButtonComponent

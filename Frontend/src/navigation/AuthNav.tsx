@@ -3,6 +3,7 @@ import {Colors, Typography} from '../styles';
 import React, {useEffect} from 'react';
 
 import AdminLoginScreen from '../screens/Auth/AdminLoginScreen';
+import DistrictScreen from '../screens/Auth/District Screen';
 import DonationScreen from '../screens/Auth/DonationScreen';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import LoginScreen from '../screens/Auth/LoginScreen';
@@ -27,6 +28,7 @@ export type AuthStackParamList = {
   adminLogin: undefined;
   referral: undefined;
   state: {getBackData: (data: string) => void};
+  district: {state: string; getBackData: (data: string) => void};
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -80,6 +82,29 @@ const AuthNav = () => {
             return {
               headerShown: true,
               title: 'State',
+              headerStyle: {backgroundColor: Colors.BACKGROUND},
+              headerTitleStyle: {
+                fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+              },
+              headerBackTitleVisible: false,
+              headerLeft: () => (
+                <Fontisto
+                  name="arrow-left-l"
+                  size={24}
+                  onPress={() => navigation.goBack()}
+                />
+              ),
+            };
+          }}
+        />
+        <Stack.Screen
+          name="district"
+          component={DistrictScreen}
+          options={props => {
+            const {navigation, route} = props;
+            return {
+              headerShown: true,
+              title: 'District',
               headerStyle: {backgroundColor: Colors.BACKGROUND},
               headerTitleStyle: {
                 fontFamily: Typography.FONT_FAMILY_SEMIBOLD,

@@ -14,14 +14,19 @@ const styles = StyleSheet.create({
   },
   stateView: {
     height: 50,
-    backgroundColor: Colors.PRIMARY,
+    borderColor: Colors.PRIMARY,
+    borderWidth: 2,
     marginBottom: 16,
     marginHorizontal: 16,
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
-  stateText: {paddingLeft: 6, fontFamily: Typography.FONT_FAMILY_SEMIBOLD},
+  stateText1: {paddingLeft: 6, fontFamily: Typography.FONT_FAMILY_SEMIBOLD},
+  stateText2: {
+    paddingRight: 6,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+  },
   errMsgView: {height: 20},
   errMsg: {
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
