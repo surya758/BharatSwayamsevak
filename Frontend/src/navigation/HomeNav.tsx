@@ -1,72 +1,25 @@
-import {Colors, Typography} from '../styles';
+import * as React from 'react';
 
-import AddUserScreen from '../screens/Home/AddUserScreen';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import CustomDrawer from '../components/CustomDrawer';
-import HomeScreen from '../screens/Home/HomeScreen';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import React from 'react';
+import {Colors} from '../styles';
+import MainScreen from '../screens/Home/MainScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {useStore} from '../context/GlobalContext';
 
 export type HomeStackParamList = {
-  home: undefined;
-  addUser: undefined;
+  main: undefined;
 };
-const Drawer = createDrawerNavigator<HomeStackParamList>();
 const HomeNav = () => {
-  const {userData} = useStore();
-  const isAdmin = () => {
-    if (userData.user.role === 'admin') {
-      return true;
-    }
-    return false;
-  };
+  const Drawer = createDrawerNavigator<HomeStackParamList>();
+
   return (
-    <Drawer.Navigator
-      initialRouteName="home"
-      drawerContent={props => <CustomDrawer {...props} />}
-      screenOptions={{
-        headerShown: false,
-        drawerLabelStyle: {
-          marginLeft: -25,
-          fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
-          fontSize: 15,
-        },
-        drawerActiveBackgroundColor: Colors.PRIMARY,
-        drawerActiveTintColor: Colors.WHITE,
-        drawerInactiveTintColor: Colors.BLACK,
-      }}>
+    <Drawer.Navigator>
       <Drawer.Screen
-        name="home"
-        component={HomeScreen}
+        name="main"
+        component={MainScreen}
         options={{
-          drawerIcon: ({color, focused}) => (
-            <AntDesign
-              name={focused ? 'appstore1' : 'appstore-o'}
-              size={22}
-              color={color}
-            />
-          ),
-          drawerLabel: 'Dashboard',
+          title: 'Samatan Samiti',
+          headerStyle: {backgroundColor: Colors.BACKGROUND},
         }}
       />
-      {isAdmin() ? (
-        <Drawer.Screen
-          name="addUser"
-          component={AddUserScreen}
-          options={{
-            drawerIcon: ({color, focused}) => (
-              <Ionicons
-                name={focused ? 'person-add' : 'person-add-outline'}
-                size={22}
-                color={color}
-              />
-            ),
-            drawerLabel: 'Add User',
-          }}
-        />
-      ) : null}
     </Drawer.Navigator>
   );
 };

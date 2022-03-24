@@ -1,3 +1,6 @@
+import * as React from 'react';
+
+import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {
   Image,
   ImageBackground,
@@ -6,53 +9,22 @@ import {
   Text,
   View,
 } from 'react-native';
-import {ROUTES, baseURL} from '../../../utils/constants';
-import React, {useEffect, useState} from 'react';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
 
+import {CoreStackParamList} from '../../../navigation/CoreNav';
 import DrawerImageComponent from '../../../components/DrawerImage';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {HomeStackParamList} from '../../../navigation/HomeNav';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import axios from 'axios';
 import images from '../../../assets/images';
 import styles from './styles';
 import {useStore} from '../../../context/GlobalContext';
 
-type homeScreenNavigationType = NativeStackNavigationProp<
-  HomeStackParamList,
-  'home'
+type coreScreenNavigationType = NativeStackNavigationProp<
+  CoreStackParamList,
+  'dashBoard'
 >;
-
-type userType = {
-  name: string;
-  designation: string;
-  id: string;
-  district: string;
-};
-
-const HomeScreen = () => {
-  const navigation = useNavigation<homeScreenNavigationType>();
-  const isFocused = useIsFocused();
-  const {userData} = useStore();
-  const {name, role, designation, district} = userData.user;
-  const [state, setState] = useState(userData.user.state);
-  const [users, setUsers] = useState<Array<userType>>([]);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        const response = await axios.get(
-          `${baseURL}/${ROUTES.users}?state=${state}`,
-        );
-        if (response.data.results) {
-          setUsers(response.data.results);
-        }
-      } catch (e) {}
-    };
-    loadUser();
-  }, [state, isFocused]);
+const DashBoardScreen = () => {
+  const navigation = useNavigation<coreScreenNavigationType>();
+  const {userData}: any = useStore();
+  const {name, role, district} = userData.user;
 
   return (
     <SafeAreaView style={styles.upperContainer}>
@@ -64,8 +36,8 @@ const HomeScreen = () => {
             <Image style={styles.userImageStyle} source={images.guy} />
           </ImageBackground>
           <Pressable
-            style={{position: 'absolute', left: 0}}
-            onPress={() => navigation.openDrawer()}>
+            style={styles.burgerView}
+            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
             <DrawerImageComponent />
           </Pressable>
         </View>
@@ -100,4 +72,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default DashBoardScreen;

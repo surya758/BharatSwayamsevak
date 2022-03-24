@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     height: 200,
     zIndex: 5,
   },
+  burgerView: {position: 'absolute', left: 0},
   photoRingImageStyle: {
     height: 130,
     width: 130,

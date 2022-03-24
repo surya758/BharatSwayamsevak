@@ -6,6 +6,7 @@ import AdminLoginScreen from '../screens/Auth/AdminLoginScreen';
 import DistrictScreen from '../screens/Auth/District Screen';
 import DonationScreen from '../screens/Auth/DonationScreen';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import HomeNav from './HomeNav';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import PasswordScreen from '../screens/Auth/PasswordScreen';
 import ReferralScreen from '../screens/Auth/ReferralScreen';
@@ -29,6 +30,7 @@ export type AuthStackParamList = {
   referral: undefined;
   state: undefined;
   district: undefined;
+  home: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -74,6 +76,7 @@ const AuthNav = () => {
         <Stack.Screen name="password" component={PasswordScreen} />
         <Stack.Screen name="donation" component={DonationScreen} />
         <Stack.Screen name="userDetail" component={UserDetailScreen} />
+        <Stack.Screen name="home" component={HomeNav} />
         <Stack.Screen
           name="state"
           component={StateScreen}

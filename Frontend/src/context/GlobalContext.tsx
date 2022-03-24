@@ -16,7 +16,7 @@ const GlobalContext = React.createContext({});
 
 export const GlobalContextProvider: React.FC<gloablContentProvider> = ({
   children,
-  // userData,
+  userData,
   state,
   setState,
   tempUserData,

@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 import {ActivityIndicator} from 'react-native';
 import AuthNav from './AuthNav';
 import {Colors} from '../styles';
-import HomeNav from './HomeNav';
+import CoreNav from './CoreNav';
 import {useStore} from '../context/GlobalContext';
 
 const MainNav = () => {
@@ -17,7 +17,7 @@ const MainNav = () => {
         style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
       />
     ) : (
-      <HomeNav />
+      <CoreNav />
     )
   ) : (
     <AuthNav />

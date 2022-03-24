@@ -1,10 +1,12 @@
+import * as React from 'react';
+
 import {Image, ImageBackground, Pressable, Text, View} from 'react-native';
 
 import {AuthStackParamList} from '../../../navigation/AuthNav';
+import Feather from 'react-native-vector-icons/Feather';
 import GradientButtonComponent from '../../../components/GradientButton';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NormalButtonComponent from '../../../components/NormalButton';
-import React from 'react';
 import images from '../../../assets/images';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -32,6 +34,12 @@ const StartScreen = () => {
           <Image style={styles.tinyLogo} source={images.logo} />
         </View>
         <View style={styles.bottomBox}>
+          <Pressable
+            onPress={() => navigation.navigate('home')}
+            style={styles.moreView}>
+            <Text style={styles.moreText}>More</Text>
+            <Feather name="arrow-right" size={22} color="white" />
+          </Pressable>
           <NormalButtonComponent onPress={onPressLogin} />
           <View style={styles.gradient}>
             <GradientButtonComponent
