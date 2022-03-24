@@ -27,8 +27,8 @@ export type AuthStackParamList = {
   userDetail: undefined;
   adminLogin: undefined;
   referral: undefined;
-  state: {getBackData: (data: string) => void};
-  district: {state: string; getBackData: (data: string) => void};
+  state: undefined;
+  district: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();

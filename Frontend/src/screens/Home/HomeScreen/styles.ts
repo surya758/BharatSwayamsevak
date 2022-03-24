@@ -88,47 +88,6 @@ const styles = StyleSheet.create({
     maxWidth: 150,
   },
   idCardTextAnswerStyle: {fontSize: 12, fontFamily: Typography.FONT_FAMILY_ALT},
-  modal: {
-    padding: 8,
-    // backgroundColor: Colors.SECONDARY,
-    backgroundColor: Colors.lightGreen,
-    borderRadius: 6,
-    width: '60%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    elevation: 5,
-    shadowColor: Colors.SECONDARY,
-    shadowOffset: {
-      width: 3,
-      height: 3,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 1.2,
-  },
-  modalText: {
-    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
-    paddingLeft: 6,
-  },
-  selectorView: {
-    borderTopWidth: 1,
-    borderTopColor: Colors.BLACK,
-    paddingTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 6,
-  },
-  memberTextStyle: {
-    fontSize: 18,
-    fontFamily: Typography.FONT_FAMILY_BOLD,
-    paddingRight: 10,
-    paddingLeft: 5,
-  },
-  memberView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
 });
 
 export default styles;

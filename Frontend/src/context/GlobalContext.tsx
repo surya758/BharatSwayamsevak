@@ -8,6 +8,8 @@ interface gloablContentProvider {
   tempUserData: tempUserData | 'loading' | null;
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
+  district: string;
+  setDistrict: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const GlobalContext = React.createContext({});
@@ -18,6 +20,8 @@ export const GlobalContextProvider: React.FC<gloablContentProvider> = ({
   state,
   setState,
   tempUserData,
+  district,
+  setDistrict,
 }) => {
   return (
     <GlobalContext.Provider
@@ -26,6 +30,8 @@ export const GlobalContextProvider: React.FC<gloablContentProvider> = ({
         userData,
         setState,
         tempUserData,
+        district,
+        setDistrict,
       }}>
       {children}
     </GlobalContext.Provider>

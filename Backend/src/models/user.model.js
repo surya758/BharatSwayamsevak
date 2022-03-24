@@ -10,10 +10,11 @@ const userSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    designation: {
-      type: String,
-    },
     state: {
+      type: String,
+      required: true,
+    },
+    district: {
       type: String,
       required: true,
     },
@@ -43,10 +44,6 @@ const userSchema = mongoose.Schema(
     referrer: {
       type: String,
       length: 8,
-    },
-    added: {
-      type: Boolean,
-      default: false,
     },
     donation: {
       type: String,

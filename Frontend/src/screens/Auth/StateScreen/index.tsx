@@ -1,25 +1,20 @@
 import {FlatList, Pressable, SafeAreaView, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import Feather from 'react-native-vector-icons/Feather';
 import {states} from '../../../utils/constants';
 import styles from './styles';
+import {useStore} from '../../../context/GlobalContext';
 
-const StateScreen = ({route}) => {
-  const [state, setState] = useState('');
+const StateScreen = () => {
   const [show, setShow] = useState(false);
   let STATES = states.map(a => a.state);
-  const {getBackData} = route.params;
+  const {state, setState} = useStore();
 
   const showTick = (item: string) => {
-    setState(item);
     setShow(true);
+    setState(item);
   };
-
-  useEffect(() => {
-    getBackData(state);
-  }, [state]);
-
   return (
     <SafeAreaView style={styles.upperContainer}>
       <View style={{marginHorizontal: 16}}>

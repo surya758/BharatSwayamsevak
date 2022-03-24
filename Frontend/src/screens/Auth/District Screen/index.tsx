@@ -1,14 +1,14 @@
 import {FlatList, Pressable, SafeAreaView, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import Feather from 'react-native-vector-icons/Feather';
 import {states} from '../../../utils/constants';
 import styles from './styles';
+import {useStore} from '../../../context/GlobalContext';
 
 const StateScreen = ({route}) => {
-  const [district, setDistrict] = useState('');
   const [show, setShow] = useState(false);
-  const {state, getBackData} = route.params;
+  const {district, setDistrict, state} = useStore();
 
   let DISTRICTS = states.find(function (ele, index) {
     if (ele.state === state) {
@@ -20,10 +20,6 @@ const StateScreen = ({route}) => {
     setDistrict(item);
     setShow(true);
   };
-
-  useEffect(() => {
-    getBackData(district);
-  }, [district]);
 
   return (
     <SafeAreaView style={styles.upperContainer}>

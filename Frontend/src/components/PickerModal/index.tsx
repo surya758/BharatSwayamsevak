@@ -12,6 +12,7 @@ type Props = {
   onClose: () => void;
   onSelect: (value: string) => void;
   value?: string;
+  state2: string;
 };
 const PickerModalComponent: FC<Props> = ({
   visible,
@@ -20,8 +21,9 @@ const PickerModalComponent: FC<Props> = ({
   onClose,
   onSelect,
   value,
+  state2,
 }) => {
-  const [state, setState] = useState<string>('');
+  const [state, setState] = useState<string>(state2);
 
   useEffect(() => {
     if (value) {

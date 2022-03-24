@@ -115,7 +115,7 @@ const PasswordScreen = () => {
           <View>
             <View>
               <TextInput
-                style={password ? styles.inputWith : styles.inputWithout}
+                style={styles.input}
                 onChangeText={passwordIsValid}
                 value={password.trim()}
                 autoCapitalize="none"

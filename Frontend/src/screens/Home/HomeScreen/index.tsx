@@ -1,6 +1,4 @@
-import {DATA, STATES} from '../../../utils/constants';
 import {
-  FlatList,
   Image,
   ImageBackground,
   Pressable,
@@ -12,14 +10,11 @@ import {ROUTES, baseURL} from '../../../utils/constants';
 import React, {useEffect, useState} from 'react';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
-import {Colors} from '../../../styles';
 import DrawerImageComponent from '../../../components/DrawerImage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MemberComponent from '../../../components/Member';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import PickerModalComponent from '../../../components/PickerModal';
 import axios from 'axios';
 import images from '../../../assets/images';
 import styles from './styles';
@@ -34,14 +29,14 @@ type userType = {
   name: string;
   designation: string;
   id: string;
+  district: string;
 };
 
 const HomeScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
   const isFocused = useIsFocused();
-  const [isVisible, setIsVisible] = useState(false);
   const {userData} = useStore();
-  const {name, role, designation} = userData.user;
+  const {name, role, designation, district} = userData.user;
   const [state, setState] = useState(userData.user.state);
   const [users, setUsers] = useState<Array<userType>>([]);
 
@@ -59,23 +54,6 @@ const HomeScreen = () => {
     loadUser();
   }, [state, isFocused]);
 
-  const onClose = () => {
-    setIsVisible(false);
-  };
-
-  const isAdmin = () => {
-    if (userData.user.role === 'admin') {
-      return true;
-    }
-    return false;
-  };
-
-  const onSelect = (selectedState: string) => {
-    setState(selectedState);
-    setIsVisible(false);
-  };
-  const title = 'state';
-
   return (
     <SafeAreaView style={styles.upperContainer}>
       <View style={styles.lowerContainer}>
@@ -90,17 +68,6 @@ const HomeScreen = () => {
             onPress={() => navigation.openDrawer()}>
             <DrawerImageComponent />
           </Pressable>
-          {isAdmin() ? (
-            <Pressable
-              style={
-                false
-                  ? {...styles.addButton, backgroundColor: 'red'}
-                  : styles.addButton
-              }
-              onPress={() => navigation.navigate('addUser')}>
-              <FontAwesome5 name="plus" size={24} color="#fff" />
-            </Pressable>
-          ) : null}
         </View>
         <View style={styles.greetingViewStyle}>
           <Text style={styles.greetingTextLeft}>
@@ -120,49 +87,13 @@ const HomeScreen = () => {
               </Text>
             </View>
             <View>
-              <Text style={styles.idCardTextAnswerStyle}>DESIGNATION</Text>
+              <Text style={styles.idCardTextAnswerStyle}>DISTRICT</Text>
               <Text style={styles.idCardTextHeadingStyle} numberOfLines={1}>
-                {designation}
+                {district}
               </Text>
             </View>
           </View>
           <Image style={styles.userIDPhotoStyle} source={images.guy} />
-        </View>
-        <View style={styles.selectorView}>
-          <View style={styles.memberView}>
-            <Ionicons name="people" size={30} color="#000" />
-            <Text style={styles.memberTextStyle}>Members</Text>
-          </View>
-          <PickerModalComponent
-            visible={isVisible}
-            items={STATES}
-            title={title}
-            onClose={onClose}
-            onSelect={onSelect}
-            state2={state}
-          />
-          <Pressable onPress={() => setIsVisible(true)} style={styles.modal}>
-            <Text style={styles.modalText} numberOfLines={1}>
-              {state}
-            </Text>
-            <FontAwesome5 name="angle-down" size={30} color={Colors.BLACK} />
-          </Pressable>
-        </View>
-        <View style={{flex: 1}}>
-          <FlatList
-            data={users}
-            renderItem={({item}) => (
-              <MemberComponent
-                name={item.name}
-                image={images.guy}
-                designation={item.designation}
-              />
-            )}
-            keyExtractor={item => item.id}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            bounces={false}
-          />
         </View>
       </View>
     </SafeAreaView>

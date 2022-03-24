@@ -43,6 +43,7 @@ const DonationScreen = () => {
 
   const {setState} = useStore();
 
+  const intDonation: number = parseInt(donationAmount, 10);
   useEffect(() => {
     const loadTempUserData = async () => {
       const jsonValue = await AsyncStorage.getItem('@tempUserData');
@@ -120,10 +121,10 @@ const DonationScreen = () => {
           name: tempUserData.name,
           phoneNumber: `${tempUserData.number}`,
           password: tempUserData.password,
-          designation: tempUserData.designation,
           donation: `${val}`,
           state: tempUserData.state,
           referrer: tempUserData.referrer,
+          district: tempUserData.district,
         })
         .then(res => storeUserData(res.data))
         .then(() => removeTempUserData())
@@ -232,9 +233,7 @@ const DonationScreen = () => {
                 <FontAwesome name="rupee" size={20} color={Colors.ALERT} />
               </View>
               <TextInput
-                style={
-                  donationAmount.trim() ? styles.inputWith : styles.inputWithout
-                }
+                style={styles.input}
                 onChangeText={setDonationAmount}
                 value={donationAmount.trim()}
                 placeholder="enter a custom donation amount"
@@ -248,7 +247,7 @@ const DonationScreen = () => {
             <View style={styles.gradientDonationButtonView}>
               <GradientButtonComponent
                 text="Donate"
-                isActive={donationAmount.length > 0 ? true : false}
+                isActive={intDonation > 9 ? true : false}
                 onPress={onPressDonate}
                 isLoading={isLoading}
               />

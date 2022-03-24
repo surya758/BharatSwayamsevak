@@ -1,5 +1,5 @@
 import {Pressable, SafeAreaView, Text, TextInput, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Fontisto';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {useStore} from '../../../context/GlobalContext';
 
 type authScreenNavigationType = NativeStackNavigationProp<
   AuthStackParamList,
@@ -17,27 +18,15 @@ type authScreenNavigationType = NativeStackNavigationProp<
 
 const UserDetailScreen = () => {
   const navigation = useNavigation<authScreenNavigationType>();
-  const [state, setState] = useState('');
-  const [district, setDistrict] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  const {state, district} = useStore();
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {
       setMessage('');
     }, 4000);
-  };
-
-  useEffect(() => {
-    setDistrict('');
-  }, [state]);
-
-  const getBackDataFromStateScreen = (data: string) => {
-    setState(data);
-  };
-  const getBackDataFromDistrictScreen = (data: string) => {
-    setDistrict(data);
   };
 
   const onPress = () => {
@@ -53,6 +42,7 @@ const UserDetailScreen = () => {
           ...JSON.parse(tempData),
           name: name,
           state: state,
+          district: district,
         };
         await AsyncStorage.setItem(
           '@tempUserData',
@@ -97,22 +87,13 @@ const UserDetailScreen = () => {
           placeholderTextColor="grey"
         />
         <Pressable
-          onPress={() =>
-            navigation.navigate('state', {
-              getBackData: getBackDataFromStateScreen,
-            })
-          }
+          onPress={() => navigation.navigate('state')}
           style={styles.stateView}>
           <Text style={styles.stateText1}>State</Text>
           <Text style={styles.stateText2}>{state}</Text>
         </Pressable>
         <Pressable
-          onPress={() =>
-            navigation.navigate('district', {
-              getBackData: getBackDataFromDistrictScreen,
-              state: state,
-            })
-          }
+          onPress={() => navigation.navigate('district')}
           style={styles.stateView}>
           <Text style={styles.stateText1}>District</Text>
           <Text style={styles.stateText2}>{district}</Text>

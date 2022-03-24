@@ -57,20 +57,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: 'center',
   },
-  inputWith: {
-    height: 50,
-    borderWidth: 2,
-    paddingLeft: 30,
-    borderRadius: 6,
+  input: {
+    height: 52,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     borderColor: Colors.PRIMARY,
-    marginHorizontal: 10,
-  },
-  inputWithout: {
-    height: 50,
-    borderWidth: 2,
+    borderBottomWidth: 2,
+    backgroundColor: Colors.BACKGROUND_ALT,
     paddingLeft: 30,
-    borderRadius: 6,
-    borderColor: Colors.GRAY_MEDIUM,
+    fontSize: 14,
     marginHorizontal: 10,
   },
 });

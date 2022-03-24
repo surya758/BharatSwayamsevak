@@ -7,7 +7,7 @@ import HomeNav from './HomeNav';
 import {useStore} from '../context/GlobalContext';
 
 const MainNav = () => {
-  const {state, userData} = useStore();
+  const {userData} = useStore();
 
   return userData ? (
     userData === 'loading' ? (

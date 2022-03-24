@@ -14,10 +14,12 @@ export type tempUserData = {
   designation?: string;
   donation?: number;
   state?: string;
+  district?: string;
 };
 
 const GlobalState = () => {
-  const [state, setState] = useState<string>('lol');
+  const [state, setState] = useState('');
+  const [district, setDistrict] = useState('');
   const [userData, setUserData] = useState<Object | null | 'loading'>(
     'loading',
   );
@@ -61,6 +63,8 @@ const GlobalState = () => {
     <GlobalContextProvider
       state={state}
       setState={setState}
+      district={district}
+      setDistrict={setDistrict}
       tempUserData={tempUserData}
       userData={userData}>
       <MainNav />
