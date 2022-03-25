@@ -9,10 +9,10 @@ import {useNavigation} from '@react-navigation/native';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,
-  'aboutUs'
+  'ramayana'
 >;
 
-const AboutUsScreen = () => {
+const RamayanaScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
   return (
     <SafeAreaView style={styles.mainContainer}>
@@ -21,4 +21,4 @@ const AboutUsScreen = () => {
   );
 };
 
-export default AboutUsScreen;
+export default RamayanaScreen;

@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 import {Colors, Typography} from '../styles';
-import {Text, View} from 'react-native';
 
 import AboutUsScreen from '../screens/Home/AboutUsScreen';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GeetaScreen from '../screens/Home/GeetaScreen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MainScreen from '../screens/Home/MainScreen';
 import MantrasScreen from '../screens/Home/MantrasScreen';
 import MissionScreen from '../screens/Home/MissionScreen';
@@ -25,29 +26,32 @@ export type HomeStackParamList = {
 const HomeNav = () => {
   const Drawer = createDrawerNavigator<HomeStackParamList>();
 
-  const Header = () => {
-    return (
-      <View>
-        {/*logo of samatan samiti*/}
-        <Text
-          style={{fontSize: 16, fontFamily: Typography.FONT_FAMILY_SEMIBOLD}}>
-          Akhand Samatan Samiti
-        </Text>
-      </View>
-    );
-  };
-
   return (
     <Drawer.Navigator
       screenOptions={{
         headerStyle: {backgroundColor: Colors.BACKGROUND},
+        headerTitleStyle: {
+          fontSize: 16,
+          fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+        },
+        drawerLabelStyle: {
+          fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+          marginLeft: -25,
+          fontSize: 15,
+        },
+        drawerActiveBackgroundColor: Colors.PRIMARY,
+        drawerActiveTintColor: Colors.WHITE,
+        drawerInactiveTintColor: Colors.BLACK,
       }}>
       <Drawer.Screen
         name="main"
         component={MainScreen}
         options={{
-          title: 'Home',
-          headerTitle: () => <Header />,
+          title: 'Akhand Samatan Samiti',
+          drawerIcon: ({color}) => (
+            <Ionicons name="md-home-sharp" size={22} color={color} />
+          ),
+          drawerLabel: 'Home',
         }}
       />
       <Drawer.Screen
@@ -55,6 +59,9 @@ const HomeNav = () => {
         component={AboutUsScreen}
         options={{
           title: 'About Us',
+          drawerIcon: ({color}) => (
+            <FontAwesome5 name="info-circle" size={22} color={color} />
+          ),
         }}
       />
       <Drawer.Screen
@@ -62,6 +69,9 @@ const HomeNav = () => {
         component={MissionScreen}
         options={{
           title: 'Our Mission',
+          drawerIcon: ({color}) => (
+            <FontAwesome5 name="fist-raised" size={22} color={color} />
+          ),
         }}
       />
       <Drawer.Screen
@@ -69,6 +79,9 @@ const HomeNav = () => {
         component={VisionScreen}
         options={{
           title: 'Our Vision',
+          drawerIcon: ({color}) => (
+            <FontAwesome5 name="eye" size={22} color={color} />
+          ),
         }}
       />
       <Drawer.Screen
@@ -76,6 +89,9 @@ const HomeNav = () => {
         component={GeetaScreen}
         options={{
           title: 'Geeta',
+          drawerIcon: ({color}) => (
+            <Ionicons name="book" size={22} color={color} />
+          ),
         }}
       />
       <Drawer.Screen
@@ -83,6 +99,9 @@ const HomeNav = () => {
         component={RamayanaScreen}
         options={{
           title: 'Ramayana',
+          drawerIcon: ({color}) => (
+            <Ionicons name="book" size={22} color={color} />
+          ),
         }}
       />
       <Drawer.Screen
@@ -90,6 +109,9 @@ const HomeNav = () => {
         component={MantrasScreen}
         options={{
           title: 'Mantras',
+          drawerIcon: ({color}) => (
+            <Ionicons name="book" size={22} color={color} />
+          ),
         }}
       />
     </Drawer.Navigator>
