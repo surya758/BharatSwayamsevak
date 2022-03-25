@@ -18,6 +18,7 @@ const CustomEventComponent = ({event}: eventProp) => {
       <Text style={styles.eventTitle}>{event.title}</Text>
       <FlatList
         showsHorizontalScrollIndicator={false}
+        keyExtractor={item => item}
         horizontal={true}
         data={event.imageUrl}
         ItemSeparatorComponent={() => <View style={styles.flatListSeparator} />}

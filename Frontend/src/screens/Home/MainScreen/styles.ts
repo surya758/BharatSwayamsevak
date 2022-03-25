@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   eventBoxView: {padding: 10},
   eventBoxTitle: {
     fontSize: Typography.FONT_SIZE_16,
-    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    fontFamily: Typography.FONT_FAMILY_BOLD,
     paddingLeft: 5,
   },
   flatListSeparator: {
@@ -38,9 +38,15 @@ const styles = StyleSheet.create({
   flatListFooter: {
     borderBottomWidth: 5,
     borderBottomColor: Colors.GRAY_MEDIUM,
-    marginBottom: 50,
   },
-  committeeBoxView: {},
+  committeeBoxView: {padding: 10, paddingBottom: 0},
+  committeeView: {
+    paddingVertical: 10,
+  },
+  committeeTitle: {
+    marginBottom: 10,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+  },
 });
 
 export default styles;

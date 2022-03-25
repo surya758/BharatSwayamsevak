@@ -1,19 +1,14 @@
 import * as React from 'react';
 
-import {
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
+import {Pressable, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {events, members} from '../../../utils/dummyData';
 
+import CustomCommitteeComponent from '../../../components/CustomCommitteeComponent';
 import CustomEventComponent from '../../../components/CustomEventComponent';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {events} from '../../../utils/dummyData';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
@@ -47,20 +42,21 @@ const MainScreen = () => {
         <View style={styles.flatListFooter} />
         <View style={styles.committeeBoxView}>
           <View style={styles.event}>
-            <MaterialIcons name="event" size={22} />
-            <Text style={styles.eventBoxTitle}>Events</Text>
+            <Fontisto name="persons" size={18} />
+            <Text style={styles.eventBoxTitle}>Committee Members</Text>
           </View>
-          <View style={styles.event}>
-            <MaterialIcons name="event" size={22} />
-            <Text style={styles.eventBoxTitle}>Events</Text>
-          </View>
-          <View style={styles.event}>
-            <MaterialIcons name="event" size={22} />
-            <Text style={styles.eventBoxTitle}>Events</Text>
-          </View>
-          <View style={styles.event}>
-            <MaterialIcons name="event" size={22} />
-            <Text style={styles.eventBoxTitle}>Events</Text>
+          <View style={styles.committeeView}>
+            {/* rendering national committee members */}
+            <View>
+              <Text style={styles.committeeTitle}>National Committee</Text>
+            </View>
+            <CustomCommitteeComponent members={members} />
+            {/* rendering state committee members */}
+            <Text style={styles.committeeTitle}>State Committee</Text>
+            <CustomCommitteeComponent members={members} />
+            {/* rendering district committee members */}
+            <Text style={styles.committeeTitle}>District Committee</Text>
+            <CustomCommitteeComponent members={members} />
           </View>
         </View>
         <View style={styles.flatListFooter} />
