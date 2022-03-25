@@ -35,7 +35,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: Colors.GRAY_DARK,
   },
-  flatListFooter: {borderBottomWidth: 5, borderBottomColor: Colors.GRAY_MEDIUM},
+  flatListFooter: {
+    borderBottomWidth: 5,
+    borderBottomColor: Colors.GRAY_MEDIUM,
+    marginBottom: 50,
+  },
+  committeeBoxView: {},
 });
 
 export default styles;

@@ -12,7 +12,6 @@ type eventType = {
   imageUrl: string[];
   title: string;
 };
-
 const CustomEventComponent = ({event}: eventProp) => {
   return (
     <View style={styles.eventView}>

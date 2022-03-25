@@ -1,6 +1,13 @@
 import * as React from 'react';
 
-import {FlatList, Pressable, SafeAreaView, Text, View} from 'react-native';
+import {
+  FlatList,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 
 import CustomEventComponent from '../../../components/CustomEventComponent';
 import {HomeStackParamList} from '../../../navigation/HomeNav';
@@ -19,28 +26,45 @@ const MainScreen = () => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <View style={styles.startScreenReturnView}>
-        <Text style={styles.leftOfClickHere}>Want to register or login? </Text>
-        <Pressable onPress={() => navigation.goBack()}>
-          <Text style={styles.clickHere}>Click here</Text>
-        </Pressable>
-      </View>
-      <View style={styles.eventBoxView}>
-        <View style={styles.event}>
-          <MaterialIcons name="event" size={22} />
-          <Text style={styles.eventBoxTitle}>Events</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.startScreenReturnView}>
+          <Text style={styles.leftOfClickHere}>
+            Want to register or login?{' '}
+          </Text>
+          <Pressable onPress={() => navigation.goBack()}>
+            <Text style={styles.clickHere}>Click here</Text>
+          </Pressable>
         </View>
-        <FlatList
-          bounces={false}
-          data={events}
-          keyExtractor={item => item.title}
-          renderItem={({item}) => <CustomEventComponent event={item} />}
-          ItemSeparatorComponent={() => (
-            <View style={styles.flatListSeparator} />
-          )}
-        />
-      </View>
-      <View style={styles.flatListFooter} />
+        <View style={styles.eventBoxView}>
+          <View style={styles.event}>
+            <MaterialIcons name="event" size={22} />
+            <Text style={styles.eventBoxTitle}>Events</Text>
+          </View>
+          {events.map(event => {
+            return <CustomEventComponent event={event} />;
+          })}
+        </View>
+        <View style={styles.flatListFooter} />
+        <View style={styles.committeeBoxView}>
+          <View style={styles.event}>
+            <MaterialIcons name="event" size={22} />
+            <Text style={styles.eventBoxTitle}>Events</Text>
+          </View>
+          <View style={styles.event}>
+            <MaterialIcons name="event" size={22} />
+            <Text style={styles.eventBoxTitle}>Events</Text>
+          </View>
+          <View style={styles.event}>
+            <MaterialIcons name="event" size={22} />
+            <Text style={styles.eventBoxTitle}>Events</Text>
+          </View>
+          <View style={styles.event}>
+            <MaterialIcons name="event" size={22} />
+            <Text style={styles.eventBoxTitle}>Events</Text>
+          </View>
+        </View>
+        <View style={styles.flatListFooter} />
+      </ScrollView>
     </SafeAreaView>
   );
 };
