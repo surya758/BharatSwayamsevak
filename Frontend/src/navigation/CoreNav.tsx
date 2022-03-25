@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import {Colors, Typography} from '../styles';
 
 import AddUserScreen from '../screens/Core/AddUserScreen(unusuable)';
@@ -5,7 +7,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import CustomDrawer from '../components/CustomDrawer';
 import DashBoardScreen from '../screens/Core/DashBoardScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {useStore} from '../context/GlobalContext';
 
@@ -15,7 +16,7 @@ export type CoreStackParamList = {
 };
 const Drawer = createDrawerNavigator<CoreStackParamList>();
 const HomeNav = () => {
-  const {userData} = useStore();
+  const {userData}: any = useStore();
   const isAdmin = () => {
     if (userData.user.role === 'admin') {
       return true;

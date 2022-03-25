@@ -10,19 +10,7 @@ const styles = StyleSheet.create({
   startScreenReturnView: {
     flexDirection: 'row',
     justifyContent: 'center',
-    borderBottomWidth: 5,
-    padding: 10,
-    borderColor: Colors.GRAY_MEDIUM,
     alignItems: 'center',
-  },
-  clickHere: {
-    color: Colors.PRIMARY,
-    fontSize: Typography.FONT_SIZE_14,
-    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
-  },
-  leftOfClickHere: {
-    fontSize: Typography.FONT_SIZE_14,
-    fontFamily: Typography.FONT_FAMILY_REGULAR,
   },
 });
 

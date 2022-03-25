@@ -9,21 +9,16 @@ import {useNavigation} from '@react-navigation/native';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,
-  'main'
+  'aboutUs'
 >;
 
-const MainScreen = () => {
+const AboutUsScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <View style={styles.startScreenReturnView}>
-        <Text style={styles.leftOfClickHere}>Want to register or login? </Text>
-        <Pressable onPress={() => navigation.goBack()}>
-          <Text style={styles.clickHere}>Click here</Text>
-        </Pressable>
-      </View>
+      <View style={styles.startScreenReturnView}></View>
     </SafeAreaView>
   );
 };
 
-export default MainScreen;
+export default AboutUsScreen;
