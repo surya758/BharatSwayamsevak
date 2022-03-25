@@ -5,16 +5,16 @@ import {Colors, Typography} from '../styles';
 import AboutUsScreen from '../screens/Home/AboutUsScreen';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GeetaScreen from '../screens/Home/GeetaScreen';
+import HomeStackNav from './HomeStackNav';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MainScreen from '../screens/Home/MainScreen';
 import MantrasScreen from '../screens/Home/MantrasScreen';
 import MissionScreen from '../screens/Home/MissionScreen';
 import RamayanaScreen from '../screens/Home/RamayanaScreen';
 import VisionScreen from '../screens/Home/VisionScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-export type HomeStackParamList = {
-  main: undefined;
+export type HomeDrawerParamList = {
+  homeStack: undefined;
   aboutUs: undefined;
   mission: undefined;
   vision: undefined;
@@ -24,7 +24,7 @@ export type HomeStackParamList = {
 };
 
 const HomeNav = () => {
-  const Drawer = createDrawerNavigator<HomeStackParamList>();
+  const Drawer = createDrawerNavigator<HomeDrawerParamList>();
 
   return (
     <Drawer.Navigator
@@ -44,8 +44,8 @@ const HomeNav = () => {
         drawerInactiveTintColor: Colors.BLACK,
       }}>
       <Drawer.Screen
-        name="main"
-        component={MainScreen}
+        name="homeStack"
+        component={HomeStackNav}
         options={{
           title: 'Akhand Samatan Samiti',
           drawerIcon: ({color}) => (

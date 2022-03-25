@@ -1,14 +1,14 @@
-import {ActivityIndicator, View} from 'react-native';
 import {Colors, Typography} from '../styles';
-import React, {useEffect} from 'react';
 
+import {ActivityIndicator} from 'react-native';
 import AdminLoginScreen from '../screens/Auth/AdminLoginScreen';
-import DistrictScreen from '../screens/Auth/District Screen';
+import DistrictScreen from '../screens/Auth/DistrictScreen';
 import DonationScreen from '../screens/Auth/DonationScreen';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import HomeNav from './HomeNav';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import PasswordScreen from '../screens/Auth/PasswordScreen';
+import React from 'react';
 import ReferralScreen from '../screens/Auth/ReferralScreen';
 import RegisterScreen from '../screens/Auth/RegisterScreen';
 import StartScreen from '../screens/Auth/StartScreen';

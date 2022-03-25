@@ -1,16 +1,17 @@
 import * as React from 'react';
 
 import {Pressable, SafeAreaView, ScrollView, Text, View} from 'react-native';
-import {events, members} from '../../../utils/dummyData';
+import {events, members} from '../../../../utils/dummyData';
 
-import CustomCommitteeComponent from '../../../components/CustomCommitteeComponent';
-import CustomEventComponent from '../../../components/CustomEventComponent';
+import CustomCommitteeComponent from '../../../../components/CustomCommitteeComponent';
+import CustomEventComponent from '../../../../components/CustomEventComponent';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import {HomeStackParamList} from '../../../navigation/HomeNav';
+import {HomeStackParamList} from '../../../../navigation/HomeStackNav';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {useStore} from '../../../../context/GlobalContext';
 
 type homeScreenNavigationType = NativeStackNavigationProp<
   HomeStackParamList,
@@ -18,7 +19,7 @@ type homeScreenNavigationType = NativeStackNavigationProp<
 >;
 const MainScreen = () => {
   const navigation = useNavigation<homeScreenNavigationType>();
-
+  const {state, district} = useStore();
   return (
     <SafeAreaView style={styles.mainContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -47,15 +48,29 @@ const MainScreen = () => {
           </View>
           <View style={styles.committeeView}>
             {/* rendering national committee members */}
-            <View>
-              <Text style={styles.committeeTitle}>National Committee</Text>
-            </View>
+            <Text style={styles.committeeTitle}>National Committee</Text>
             <CustomCommitteeComponent members={members} />
             {/* rendering state committee members */}
-            <Text style={styles.committeeTitle}>State Committee</Text>
+            <View style={styles.stateCommitteeHeader}>
+              <Text style={styles.stateCommitteeTitle}>State Committee</Text>
+              <Pressable
+                onPress={() => navigation.navigate('state')}
+                style={{}}>
+                <Text style={styles.stateText}>{state || 'Select state'}</Text>
+              </Pressable>
+            </View>
             <CustomCommitteeComponent members={members} />
             {/* rendering district committee members */}
-            <Text style={styles.committeeTitle}>District Committee</Text>
+            <View style={styles.stateCommitteeHeader}>
+              <Text style={styles.stateCommitteeTitle}>District Committee</Text>
+              <Pressable
+                onPress={() => navigation.navigate('district')}
+                style={{}}>
+                <Text style={styles.stateText}>
+                  {district || 'Select district'}
+                </Text>
+              </Pressable>
+            </View>
             <CustomCommitteeComponent members={members} />
           </View>
         </View>

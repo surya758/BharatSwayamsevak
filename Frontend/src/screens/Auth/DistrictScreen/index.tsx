@@ -6,7 +6,7 @@ import {states} from '../../../utils/constants';
 import styles from './styles';
 import {useStore} from '../../../context/GlobalContext';
 
-const StateScreen = ({route}) => {
+const DistrictScreen = ({route}) => {
   const [show, setShow] = useState(false);
   const {district, setDistrict, state} = useStore();
 
@@ -43,4 +43,4 @@ const StateScreen = ({route}) => {
   );
 };
 
-export default StateScreen;
+export default DistrictScreen;

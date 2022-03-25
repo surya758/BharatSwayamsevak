@@ -1,4 +1,4 @@
-import {Colors, Typography} from '../../../styles';
+import {Colors, Typography} from '../../../../styles';
 
 import {StyleSheet} from 'react-native';
 
@@ -46,6 +46,20 @@ const styles = StyleSheet.create({
   committeeTitle: {
     marginBottom: 10,
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+  },
+  stateText: {
+    marginRight: 30,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+    color: Colors.PRIMARY,
+  },
+  stateCommitteeTitle: {
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+  },
+  stateCommitteeHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 10,
   },
 });
 
