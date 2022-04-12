@@ -1,6 +1,5 @@
 import {Colors, Typography} from '../../../styles';
-
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -8,9 +7,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   startScreenReturnView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    padding: 10,
+  },
+  text: {
+    fontSize: 14,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    marginTop: 25,
+  },
+  pdf: {
+    flex: 1,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
 });
 

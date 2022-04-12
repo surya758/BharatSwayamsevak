@@ -26,9 +26,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   doneButton: {
-    color: Colors.PRIMARY,
+    color: Colors.BLACK,
     fontSize: Typography.FONT_SIZE_16,
-    fontFamily: Typography.FONT_FAMILY_REGULAR,
+    fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
+  },
+  doneStyle: {
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    justifyContent: 'space-between',
+    backgroundColor: Colors.PRIMARY,
+    borderRadius: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 

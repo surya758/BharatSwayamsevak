@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 
 import Feather from 'react-native-vector-icons/Feather';
 import {HomeStackParamList} from '../../../../navigation/HomeStackNav';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {states} from '../../../../utils/constants';
 import styles from './styles';
@@ -30,8 +31,11 @@ const StateScreen = () => {
     return (
       <View style={styles.headerStyle}>
         <Text style={styles.state}>STATE</Text>
-        <Pressable onPress={() => navigation.navigate('main')}>
+        <Pressable
+          onPress={() => navigation.navigate('main')}
+          style={styles.doneStyle}>
           <Text style={styles.doneButton}>Done</Text>
+          <Ionicons name="checkmark-done" size={20} />
         </Pressable>
       </View>
     );
@@ -41,6 +45,8 @@ const StateScreen = () => {
       <View style={{marginHorizontal: 16}}>
         <FlatList
           data={STATES}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
           keyExtractor={item => item}
           ListHeaderComponent={<HeaderComponent />}
           renderItem={({item}) => (

@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
     fontFamily: Typography.FONT_FAMILY_REGULAR,
   },
   tinyLogo: {
-    width: 220,
-    height: 220,
+    width: 150,
+    height: 150,
     zIndex: 5,
-    top: 30,
+    top: 70,
   },
   upperBox: {flex: 1},
   bottomBox: {

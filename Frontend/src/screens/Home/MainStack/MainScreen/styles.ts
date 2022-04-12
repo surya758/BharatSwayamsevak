@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
     borderColor: Colors.GRAY_MEDIUM,
     alignItems: 'center',
   },
+  pressable: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   clickHere: {
     color: Colors.PRIMARY,
     fontSize: Typography.FONT_SIZE_14,
@@ -44,13 +48,12 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   committeeTitle: {
-    marginBottom: 10,
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
   },
   stateText: {
-    marginRight: 30,
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
     color: Colors.PRIMARY,
+    marginRight: 10,
   },
   stateCommitteeTitle: {
     fontFamily: Typography.FONT_FAMILY_SEMIBOLD,
@@ -60,6 +63,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 10,
+    backgroundColor: Colors.GRAY_MEDIUM,
+    padding: 10,
+    borderRadius: 5,
   },
 });
 

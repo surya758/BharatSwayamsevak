@@ -1,13 +1,12 @@
+import {ROUTES, baseURL} from '../../../utils/constants';
+import React, {useRef, useState} from 'react';
 import {
-  Alert,
   SafeAreaView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {ROUTES, baseURL} from '../../../utils/constants';
-import React, {useRef, useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackParamList} from '../../../navigation/AuthNav';
@@ -35,7 +34,7 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const {setState} = useStore();
+  const {setState}: any = useStore();
   const showErrMsg = (mes: string) => {
     setMessage(mes);
     setTimeout(() => {

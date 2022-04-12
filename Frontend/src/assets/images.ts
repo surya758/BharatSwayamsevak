@@ -1,6 +1,6 @@
 const images = {
   frontscreenflag: require('./images/flag.jpg'),
-  logo: require('./images/logo.png'),
+  logo: require('./images/logo.jpeg'),
   photoRing: require('./images/photoRing.png'),
   guy: require('./images/guy.jpg'),
   lc: require('./images/lc.jpg'),

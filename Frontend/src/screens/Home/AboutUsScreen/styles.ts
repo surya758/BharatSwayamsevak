@@ -8,9 +8,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   startScreenReturnView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 10,
+  },
+  text: {
+    fontSize: 14,
+    fontFamily: Typography.FONT_FAMILY_REGULAR,
   },
 });
 

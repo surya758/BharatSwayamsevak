@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 
 import Feather from 'react-native-vector-icons/Feather';
 import {HomeStackParamList} from '../../../../navigation/HomeStackNav';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {states} from '../../../../utils/constants';
 import styles from './styles';
@@ -33,9 +34,12 @@ const DistrictScreen = ({route}) => {
   const HeaderComponent = () => {
     return (
       <View style={styles.headerStyle}>
-        <Text style={styles.state}>STATE</Text>
-        <Pressable onPress={() => navigation.navigate('main')}>
+        <Text style={styles.state}>DISTRICT</Text>
+        <Pressable
+          onPress={() => navigation.navigate('main')}
+          style={styles.doneStyle}>
           <Text style={styles.doneButton}>Done</Text>
+          <Ionicons name="checkmark-done" size={20} />
         </Pressable>
       </View>
     );
@@ -47,6 +51,8 @@ const DistrictScreen = ({route}) => {
         <FlatList
           data={DISTRICTS?.districts}
           keyExtractor={item => item}
+          bounces={false}
+          showsVerticalScrollIndicator={false}
           ListHeaderComponent={<HeaderComponent />}
           renderItem={({item}) => (
             <Pressable style={styles.itemView} onPress={() => showTick(item)}>

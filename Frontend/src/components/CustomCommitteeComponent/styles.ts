@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   image: {
-    height: 100,
-    width: 100,
+    height: 125,
+    width: 125,
     borderRadius: 5,
   },
   info: {

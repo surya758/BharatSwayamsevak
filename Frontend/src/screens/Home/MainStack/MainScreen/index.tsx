@@ -5,6 +5,7 @@ import {events, members} from '../../../../utils/dummyData';
 
 import CustomCommitteeComponent from '../../../../components/CustomCommitteeComponent';
 import CustomEventComponent from '../../../../components/CustomEventComponent';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {HomeStackParamList} from '../../../../navigation/HomeStackNav';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -48,15 +49,18 @@ const MainScreen = () => {
           </View>
           <View style={styles.committeeView}>
             {/* rendering national committee members */}
-            <Text style={styles.committeeTitle}>National Committee</Text>
+            <View style={styles.stateCommitteeHeader}>
+              <Text style={styles.committeeTitle}>National Committee</Text>
+            </View>
             <CustomCommitteeComponent members={members} />
             {/* rendering state committee members */}
             <View style={styles.stateCommitteeHeader}>
               <Text style={styles.stateCommitteeTitle}>State Committee</Text>
               <Pressable
                 onPress={() => navigation.navigate('state')}
-                style={{}}>
+                style={styles.pressable}>
                 <Text style={styles.stateText}>{state || 'Select state'}</Text>
+                <FontAwesome name="chevron-circle-right" size={18} />
               </Pressable>
             </View>
             <CustomCommitteeComponent members={members} />
@@ -65,10 +69,11 @@ const MainScreen = () => {
               <Text style={styles.stateCommitteeTitle}>District Committee</Text>
               <Pressable
                 onPress={() => navigation.navigate('district')}
-                style={{}}>
+                style={styles.pressable}>
                 <Text style={styles.stateText}>
                   {district || 'Select district'}
                 </Text>
+                <FontAwesome name="chevron-circle-right" size={18} />
               </Pressable>
             </View>
             <CustomCommitteeComponent members={members} />
