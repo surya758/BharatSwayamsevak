@@ -1,3 +1,20 @@
-const httpStatus = require('http-status');
 const { Event } = require('../models');
-const ApiError = require('../utils/ApiError');
+
+/**
+ * Create a event
+ * @param {Object} eventBody
+ * @returns {Promise<Event>}
+ */
+const createEvent = async (eventBody) => {
+  return Event.create(eventBody);
+};
+
+const queryEvents = async (filter, options) => {
+  const events = await Event.paginate(filter, options);
+  return events;
+};
+
+module.exports = {
+  createEvent,
+  queryEvents,
+};

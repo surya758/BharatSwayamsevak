@@ -1,16 +1,20 @@
-const httpStatus = require('http-status');
 const { Member } = require('../models');
-const ApiError = require('../utils/ApiError');
 
 /**
- * Create a user
- * @param {Object} userBody
- * @returns {Promise<User>}
+ * Create a member
+ * @param {Object} memberBody
+ * @returns {Promise<Member>}
  */
 const createMember = async (memberBody) => {
   return Member.create(memberBody);
 };
 
+const queryMembers = async (filter, options) => {
+  const members = await Member.paginate(filter, options);
+  return members;
+};
+
 module.exports = {
   createMember,
+  queryMembers,
 };
